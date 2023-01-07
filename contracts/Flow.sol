@@ -1,25 +1,28 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.13;
 
-import "contracts/interfaces/IVelo.sol";
+import "contracts/interfaces/IFlow.sol";
 
-contract Velo is IVelo {
-
-    string public constant name = "Velodrome";
-    string public constant symbol = "VELO";
+contract Flow is IFlow {
+    string public constant name = "Velocimeter";
+    string public constant symbol = "FLOW";
     uint8 public constant decimals = 18;
-    uint public totalSupply = 0;
+    uint256 public totalSupply = 0;
 
-    mapping(address => uint) public balanceOf;
-    mapping(address => mapping(address => uint)) public allowance;
+    mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance;
 
     bool public initialMinted;
     address public minter;
     address public redemptionReceiver;
     address public merkleClaim;
 
-    event Transfer(address indexed from, address indexed to, uint value);
-    event Approval(address indexed owner, address indexed spender, uint value);
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
 
     constructor() {
         minter = msg.sender;
@@ -42,23 +45,20 @@ contract Velo is IVelo {
         merkleClaim = _merkleClaim;
     }
 
-    // Initial mint: total 82M
-    //  4M for "Genesis" pools
-    // 30M for liquid team allocation (40M excl init veNFT)
-    // 48M for future partners
+    // NFTs are minted from this amount as well now
     function initialMint(address _recipient) external {
         require(msg.sender == minter && !initialMinted);
         initialMinted = true;
-        _mint(_recipient, 82 * 1e6 * 1e18);
+        _mint(_recipient, 400 * 1e6 * 1e18); //#settings
     }
 
-    function approve(address _spender, uint _value) external returns (bool) {
+    function approve(address _spender, uint256 _value) external returns (bool) {
         allowance[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
         return true;
     }
 
-    function _mint(address _to, uint _amount) internal returns (bool) {
+    function _mint(address _to, uint256 _amount) internal returns (bool) {
         totalSupply += _amount;
         unchecked {
             balanceOf[_to] += _amount;
@@ -67,7 +67,11 @@ contract Velo is IVelo {
         return true;
     }
 
-    function _transfer(address _from, address _to, uint _value) internal returns (bool) {
+    function _transfer(
+        address _from,
+        address _to,
+        uint256 _value
+    ) internal returns (bool) {
         balanceOf[_from] -= _value;
         unchecked {
             balanceOf[_to] += _value;
@@ -76,25 +80,29 @@ contract Velo is IVelo {
         return true;
     }
 
-    function transfer(address _to, uint _value) external returns (bool) {
+    function transfer(address _to, uint256 _value) external returns (bool) {
         return _transfer(msg.sender, _to, _value);
     }
 
-    function transferFrom(address _from, address _to, uint _value) external returns (bool) {
-        uint allowed_from = allowance[_from][msg.sender];
-        if (allowed_from != type(uint).max) {
+    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _value
+    ) external returns (bool) {
+        uint256 allowed_from = allowance[_from][msg.sender];
+        if (allowed_from != type(uint256).max) {
             allowance[_from][msg.sender] -= _value;
         }
         return _transfer(_from, _to, _value);
     }
 
-    function mint(address account, uint amount) external returns (bool) {
+    function mint(address account, uint256 amount) external returns (bool) {
         require(msg.sender == minter);
         _mint(account, amount);
         return true;
     }
 
-    function claim(address account, uint amount) external returns (bool) {
+    function claim(address account, uint256 amount) external returns (bool) {
         require(msg.sender == redemptionReceiver || msg.sender == merkleClaim);
         _mint(account, amount);
         return true;

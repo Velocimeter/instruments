@@ -1,13 +1,24 @@
 {
-  "name": "velodrome",
+  "name": "velocimeter",
   "version": "1.0.0",
-  "description": "Base layer AMM on Optimism",
+  "description": "Base layer AMM on Arbitrum",
   "directories": {
     "lib": "lib"
   },
+  "scripts": {
+    "verify": "npx hardhat --network arbitrumGoerli etherscan-verify --solc-input --sleep",
+    "export": "npx hardhat --network arbitrumGoerli export --export ./exported.json",
+    "exportMainnet": "npx hardhat --network arbitrum export --export ./mainnet-exported.json",
+    "deploy": "npx hardhat deploy --network arbitrumGoerli",
+    "deployArb": "npx hardhat deploy --network arbitrumOne",
+    "deployHardhat": "npx hardhat deploy --network hardhat",
+    "verifyMainnet": "npx hardhat --network arbitrumOne etherscan-verify --solc-input --sleep",
+    "verifyGoerli": "npx hardhat --network arbitrumGoerli etherscan-verify --solc-input --sleep",
+    "batchMint": "npx hardhat batch-create-lock-for --network arbitrumOne --token 0xC33f7f83CbB021846Cb9c58f2d8E3df428dbC8C1 --contract 0x10Df81252069C1095F541FAca61646cb9Ae76703"
+  },
   "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.6",
-    "@nomiclabs/hardhat-etherscan": "^3.0.4",
+    "@nomiclabs/hardhat-ethers": "yarn:hardhat-deploy-ethers",
+    "@nomiclabs/hardhat-etherscan": "^3.1.4",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@typechain/ethers-v5": "^10.0.0",
     "@typechain/hardhat": "^6.0.0",
@@ -15,16 +26,25 @@
     "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.35",
     "chai": "^4.3.6",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
     "dotenv": "^16.0.0",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.0.0",
+    "fs": "^0.0.1-security",
     "hardhat": "^2.9.5",
     "hardhat-abi-exporter": "^2.9.0",
+    "hardhat-deploy": "^0.11.22",
     "hardhat-preprocessor": "^0.1.4",
+    "path": "^0.12.7",
     "prettier": "^2.6.2",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "ts-node": "^10.7.0",
     "typechain": "^8.0.0",
     "typescript": "^4.6.4"
-  }
+  },
+  "dependencies": {
+    "zod": "^3.20.2"
+  },
+  "packageManager": "yarn@3.3.1"
 }

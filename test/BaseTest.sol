@@ -17,8 +17,8 @@ import "contracts/Pair.sol";
 import "contracts/PairFees.sol";
 import "contracts/RewardsDistributor.sol";
 import "contracts/Router.sol";
-import "contracts/Velo.sol";
-import "contracts/VelodromeLibrary.sol";
+import "contracts/Flow.sol";
+import "contracts/VelocimeterLibrary.sol";
 import "contracts/Voter.sol";
 import "contracts/VeArtProxy.sol";
 import "contracts/VotingEscrow.sol";
@@ -47,13 +47,13 @@ abstract contract BaseTest is Test, TestOwner {
     MockERC20 FRAX;
     MockERC20 DAI;
     TestWETH WETH; // Mock WETH token
-    Velo VELO;
+    Flow VELO;
     MockERC20 WEVE;
     MockERC20 LR; // late reward
     TestToken stake; // MockERC20 with claimFees() function that returns (0,0)
     PairFactory factory;
     Router router;
-    VelodromeLibrary lib;
+    VelocimeterLibrary lib;
     Pair pair;
     Pair pair2;
     Pair pair3;
@@ -72,7 +72,7 @@ abstract contract BaseTest is Test, TestOwner {
         USDC = new MockERC20("USDC", "USDC", 6);
         FRAX = new MockERC20("FRAX", "FRAX", 18);
         DAI = new MockERC20("DAI", "DAI", 18);
-        VELO = new Velo();
+        VELO = new Flow();
         WEVE = new MockERC20("WEVE", "WEVE", 18);
         LR = new MockERC20("LR", "LR", 18);
         WETH = new TestWETH();
@@ -124,7 +124,7 @@ abstract contract BaseTest is Test, TestOwner {
         factory.setFee(false, 1);
         router = new Router(address(factory), address(WETH));
         assertEq(router.factory(), address(factory));
-        lib = new VelodromeLibrary(address(router));
+        lib = new VelocimeterLibrary(address(router));
     }
 
     function deployPairWithOwner(address _owner) public {
