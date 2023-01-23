@@ -51,7 +51,7 @@ const arbHardhatConfig = {
     '0x8aE125E8653821E851F12A49F7765db9a9ce7384',
     '0x10010078a54396F62c96dF8532dc2B4847d47ED3',
     // "", // BTRFLY -- N/A
-    // "", // pxVELO -- N/A
+    // "", // pxFLOW -- N/A
     '0xc40F949F8a4e094D1b49a23ea9241D289B7b2819' // LUSD
     // "", // wstETH -- N/A
     // "", // HOP -- N/A

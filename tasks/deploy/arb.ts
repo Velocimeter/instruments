@@ -25,7 +25,7 @@ task('deploy:arb', 'Deploys Arbitrum contracts').setAction(async function (
 
   // Load
   const [
-    Velo,
+    Flow,
     GaugeFactory,
     BribeFactory,
     PairFactory,
@@ -36,29 +36,29 @@ task('deploy:arb', 'Deploys Arbitrum contracts').setAction(async function (
     RewardsDistributor,
     Voter,
     Minter,
-    VeloGovernor,
+    FlowGovernor,
     RedemptionReceiver,
     MerkleClaim
   ] = await Promise.all([
-    ethers.getContractFactory('Velo'),
+    ethers.getContractFactory('Flow'),
     ethers.getContractFactory('GaugeFactory'),
     ethers.getContractFactory('BribeFactory'),
     ethers.getContractFactory('PairFactory'),
     ethers.getContractFactory('Router'),
-    ethers.getContractFactory('VelodromeLibrary'),
+    ethers.getContractFactory('VelocimeterLibrary'),
     ethers.getContractFactory('VeArtProxy'),
     ethers.getContractFactory('VotingEscrow'),
     ethers.getContractFactory('RewardsDistributor'),
     ethers.getContractFactory('Voter'),
     ethers.getContractFactory('Minter'),
-    ethers.getContractFactory('VeloGovernor'),
+    ethers.getContractFactory('FlowGovernor'),
     ethers.getContractFactory('RedemptionReceiver'),
     ethers.getContractFactory('MerkleClaim')
   ])
 
-  const velo = await Velo.deploy()
-  await velo.deployed()
-  console.log('Velo deployed to dunks: ', velo.address)
+  const flow = await Flow.deploy()
+  await flow.deployed()
+  console.log('Flow deployed to dunks: ', flow.address)
 
   const gaugeFactory = await GaugeFactory.deploy()
   await gaugeFactory.deployed()
@@ -79,17 +79,17 @@ task('deploy:arb', 'Deploys Arbitrum contracts').setAction(async function (
 
   const library = await Library.deploy(router.address)
   await library.deployed()
-  console.log('VelodromeLibrary deployed to: ', library.address)
+  console.log('VelocimeterLibrary deployed to: ', library.address)
   console.log('Args: ', router.address, '\n')
 
   const artProxy = await VeArtProxy.deploy()
   await artProxy.deployed()
   console.log('VeArtProxy deployed to: ', artProxy.address)
 
-  const escrow = await VotingEscrow.deploy(velo.address, artProxy.address)
+  const escrow = await VotingEscrow.deploy(flow.address, artProxy.address)
   await escrow.deployed()
   console.log('VotingEscrow deployed to: ', escrow.address)
-  console.log('Args: ', velo.address, artProxy.address, '\n')
+  console.log('Args: ', flow.address, artProxy.address, '\n')
 
   const distributor = await RewardsDistributor.deploy(escrow.address)
   await distributor.deployed()
@@ -130,7 +130,7 @@ task('deploy:arb', 'Deploys Arbitrum contracts').setAction(async function (
 
   const receiver = await RedemptionReceiver.deploy(
     ARB_CONFIG.USDC,
-    velo.address,
+    flow.address,
     FTM_CONFIG.lzChainId,
     ARB_CONFIG.lzEndpoint
   )
@@ -139,34 +139,34 @@ task('deploy:arb', 'Deploys Arbitrum contracts').setAction(async function (
   console.log(
     'Args: ',
     ARB_CONFIG.USDC,
-    velo.address,
+    flow.address,
     FTM_CONFIG.lzChainId,
     ARB_CONFIG.lzEndpoint,
     '\n'
   )
 
-  const governor = await VeloGovernor.deploy(escrow.address)
+  const governor = await FlowGovernor.deploy(escrow.address)
   await governor.deployed()
-  console.log('VeloGovernor deployed to: ', governor.address)
+  console.log('FlowGovernor deployed to: ', governor.address)
   console.log('Args: ', escrow.address, '\n')
 
   // Airdrop
-  const claim = await MerkleClaim.deploy(velo.address, ARB_CONFIG.merkleRoot)
+  const claim = await MerkleClaim.deploy(flow.address, ARB_CONFIG.merkleRoot)
   await claim.deployed()
   console.log('MerkleClaim deployed to: ', claim.address)
-  console.log('Args: ', velo.address, ARB_CONFIG.merkleRoot, '\n')
+  console.log('Args: ', flow.address, ARB_CONFIG.merkleRoot, '\n')
 
   // Initialize
-  await velo.initialMint(ARB_CONFIG.teamEOA)
+  await flow.initialMint(ARB_CONFIG.teamEOA)
   console.log('Initial minted')
 
-  await velo.setRedemptionReceiver(receiver.address)
+  await flow.setRedemptionReceiver(receiver.address)
   console.log('RedemptionReceiver set')
 
-  await velo.setMerkleClaim(claim.address)
+  await flow.setMerkleClaim(claim.address)
   console.log('MerkleClaim set')
 
-  await velo.setMinter(minter.address)
+  await flow.setMinter(minter.address)
   console.log('Minter set')
 
   await pairFactory.setPauser(ARB_CONFIG.teamMultisig)
@@ -194,18 +194,18 @@ task('deploy:arb', 'Deploys Arbitrum contracts').setAction(async function (
   console.log('Team set for governor')
 
   // Whitelist
-  const nativeToken = [velo.address]
+  const nativeToken = [flow.address]
   const tokenWhitelist = nativeToken.concat(ARB_CONFIG.tokenWhitelist)
   await voter.initialize(tokenWhitelist, minter.address)
   console.log('Whitelist set')
 
-  // Initial veVELO distro
+  // Initial veFLOW distro
   await minter.initialize(
     ARB_CONFIG.partnerAddrs,
     ARB_CONFIG.partnerAmts,
     ARB_CONFIG.partnerMax
   )
-  console.log('veVELO distributed')
+  console.log('veFLOW distributed')
 
   await minter.setTeam(ARB_CONFIG.teamMultisig)
   console.log('Team set for minter')

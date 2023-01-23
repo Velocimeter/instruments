@@ -23,9 +23,9 @@ npx hardhat --network arbitrumGoerli export --export ./exported.json
   RewardsDistributor: '0xc4b9295487B4C43C1929299076820D8f55BBf957',
   Router: '0x1B0aC6bf6f35E638f6cce8D69C6074561273dc52',
   VeArtProxy: '0x821B98D42D3AB509AF4F54205f0c52B019b9E2D5',
-  Velo: '0x84Ca387E7ede764A3284c67Ff8c68a305a9030a0',
-  VeloGovernor: '0x1a79b9daa3E741774bf67732F8a8B5820De8A53a',
-  VelodromeLibrary: '0xcbE4714A95f866EB9C2eB50856F431f9E7353Ab6',
+  Flow: '0x84Ca387E7ede764A3284c67Ff8c68a305a9030a0',
+  FlowGovernor: '0x1a79b9daa3E741774bf67732F8a8B5820De8A53a',
+  VelocimeterLibrary: '0xcbE4714A95f866EB9C2eB50856F431f9E7353Ab6',
   Voter: '0x854086d39955d28317aE3856399312b8Edb1B473',
   VotingEscrow: '0xBf05364D6cf1586852c18c6b1CbEe218E3e09885'
 }
@@ -61,14 +61,14 @@ Deployment contains 3 steps:
 
 ## Security
 
-The Velodrome team engaged with Code 4rena for a security review. The results of that audit are available [here](https://code4rena.com/reports/2022-05-velodrome/). Our up-to-date security findings are located on our website [here](https://docs.velodrome.finance/security).
+The Velocimeter team engaged with Code 4rena for a security review. The results of that audit are available [here](https://code4rena.com/reports/2022-05-velodrome/). Our up-to-date security findings are located on our website [here](https://docs.velodrome.finance/security).
 
 ## Contracts
 
 | Name               | Address                                                                                                                               |
 | :----------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | WETH               | [0x4200000000000000000000000000000000000006](https://optimistic.etherscan.io/address/0x4200000000000000000000000000000000000006#code) |
-| Velo               | [0x3c8B650257cFb5f272f799F5e2b4e65093a11a05](https://optimistic.etherscan.io/address/0x3c8B650257cFb5f272f799F5e2b4e65093a11a05#code) |
+| Flow               | [0x3c8B650257cFb5f272f799F5e2b4e65093a11a05](https://optimistic.etherscan.io/address/0x3c8B650257cFb5f272f799F5e2b4e65093a11a05#code) |
 | MerkleClaim        | [0x00D59BC35174C3b250Dd92a363495d38C8777a49](https://optimistic.etherscan.io/address/0x00D59BC35174C3b250Dd92a363495d38C8777a49#code) |
 | RedemptionSender   | [0x9809fB94eED086F9529df00d6f125Bf25Ee84A93](https://ftmscan.com/address/0x9809fB94eED086F9529df00d6f125Bf25Ee84A93#code)             |
 | RedemptionReceiver | [0x846e822e9a00669dcC647079d7d625d2cd25A951](https://optimistic.etherscan.io/address/0x846e822e9a00669dcC647079d7d625d2cd25A951#code) |
@@ -76,7 +76,7 @@ The Velodrome team engaged with Code 4rena for a security review. The results of
 | BribeFactory       | [0xA84EA94Aa705F7d009CDDF2a60f65c0d446b748E](https://optimistic.etherscan.io/address/0xA84EA94Aa705F7d009CDDF2a60f65c0d446b748E#code) |
 | GaugeFactory       | [0xC5be2c918EB04B091962fDF095A217A55CFA42C5](https://optimistic.etherscan.io/address/0xC5be2c918EB04B091962fDF095A217A55CFA42C5#code) |
 | Voter              | [0x09236cfF45047DBee6B921e00704bed6D6B8Cf7e](https://optimistic.etherscan.io/address/0x09236cfF45047DBee6B921e00704bed6D6B8Cf7e#code) |
-| VeloGovernor       | [0x64DD805aa894dc001f8505e000c7535179D96C9E](https://optimistic.etherscan.io/address/0x64DD805aa894dc001f8505e000c7535179D96C9E#code) |
+| FlowGovernor       | [0x64DD805aa894dc001f8505e000c7535179D96C9E](https://optimistic.etherscan.io/address/0x64DD805aa894dc001f8505e000c7535179D96C9E#code) |
 | VotingEscrow       | [0x9c7305eb78a432ced5C4D14Cac27E8Ed569A2e26](https://optimistic.etherscan.io/address/0x9c7305eb78a432ced5C4D14Cac27E8Ed569A2e26#code) |
 | VeArtProxy         | [0x5F2f6721Ca0C5AC522BC875fA3F09bF693dcFa1D](https://optimistic.etherscan.io/address/0x5F2f6721Ca0C5AC522BC875fA3F09bF693dcFa1D#code) |
 | RewardsDistributor | [0x5d5Bea9f0Fc13d967511668a60a3369fD53F784F](https://optimistic.etherscan.io/address/0x5d5Bea9f0Fc13d967511668a60a3369fD53F784F#code) |

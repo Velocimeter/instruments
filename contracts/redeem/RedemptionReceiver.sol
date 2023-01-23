@@ -10,7 +10,7 @@ import "contracts/interfaces/IFlow.sol";
 /// This contract is responsible for receiving the LZ message and distributing USDC + FLOW
 contract RedemptionReceiver is ILayerZeroReceiver {
     IERC20 public immutable USDC;
-    IVelo public immutable FLOW;
+    IFlow public immutable FLOW;
 
     uint16 public immutable fantomChainId; // 12 for FTM, 10012 for FTM testnet
     address public immutable endpoint;
@@ -27,14 +27,14 @@ contract RedemptionReceiver is ILayerZeroReceiver {
 
     constructor(
         address _usdc,
-        address _velo,
+        address _flow,
         uint16 _fantomChainId,
         address _endpoint
     ) {
         require(_fantomChainId == 12 || _fantomChainId == 10012, "CHAIN_ID_NOT_FTM");
 
         USDC = IERC20(_usdc);
-        FLOW = IVelo(_velo);
+        FLOW = IFlow(_flow);
 
         fantomChainId = _fantomChainId;
         endpoint = _endpoint;

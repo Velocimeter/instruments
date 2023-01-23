@@ -16,15 +16,15 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const { deployer } = await getNamedAccounts()
 
-  const velo = await deployments.get('Velo')
+  const flow = await deployments.get('Flow')
 
-  // Initial veVELO distro
+  // Initial veFLOW distro
   await minter.initialize(
     ARB_TEST_CONFIG.partnerAddrs,
     ARB_TEST_CONFIG.partnerAmts,
     ARB_TEST_CONFIG.partnerMax
   )
-  console.log('veVELO distributed')
+  console.log('veFLOW distributed')
   //
   console.log('Arbitrum Goerli Velocimeter Instruments deployed')
 
@@ -33,16 +33,16 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   console.log('deployer', deployer)
 
-  // await velo.initialMint(ARB_CONFIG.teamEOA)
+  // await flow.initialMint(ARB_CONFIG.teamEOA)
   // console.log('Initial minted')
 
-  // await velo.setRedemptionReceiver(receiver.address)
+  // await flow.setRedemptionReceiver(receiver.address)
   // console.log('RedemptionReceiver set')
 
-  // await velo.setMerkleClaim(claim.address)
+  // await flow.setMerkleClaim(claim.address)
   // console.log('MerkleClaim set')
 
-  // await velo.setMinter(minter.address)
+  // await flow.setMinter(minter.address)
   // console.log('Minter set')
 
   // await pairFactory.setPauser(ARB_CONFIG.teamMultisig)
