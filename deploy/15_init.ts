@@ -19,7 +19,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const claim = await deployments.get('MerkleClaim')
 
-  // Initialize
+  // Initialize 1
   await flow.initialMint(ARB_TEST_CONFIG.teamEOA)
   console.log('Initial minted')
 
