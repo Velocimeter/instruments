@@ -3,9 +3,9 @@ import { DeployFunction } from 'hardhat-deploy/types'
 // import * as tasks1 from 'tasks/deploy/arbHardhat'
 
 import arbTestnetConfig from '../tasks/deploy/constants/arbTestnetConfig'
-import arbHardhatConfig from '../tasks/deploy/constants/arbHardhatConfig'
+import arbConfig from '../tasks/deploy/constants/arbConfig'
 
-const ARB_TEST_CONFIG = arbHardhatConfig
+const ARB_TEST_CONFIG = arbConfig
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { ethers } = hre
@@ -18,7 +18,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const flow = await deployments.get('Flow')
 
-  // Initial veVELO distro
+  // Initial veVELO distro // this is not inside dist lets see if its being used for deploys??
   await minter.initialize(
     ARB_TEST_CONFIG.partnerAddrs,
     ARB_TEST_CONFIG.partnerAmts,
