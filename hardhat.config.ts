@@ -32,6 +32,18 @@ const config: HardhatUserConfig = {
         blockNumber: 16051852
       }
     },
+    canto: {
+      url: process.env.CANTO_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY!],
+      chainId: 7700,
+      saveDeployments: true,
+      verify: {
+        etherscan: {
+          apiUrl: 'https://evm.explorer.canto.io/',
+          apiKey: process.env.CANTO_API_KEY
+        }
+      }
+    },
     opera: {
       url: 'https://rpc.fantom.network',
       accounts: [process.env.PRIVATE_KEY!]
