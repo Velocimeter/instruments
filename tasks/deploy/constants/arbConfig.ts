@@ -192,12 +192,12 @@ const arbConfig = {
   //   SIXTY_MILLION, // 60 million for protcol owned NFT 15%  #1
   //   TWO_MILLION, // dunks presale 2
   //   TWO_MILLION, // ceazor presale 3
-  //   FOUR_MILLION, // team veFLOW 1% 4
-  //   FOUR_MILLION, // team veFLOW 1% 5
-  //   FOUR_MILLION, // team veFLOW 1% 6
-  //   FOUR_MILLION, // team veFLOW 1% 7
-  //   FOUR_MILLION, // team veFLOW 1% 8
-  //   FOUR_MILLION, // team veFLOW 1% 9
+  //   FOUR_MILLION, // team veNFT 1% 4
+  //   FOUR_MILLION, // team veNFT 1% 5
+  //   FOUR_MILLION, // team veNFT 1% 6
+  //   FOUR_MILLION, // team veNFT 1% 7
+  //   FOUR_MILLION, // team veNFT 1% 8
+  //   FOUR_MILLION, // team veNFT 1% 9
   //   FOUR_MILLION, // 10 tribute to velodrome (need to get their arb address DO NOT USE MULTISIG FROM OP)
   //   FOUR_MILLION, //11
   //   FOUR_MILLION, // 12

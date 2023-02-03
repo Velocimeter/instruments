@@ -120,20 +120,8 @@ const config: HardhatUserConfig = {
 
       arbitrumOne: process.env.ARB_SCAN_API_KEY!,
       arbitrumGoerli: process.env.ARB_SCAN_API_KEY!
-      canto: process.env.CANTO_API_KEY,
     }
-  },
-  customChains: [
-    {
-      network: "canto",
-      chainId: 5,
-      urls: {
-        apiURL: "https://api-goerli.etherscan.io/api",
-        browserURL: "https://goerli.etherscan.io"
-      }
-    }
-  ]
-
+  }
 }
 
 export default config

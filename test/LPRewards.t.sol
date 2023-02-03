@@ -30,7 +30,12 @@ contract LPRewardsTest is BaseTest {
         deployPairWithOwner(address(owner2));
         gaugeFactory = new GaugeFactory();
         bribeFactory = new BribeFactory();
-        voter = new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory));
+        voter = new Voter(
+            address(escrow),
+            address(factory),
+            address(gaugeFactory),
+            address(bribeFactory)
+        );
         address[] memory tokens = new address[](4);
         tokens[0] = address(USDC);
         tokens[1] = address(FRAX);
@@ -44,7 +49,17 @@ contract LPRewardsTest is BaseTest {
         // owner1 deposits LP
         USDC.approve(address(router), 1e12);
         FRAX.approve(address(router), TOKEN_1M);
-        router.addLiquidity(address(FRAX), address(USDC), true, TOKEN_1M, 1e12, 0, 0, address(owner2), block.timestamp);
+        router.addLiquidity(
+            address(FRAX),
+            address(USDC),
+            true,
+            TOKEN_1M,
+            1e12,
+            0,
+            0,
+            address(owner2),
+            block.timestamp
+        );
         address address1 = factory.getPair(address(FRAX), address(USDC), true);
         pair = Pair(address1);
         voter.createGauge(address(pair));
@@ -57,7 +72,17 @@ contract LPRewardsTest is BaseTest {
         vm.startPrank(address(owner2));
         USDC.approve(address(router), 1e12);
         FRAX.approve(address(router), TOKEN_1M);
-        router.addLiquidity(address(FRAX), address(USDC), true, TOKEN_1M, 1e12, 0, 0, address(owner2), block.timestamp);
+        router.addLiquidity(
+            address(FRAX),
+            address(USDC),
+            true,
+            TOKEN_1M,
+            1e12,
+            0,
+            0,
+            address(owner2),
+            block.timestamp
+        );
         pair.approve(address(gauge), PAIR_1);
         gauge.deposit(PAIR_1, 0);
         vm.stopPrank();
@@ -70,7 +95,10 @@ contract LPRewardsTest is BaseTest {
         rewards[0] = address(VELO);
 
         // check derived balance is the same
-        assertEq(gauge.derivedBalance(address(owner)), gauge.derivedBalance(address(owner2)));
+        assertEq(
+            gauge.derivedBalance(address(owner)),
+            gauge.derivedBalance(address(owner2))
+        );
         // check that derived balance is 100% of balance
         assertEq(gauge.derivedBalance(address(owner)), PAIR_1);
     }
