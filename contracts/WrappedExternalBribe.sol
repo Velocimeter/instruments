@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.13;
 
-import "contracts/libraries/Math.sol";
+import "openzeppelin-contracts/contracts/utils/math/Math.sol";
 import "contracts/ExternalBribe.sol";
 import "contracts/interfaces/IERC20.sol";
 import "contracts/interfaces/IGauge.sol";
@@ -87,7 +87,7 @@ contract WrappedExternalBribe {
         view
         returns (uint256)
     {
-        return MathDunks.min(block.timestamp, periodFinish[token]);
+        return Math.min(block.timestamp, periodFinish[token]);
     }
 
     // allows a user to claim rewards for a given token

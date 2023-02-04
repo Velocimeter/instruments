@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.13;
 
-import "contracts/libraries/Math.sol";
+import "openzeppelin-contracts/contracts/utils/math/Math.sol";
 import "contracts/interfaces/IERC20.sol";
 import "contracts/interfaces/IRewardsDistributor.sol";
 import "contracts/interfaces/IVotingEscrow.sol";
@@ -162,7 +162,7 @@ contract RewardsDistributor is IRewardsDistributor {
             epoch
         );
         return
-            MathDunks.max(
+            Math.max(
                 uint256(
                     int256(
                         pt.bias -
@@ -192,7 +192,7 @@ contract RewardsDistributor is IRewardsDistributor {
                 if (t > pt.ts) {
                     dt = int128(int256(t - pt.ts));
                 }
-                ve_supply[t] = MathDunks.max(
+                ve_supply[t] = Math.max(
                     uint256(int256(pt.bias - pt.slope * dt)),
                     0
                 );
@@ -259,7 +259,7 @@ contract RewardsDistributor is IRewardsDistributor {
                 }
             } else {
                 int128 dt = int128(int256(week_cursor - old_user_point.ts));
-                uint256 balance_of = MathDunks.max(
+                uint256 balance_of = Math.max(
                     uint256(
                         int256(old_user_point.bias - dt * old_user_point.slope)
                     ),
@@ -275,7 +275,7 @@ contract RewardsDistributor is IRewardsDistributor {
             }
         }
 
-        user_epoch = MathDunks.min(max_user_epoch, user_epoch - 1);
+        user_epoch = Math.min(max_user_epoch, user_epoch - 1);
         user_epoch_of[_tokenId] = user_epoch;
         time_cursor_of[_tokenId] = week_cursor;
 
@@ -337,7 +337,7 @@ contract RewardsDistributor is IRewardsDistributor {
                 }
             } else {
                 int128 dt = int128(int256(week_cursor - old_user_point.ts));
-                uint256 balance_of = MathDunks.max(
+                uint256 balance_of = Math.max(
                     uint256(
                         int256(old_user_point.bias - dt * old_user_point.slope)
                     ),

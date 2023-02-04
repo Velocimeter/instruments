@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.13;
 
-import "contracts/libraries/Math.sol";
+import "openzeppelin-contracts/contracts/utils/math/Math.sol";
+
 import "contracts/interfaces/IMinter.sol";
 import "contracts/interfaces/IRewardsDistributor.sol";
 import "contracts/interfaces/IFlow.sol";
@@ -27,7 +28,7 @@ contract Minter is IMinter {
     address public team;
     address public pendingTeam;
     uint256 public teamRate;
-    uint256 public constant MAX_TEAM_RATE = 50; // 50 bps = 0.05%
+    uint256 public constant MAX_TEAM_RATE = 50; // 5% max
 
     event Mint(
         address indexed sender,
@@ -94,7 +95,7 @@ contract Minter is IMinter {
 
     // weekly emission takes the max of calculated (aka target) emission versus circulating tail end emission
     function weekly_emission() public view returns (uint256) {
-        return MathDunks.max(calculate_emission(), circulating_emission());
+        return Math.max(calculate_emission(), circulating_emission());
     }
 
     // calculates tail end (infinity) emissions as 0.2% of total supply
