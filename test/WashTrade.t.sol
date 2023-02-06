@@ -101,48 +101,48 @@ contract WashTradeTest is BaseTest {
         deployVoter();
 
         VELO.approve(address(gaugeFactory), 5 * TOKEN_100K);
-        voter.createGauge(address(pair3));
-        assertFalse(voter.gauges(address(pair3)) == address(0));
+        voter.createGauge(address(pair));
+        assertFalse(voter.gauges(address(pair)) == address(0));
 
-        address gaugeAddr3 = voter.gauges(address(pair3));
+        address gaugeAddr3 = voter.gauges(address(pair));
         address bribeAddr3 = voter.internal_bribes(gaugeAddr3);
 
         gauge3 = Gauge(gaugeAddr3);
 
         bribe3 = InternalBribe(bribeAddr3);
-        uint256 total = pair3.balanceOf(address(owner));
-        pair3.approve(address(gauge3), total);
+        uint256 total = pair.balanceOf(address(owner));
+        pair.approve(address(gauge3), total);
         gauge3.deposit(total, 0);
         assertEq(gauge3.totalSupply(), total);
         assertEq(gauge3.earned(address(escrow), address(owner)), 0);
     }
 
-    function routerPair3GetAmountsOutAndSwapExactTokensForTokens() public {
+    function routerpairGetAmountsOutAndSwapExactTokensForTokens() public {
         deployPairFactoryGauge();
 
         Router.route[] memory routes = new Router.route[](1);
-        routes[0] = Router.route(address(FRAX), address(DAI), true);
+        routes[0] = Router.route(address(FRAX), address(USDC), true);
         Router.route[] memory routes2 = new Router.route[](1);
-        routes2[0] = Router.route(address(DAI), address(FRAX), true);
+        routes2[0] = Router.route(address(USDC), address(FRAX), true);
 
         uint256 i;
         for (i = 0; i < 10; i++) {
-            assertEq(router.getAmountsOut(TOKEN_1M, routes)[1], pair3.getAmountOut(TOKEN_1M, address(FRAX)));
+            assertEq(router.getAmountsOut(TOKEN_1M, routes)[1], pair.getAmountOut(TOKEN_1M, address(FRAX)));
 
             uint256[] memory expectedOutput = router.getAmountsOut(TOKEN_1M, routes);
             FRAX.approve(address(router), TOKEN_1M);
             router.swapExactTokensForTokens(TOKEN_1M, expectedOutput[1], routes, address(owner), block.timestamp);
 
-            assertEq(router.getAmountsOut(TOKEN_1M, routes2)[1], pair3.getAmountOut(TOKEN_1M, address(DAI)));
+            assertEq(router.getAmountsOut(TOKEN_1M, routes2)[1], pair.getAmountOut(TOKEN_1M, address(USDC)));
 
             uint256[] memory expectedOutput2 = router.getAmountsOut(TOKEN_1M, routes2);
-            DAI.approve(address(router), TOKEN_1M);
+            USDC.approve(address(router), TOKEN_1M);
             router.swapExactTokensForTokens(TOKEN_1M, expectedOutput2[1], routes2, address(owner), block.timestamp);
         }
     }
 
     function voterReset() public {
-        routerPair3GetAmountsOutAndSwapExactTokensForTokens();
+        routerpairGetAmountsOutAndSwapExactTokensForTokens();
 
         escrow.setVoter(address(voter));
         voter.reset(1);
@@ -160,7 +160,7 @@ contract WashTradeTest is BaseTest {
         vm.warp(block.timestamp + 1 weeks);
 
         address[] memory pairs = new address[](2);
-        pairs[0] = address(pair3);
+        pairs[0] = address(pair);
         pairs[1] = address(pair2);
         uint256[] memory weights = new uint256[](2);
         weights[0] = 5000;
@@ -175,7 +175,7 @@ contract WashTradeTest is BaseTest {
 
         address[] memory tokens = new address[](2);
         tokens[0] = address(FRAX);
-        tokens[1] = address(DAI);
+        tokens[1] = address(USDC);
         bribe3.getReward(1, tokens);
         vm.warp(block.timestamp + 691200);
         vm.roll(block.number + 1);
@@ -189,7 +189,7 @@ contract WashTradeTest is BaseTest {
         vm.roll(block.number + 1);
         address[] memory tokens = new address[](2);
         tokens[0] = address(FRAX);
-        tokens[1] = address(DAI);
+        tokens[1] = address(USDC);
         bribe3.getReward(1, tokens);
 
         address[] memory gauges = new address[](1);
@@ -204,10 +204,10 @@ contract WashTradeTest is BaseTest {
         console2.log(FRAX.balanceOf(address(owner)));
         console2.log(FRAX.balanceOf(address(bribe3)));
         bribe3.batchRewardPerToken(address(FRAX), 200);
-        bribe3.batchRewardPerToken(address(DAI), 200);
+        bribe3.batchRewardPerToken(address(USDC), 200);  // must be an issue here
         address[] memory tokens = new address[](2);
         tokens[0] = address(FRAX);
-        tokens[1] = address(DAI);
+        tokens[1] = address(USDC);
         bribe3.getReward(1, tokens);
         vm.warp(block.timestamp + 691200);
         vm.roll(block.number + 1);
