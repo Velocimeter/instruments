@@ -133,11 +133,11 @@ contract WashTradeTest is BaseTest {
             FRAX.approve(address(router), TOKEN_1M);
             router.swapExactTokensForTokens(TOKEN_1M, expectedOutput[1], routes, address(owner), block.timestamp);
 
-            assertEq(router.getAmountsOut(TOKEN_1M, routes2)[1], pair.getAmountOut(TOKEN_1M, address(USDC)));
+            assertEq(router.getAmountsOut(USDC_1M, routes2)[1], pair.getAmountOut(USDC_1M, address(USDC)));
 
-            uint256[] memory expectedOutput2 = router.getAmountsOut(TOKEN_1M, routes2);
-            USDC.approve(address(router), TOKEN_1M);
-            router.swapExactTokensForTokens(TOKEN_1M, expectedOutput2[1], routes2, address(owner), block.timestamp);
+            uint256[] memory expectedOutput2 = router.getAmountsOut(USDC_1M, routes2);
+            USDC.approve(address(router), USDC_1M);
+            router.swapExactTokensForTokens(USDC_1M, expectedOutput2[1], routes2, address(owner), block.timestamp);
         }
     }
 
