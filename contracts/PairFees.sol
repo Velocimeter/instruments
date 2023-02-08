@@ -28,6 +28,5 @@ contract PairFees {
         require(msg.sender == pair);
         if (amount0 > 0) _safeTransfer(token0, recipient, amount0);
         if (amount1 > 0) _safeTransfer(token1, recipient, amount1);
-    }
 
 }
