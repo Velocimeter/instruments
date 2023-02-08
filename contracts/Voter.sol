@@ -29,7 +29,7 @@ contract Voter is IVoter {
     address[] public pools; // all pools viable for incentives
     mapping(address => address) public gauges; // pool => gauge
     mapping(address => address) public poolForGauge; // gauge => pool
-    mapping(address => address) public internal_bribes; // gauge => internal bribe (only fees)
+    // mapping(address => address) public internal_bribes; // gauge => internal bribe (only fees)
     mapping(address => address) public external_bribes; // gauge => external bribe (real bribes)
     mapping(address => uint256) public weights; // pool => weight
     mapping(uint256 => mapping(address => uint256)) public votes; // nft => pool => votes
@@ -173,10 +173,7 @@ contract Voter is IVoter {
     // remove poke function
 
     function poke(uint256 _tokenId) external {
-        require(
-            IVotingEscrow(_ve).isApprovedOrOwner(msg.sender, _tokenId) ||
-                msg.sender == governor
-        );
+        require(IVotingEscrow(_ve).isApprovedOrOwner(msg.sender, _tokenId) || msg.sender == governor);
         address[] memory _poolVote = poolVote[_tokenId];
         uint256 _poolCnt = _poolVote.length;
         uint256[] memory _weights = new uint256[](_poolCnt);
@@ -444,16 +441,16 @@ contract Voter is IVoter {
         }
     }
 
-    function claimFees(
-        address[] memory _fees,
-        address[][] memory _tokens,
-        uint256 _tokenId
-    ) external {
-        require(IVotingEscrow(_ve).isApprovedOrOwner(msg.sender, _tokenId));
-        for (uint256 i = 0; i < _fees.length; i++) {
-            IBribe(_fees[i]).getRewardForOwner(_tokenId, _tokens[i]);
-        }
-    }
+    // function claimFees(
+    //     address[] memory _fees,
+    //     address[][] memory _tokens,
+    //     uint256 _tokenId
+    // ) external {
+    //     require(IVotingEscrow(_ve).isApprovedOrOwner(msg.sender, _tokenId));
+    //     for (uint256 i = 0; i < _fees.length; i++) {
+    //         IBribe(_fees[i]).getRewardForOwner(_tokenId, _tokens[i]);
+    //     }
+    // }
 
     function distributeFees(address[] memory _gauges) external {
         for (uint256 i = 0; i < _gauges.length; i++) {
