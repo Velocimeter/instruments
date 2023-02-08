@@ -9,7 +9,7 @@ contract WashTradeTest is BaseTest {
     BribeFactory bribeFactory;
     Voter voter;
     Gauge gauge3;
-    InternalBribe bribe3;
+    ExternalBribe bribe3;
 
     function deployBaseCoins() public {
         vm.warp(block.timestamp + 1 weeks); // put some initial time in
@@ -105,11 +105,11 @@ contract WashTradeTest is BaseTest {
         assertFalse(voter.gauges(address(pair3)) == address(0));
 
         address gaugeAddr3 = voter.gauges(address(pair3));
-        address bribeAddr3 = voter.internal_bribes(gaugeAddr3);
+        address bribeAddr3 = voter.external_bribes(gaugeAddr3);
 
         gauge3 = Gauge(gaugeAddr3);
 
-        bribe3 = InternalBribe(bribeAddr3);
+        bribe3 = ExternalBribe(bribeAddr3);
         uint256 total = pair3.balanceOf(address(owner));
         pair3.approve(address(gauge3), total);
         gauge3.deposit(total, 0);
@@ -203,8 +203,8 @@ contract WashTradeTest is BaseTest {
         console2.log(bribe3.earned(address(FRAX), 1));
         console2.log(FRAX.balanceOf(address(owner)));
         console2.log(FRAX.balanceOf(address(bribe3)));
-        bribe3.batchRewardPerToken(address(FRAX), 200);
-        bribe3.batchRewardPerToken(address(DAI), 200);
+        // bribe3.batchRewardPerToken(address(FRAX), 200);
+        // bribe3.batchRewardPerToken(address(DAI), 200);
         address[] memory tokens = new address[](2);
         tokens[0] = address(FRAX);
         tokens[1] = address(DAI);

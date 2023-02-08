@@ -29,7 +29,6 @@ contract Voter is IVoter {
     address[] public pools; // all pools viable for incentives
     mapping(address => address) public gauges; // pool => gauge
     mapping(address => address) public poolForGauge; // gauge => pool
-    mapping(address => address) public internal_bribes; // gauge => internal bribe (only fees)
     mapping(address => address) public external_bribes; // gauge => external bribe (real bribes)
     mapping(address => uint256) public weights; // pool => weight
     mapping(uint256 => mapping(address => uint256)) public votes; // nft => pool => votes
@@ -43,7 +42,6 @@ contract Voter is IVoter {
     event GaugeCreated(
         address indexed gauge,
         address creator,
-        address internal_bribe,
         address indexed external_bribe,
         address indexed pool
     );
@@ -150,10 +148,6 @@ contract Voter is IVoter {
                 weights[_pool] -= _votes;
                 votes[_tokenId][_pool] -= _votes;
                 if (_votes > 0) {
-                    IBribe(internal_bribes[gauges[_pool]])._withdraw(
-                        uint256(_votes),
-                        _tokenId
-                    );
                     IBribe(external_bribes[gauges[_pool]])._withdraw(
                         uint256(_votes),
                         _tokenId
@@ -219,10 +213,6 @@ contract Voter is IVoter {
 
                 weights[_pool] += _poolWeight;
                 votes[_tokenId][_pool] += _poolWeight;
-                IBribe(internal_bribes[_gauge])._deposit(
-                    uint256(_poolWeight),
-                    _tokenId
-                );
                 IBribe(external_bribes[_gauge])._deposit(
                     uint256(_poolWeight),
                     _tokenId
@@ -288,13 +278,10 @@ contract Voter is IVoter {
             );
         }
 
-        address _internal_bribe = IBribeFactory(bribefactory)
-            .createInternalBribe(internalRewards);
         address _external_bribe = IBribeFactory(bribefactory)
             .createExternalBribe(allowedRewards);
         address _gauge = IGaugeFactory(gaugefactory).createGauge(
             _pool,
-            _internal_bribe,
             _external_bribe,
             _ve,
             isPair,
@@ -302,7 +289,6 @@ contract Voter is IVoter {
         );
 
         IERC20(base).approve(_gauge, type(uint256).max);
-        internal_bribes[_gauge] = _internal_bribe;
         external_bribes[_gauge] = _external_bribe;
         gauges[_pool] = _gauge;
         poolForGauge[_gauge] = _pool;
@@ -310,13 +296,7 @@ contract Voter is IVoter {
         isAlive[_gauge] = true;
         _updateFor(_gauge);
         pools.push(_pool);
-        emit GaugeCreated(
-            _gauge,
-            msg.sender,
-            _internal_bribe,
-            _external_bribe,
-            _pool
-        );
+        emit GaugeCreated(_gauge, msg.sender, _external_bribe, _pool);
         return _gauge;
     }
 

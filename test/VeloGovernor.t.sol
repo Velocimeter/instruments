@@ -11,7 +11,7 @@ contract FlowGovernorTest is BaseTest {
     RewardsDistributor distributor;
     Minter minter;
     Gauge gauge;
-    InternalBribe bribe;
+    ExternalBribe bribe;
     FlowGovernor governor;
 
     function setUp() public {
@@ -59,9 +59,9 @@ contract FlowGovernorTest is BaseTest {
         VELO.approve(address(gaugeFactory), 15 * TOKEN_100K);
         voter.createGauge(address(pair));
         address gaugeAddress = voter.gauges(address(pair));
-        address bribeAddress = voter.internal_bribes(gaugeAddress);
+        address bribeAddress = voter.external_bribes(gaugeAddress);
         gauge = Gauge(gaugeAddress);
-        bribe = InternalBribe(bribeAddress);
+        bribe = ExternalBribe(bribeAddress);
 
         governor = new FlowGovernor(escrow);
         voter.setGovernor(address(governor));
