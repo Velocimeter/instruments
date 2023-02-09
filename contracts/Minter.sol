@@ -26,6 +26,7 @@ contract Minter is IMinter {
 
     address internal initializer;
     address public team;
+    address public bucket;
     address public pendingTeam;
     uint256 public teamRate;
     uint256 public constant MAX_TEAM_RATE = 50; // 5% max
@@ -51,7 +52,6 @@ contract Minter is IMinter {
         _rewards_distributor = IRewardsDistributor(__rewards_distributor);
         active_period = ((block.timestamp + (2 * WEEK)) / WEEK) * WEEK;
     }
-
     function initialize(
         address[] memory claimants, // partnerAddrs
         uint256[] memory amounts, // partnerAmounts
@@ -70,6 +70,10 @@ contract Minter is IMinter {
     function setTeam(address _team) external {
         require(msg.sender == team, "not team");
         pendingTeam = _team;
+    }
+    function setTank(address _tank) external {
+        require(msg.sender == team, "not team");
+        tank = _tank;
     }
 
     function acceptTeam() external {
