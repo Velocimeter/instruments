@@ -123,50 +123,50 @@ contract Gauge is IGauge {
         _unlocked = 1;
     }
 
-    function claimFees()
-        external
-        lock
-        returns (uint256 claimed0, uint256 claimed1)
-    {
-        return _claimFees();
-    }
+    // function claimFees()
+    //     external
+    //     lock
+    //     returns (uint256 claimed0, uint256 claimed1)
+    // {
+    //     return _claimFees();
+    // }
 
-    function _claimFees()
-        internal
-        returns (uint256 claimed0, uint256 claimed1)
-    {
-        if (!isForPair) {
-            return (0, 0);
-        }
-        (claimed0, claimed1) = IPair(stake).claimFees();
-        if (claimed0 > 0 || claimed1 > 0) {
-            uint256 _fees0 = fees0 + claimed0;
-            uint256 _fees1 = fees1 + claimed1;
-            (address _token0, address _token1) = IPair(stake).tokens();
-            if (
-                _fees0 > IBribe(external_bribe).left(_token0) &&
-                _fees0 / DURATION > 0
-            ) {
-                fees0 = 0;
-                _safeApprove(_token0, external_bribe, _fees0);
-                IBribe(external_bribe).notifyRewardAmount(_token0, _fees0);
-            } else {
-                fees0 = _fees0;
-            }
-            if (
-                _fees1 > IBribe(external_bribe).left(_token1) &&
-                _fees1 / DURATION > 0
-            ) {
-                fees1 = 0;
-                _safeApprove(_token1, external_bribe, _fees1);
-                IBribe(external_bribe).notifyRewardAmount(_token1, _fees1);
-            } else {
-                fees1 = _fees1;
-            }
+    // function _claimFees()
+    //     internal
+    //     returns (uint256 claimed0, uint256 claimed1)
+    // {
+    //     if (!isForPair) {
+    //         return (0, 0);
+    //     }
+    //     (claimed0, claimed1) = IPair(stake).claimFees();
+    //     if (claimed0 > 0 || claimed1 > 0) {
+    //         uint256 _fees0 = fees0 + claimed0;
+    //         uint256 _fees1 = fees1 + claimed1;
+    //         (address _token0, address _token1) = IPair(stake).tokens();
+    //         if (
+    //             _fees0 > IBribe(internal_bribe).left(_token0) &&
+    //             _fees0 / DURATION > 0
+    //         ) {
+    //             fees0 = 0;
+    //             _safeApprove(_token0, internal_bribe, _fees0);
+    //             IBribe(internal_bribe).notifyRewardAmount(_token0, _fees0);
+    //         } else {
+    //             fees0 = _fees0;
+    //         }
+    //         if (
+    //             _fees1 > IBribe(internal_bribe).left(_token1) &&
+    //             _fees1 / DURATION > 0
+    //         ) {
+    //             fees1 = 0;
+    //             _safeApprove(_token1, internal_bribe, _fees1);
+    //             IBribe(internal_bribe).notifyRewardAmount(_token1, _fees1);
+    //         } else {
+    //             fees1 = _fees1;
+    //         }
 
-            emit ClaimFees(msg.sender, claimed0, claimed1);
-        }
-    }
+    //         emit ClaimFees(msg.sender, claimed0, claimed1);
+    //     }
+    // }
 
     /**
      * @notice Determine the prior balance for an account as of a block number

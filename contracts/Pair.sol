@@ -6,7 +6,7 @@ import "contracts/interfaces/IERC20.sol";
 import "contracts/interfaces/IPair.sol";
 import "contracts/interfaces/IPairCallee.sol";
 import "contracts/factories/PairFactory.sol";
-import "contracts/PairFees.sol";
+// import "contracts/PairFees.sol";
 
 // The base pair of pools, either stable or volatile
 contract Pair is IPair {
@@ -16,6 +16,7 @@ contract Pair is IPair {
 
     // Used to denote stable or volatile pair, not immutable since construction happens in the initialize method for CREATE2 deterministic addresses
     bool public immutable stable;
+    bool public hasGauge;      
 
     uint256 public totalSupply = 0;
 
@@ -32,7 +33,7 @@ contract Pair is IPair {
 
     address public immutable token0;
     address public immutable token1;
-    address public immutable fees;
+    address public immutable team;
     address immutable factory;
 
     // Structure to capture time period obervations every 30 minutes, used for local oracles
@@ -66,9 +67,9 @@ contract Pair is IPair {
     mapping(address => uint256) public supplyIndex0;
     mapping(address => uint256) public supplyIndex1;
 
-    // tracks the amount of unclaimed, but claimable tokens off of fees for token0 and token1
-    mapping(address => uint256) public claimable0;
-    mapping(address => uint256) public claimable1;
+    // // tracks the amount of unclaimed, but claimable tokens off of fees for token0 and token1
+    // mapping(address => uint256) public claimable0;
+    // mapping(address => uint256) public claimable1;
 
     event Fees(address indexed sender, uint256 amount0, uint256 amount1);
     event Mint(address indexed sender, uint256 amount0, uint256 amount1);
@@ -107,7 +108,7 @@ contract Pair is IPair {
             msg.sender
         ).getInitializable();
         (token0, token1, stable) = (_token0, _token1, _stable);
-        fees = address(new PairFees(_token0, _token1));
+        team == IMinter(minter).team();     // pulls the team MSig Address
         if (_stable) {
             name = string(
                 abi.encodePacked(
@@ -195,41 +196,62 @@ contract Pair is IPair {
         return (token0, token1);
     }
 
-    // claim accumulated but unclaimed fees (viewable via claimable0 and claimable1)
-    function claimFees() external returns (uint256 claimed0, uint256 claimed1) {
-        _updateFor(msg.sender);
+    // // claim accumulated but unclaimed fees (viewable via claimable0 and claimable1)
+    // function claimFees() external returns (uint256 claimed0, uint256 claimed1) {
+    //     _updateFor(msg.sender);
 
-        claimed0 = claimable0[msg.sender];
-        claimed1 = claimable1[msg.sender];
+    //     claimed0 = claimable0[msg.sender];
+    //     claimed1 = claimable1[msg.sender];
 
-        if (claimed0 > 0 || claimed1 > 0) {
-            claimable0[msg.sender] = 0;
-            claimable1[msg.sender] = 0;
+    //     if (claimed0 > 0 || claimed1 > 0) {
+    //         claimable0[msg.sender] = 0;
+    //         claimable1[msg.sender] = 0;
 
-            PairFees(fees).claimFeesFor(msg.sender, claimed0, claimed1);
+    //         PairFees(fees).claimFeesFor(msg.sender, claimed0, claimed1);
 
-            emit Claim(msg.sender, msg.sender, claimed0, claimed1);
-        }
-    }
+    //         emit Claim(msg.sender, msg.sender, claimed0, claimed1);
+    //     }
+    // }
 
     // Accrue fees on token0
     function _update0(uint256 amount) internal {
-        _safeTransfer(token0, fees, amount); // transfer the fees out to PairFees
-        uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
-        if (_ratio > 0) {
-            index0 += _ratio;
+        if(hasGauge == false){
+            _safeTransfer(token0, fees, amount); // transfer the fees to MSig for gaugeless LPs
+            uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
+            if (_ratio > 0) {
+                index0 += _ratio;
+            }
+            emit Fees(msg.sender, amount, 0);
         }
-        emit Fees(msg.sender, amount, 0);
+        if(hasGauge == true){
+            iExternalBribe(externalBribe).notifyRewardAmount(token0, amount); //transfer fees to exBribes
+            uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
+            if (_ratio > 0) {
+                index0 += _ratio;
+            }
+            emit Fees(msg.sender, amount, 0);
+        }
+
     }
 
     // Accrue fees on token1
     function _update1(uint256 amount) internal {
-        _safeTransfer(token1, fees, amount);
-        uint256 _ratio = (amount * 1e18) / totalSupply;
-        if (_ratio > 0) {
-            index1 += _ratio;
+        if(hasGauge == false){
+            _safeTransfer(token1, fees, amount); // transfer the fees to MSig for gaugeless LPs
+            uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
+            if (_ratio > 0) {
+                index0 += _ratio;
+            }
+            emit Fees(msg.sender, amount, 0);
         }
-        emit Fees(msg.sender, 0, amount);
+        if(hasGauge == true){
+            iExternalBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
+            uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
+            if (_ratio > 0) {
+                index0 += _ratio;
+            }
+            emit Fees(msg.sender, amount, 0);
+        }
     }
 
     // this function MUST be called on any balance changes, otherwise can be used to infinitely claim fees
@@ -753,4 +775,9 @@ contract Pair is IPair {
         );
         require(success && (data.length == 0 || abi.decode(data, (bool))));
     }
+    function sethasGauge(bool value) external{
+        require(msg.sender = Voter);
+        hasGauge = value;
+    }
+
 }
