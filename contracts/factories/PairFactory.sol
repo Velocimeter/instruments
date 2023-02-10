@@ -4,7 +4,9 @@ pragma solidity 0.8.13;
 import "contracts/interfaces/IPairFactory.sol";
 import "contracts/Pair.sol";
 
-contract PairFactory is IPairFactory {
+abstract contract PairFactory is
+    IPairFactory // marked as abstract - has functions that are not implemented
+{
     bool public isPaused;
     address public pauser;
     address public pendingPauser;
@@ -46,7 +48,6 @@ contract PairFactory is IPairFactory {
     function allPairsLength() external view returns (uint256) {
         return allPairs.length;
     }
-    
 
     function setPauser(address _pauser) external {
         require(msg.sender == pauser);
@@ -83,6 +84,7 @@ contract PairFactory is IPairFactory {
             volatileFee = _fee;
         }
     }
+
     function setVoter(address _voter) external {
         require((msg.sender == pauser));
         voter = _voter;
@@ -104,6 +106,7 @@ contract PairFactory is IPairFactory {
             address,
             bool
         )
+    // we might need to add more here becuase of adding voter to the constructor
     {
         return (_temp0, _temp1, _temp);
     }

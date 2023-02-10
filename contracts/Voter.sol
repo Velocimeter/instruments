@@ -29,7 +29,7 @@ contract Voter is IVoter {
     address[] public pools; // all pools viable for incentives
     mapping(address => address) public gauges; // pool => gauge
     mapping(address => address) public poolForGauge; // gauge => pool
-    // mapping(address => address) public internal_bribes; // gauge => internal bribe (only fees)
+    mapping(address => address) public internal_bribes; // gauge => internal bribe (only fees)
     mapping(address => address) public external_bribes; // gauge => external bribe (real bribes)
     mapping(address => uint256) public weights; // pool => weight
     mapping(uint256 => mapping(address => uint256)) public votes; // nft => pool => votes
@@ -172,7 +172,10 @@ contract Voter is IVoter {
     // remove poke function
 
     function poke(uint256 _tokenId) external {
-        require(IVotingEscrow(_ve).isApprovedOrOwner(msg.sender, _tokenId) || msg.sender == governor);
+        require(
+            IVotingEscrow(_ve).isApprovedOrOwner(msg.sender, _tokenId) ||
+                msg.sender == governor
+        );
         address[] memory _poolVote = poolVote[_tokenId];
         uint256 _poolCnt = _poolVote.length;
         uint256[] memory _weights = new uint256[](_poolCnt);
@@ -305,15 +308,10 @@ contract Voter is IVoter {
         isAlive[_gauge] = true;
         _updateFor(_gauge);
         pools.push(_pool);
-      
-        IPair(_pool).sethasGauge(true);
+
+        IPair(_pool).setHasGauge(true);
         IPair(_pool).setExternalBribe(_external_bribe);
-        emit GaugeCreated(
-            _gauge,
-            msg.sender,
-            _external_bribe,
-            _pool
-        );
+        emit GaugeCreated(_gauge, msg.sender, _external_bribe, _pool);
         return _gauge;
     }
 

@@ -23,7 +23,6 @@ contract Pair is IPair {
 
     // Used to denote stable or volatile pair, not immutable since construction happens in the initialize method for CREATE2 deterministic addresses
     bool public immutable stable;
-    bool public hasGauge;
 
     uint256 public totalSupply = 0;
 
@@ -43,8 +42,26 @@ contract Pair is IPair {
     address public immutable team;
     address public immutable tank;
     address public immutable externalBribe;
-    address public immutable voter;
+    address immutable voter;
     address immutable factory;
+    address immutable minter; // this was causing error " tank == IMinter(minter).tank(); // pulls the fee tank MSig address"
+    address immutable fees; // this is now redundant but adding back just to compile it error "224 |             PairFees(fees).claimFeesFor(msg.sender, claimed0, claimed1);"
+    bool public hasGauge;
+
+    function setHasGauge(bool value) external {
+        require(msg.sender == voter); // TypeError: Expression has to be an lvalue.
+        hasGauge = value;
+    }
+
+    function setExternalBribe(address _externalBribe) external {
+        // debug(voter);
+        require(msg.sender == voter); //<----voter needs to be knwn
+        // require message sender is voter
+
+        externalBribe = _externalBribe;
+    }
+
+    //  allow the voter contract to set the external bribe address
 
     // Structure to capture time period obervations every 30 minutes, used for local oracles
     struct Observation {
@@ -114,14 +131,16 @@ contract Pair is IPair {
 
     constructor() {
         factory = msg.sender;
+
         (
             address _token0,
             address _token1,
             bool _stable,
-            address _voter
+            address _voter,
+
         ) = PairFactory(msg.sender).getInitializable();
-        (token0, token1, stable) = (_token0, _token1, _stable);
-        tank == IMinter(minter).tank(); // pulls the fee tank MSig address
+        (token0, token1, stable, voter) = (_token0, _token1, _stable, _voter);
+        // tank == IMinter(minter).tank(); // Does this need to be in the constructor its causing error https://ethereum.stackexchange.com/questions/20750/error-calling-a-function-from-another-contract-member-not-found-or-not-visi
         if (_stable) {
             name = string(
                 abi.encodePacked(
@@ -205,6 +224,12 @@ contract Pair is IPair {
         );
     }
 
+    // dunks add set voter function
+    function setVoter(address _voter) external {
+        require(msg.sender == voter, "only voter");
+        voter = _voter;
+    }
+
     function tokens() external view returns (address, address) {
         return (token0, token1);
     }
@@ -237,7 +262,7 @@ contract Pair is IPair {
             emit Fees(msg.sender, amount, 0);
         }
         if (hasGauge == true) {
-            ExternalBribe(externalBribe).notifyRewardAmount(token0, amount); //transfer fees to exBribes
+            IBribe(externalBribe).notifyRewardAmount(token0, amount); //transfer fees to exBribes
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
                 index0 += _ratio;
@@ -787,15 +812,5 @@ contract Pair is IPair {
             abi.encodeWithSelector(IERC20.transfer.selector, to, value)
         );
         require(success && (data.length == 0 || abi.decode(data, (bool))));
-    }
-
-    function sethasGauge(bool value) external {
-        require(msg.sender = voter);
-        hasGauge = value;
-    }
-
-    function setExternalBribe(address _externalBribe) external {
-        require(msg.sender = voter); //<----voter needs to be knwn
-        externalBribe = _externalBribe;
     }
 }
