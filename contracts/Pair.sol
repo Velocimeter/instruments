@@ -214,7 +214,7 @@ contract Pair is IPair {
     //         emit Claim(msg.sender, msg.sender, claimed0, claimed1);
     //     }
     // }
-    function setExternalBribe(address _externalBribe){
+    function setExternalBribe(address _externalBribe) external { 
         require(msg.sender = team || msg.sender = voter); //<----voter needs to be set
         externalBribe = _externalBribe;
     }
