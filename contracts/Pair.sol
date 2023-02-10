@@ -35,6 +35,7 @@ contract Pair is IPair {
     address public immutable token1;
     address public immutable team;
     address public immutable tank;
+    address public immutable externalBribe;
     address immutable factory;
 
     // Structure to capture time period obervations every 30 minutes, used for local oracles
@@ -213,6 +214,10 @@ contract Pair is IPair {
     //         emit Claim(msg.sender, msg.sender, claimed0, claimed1);
     //     }
     // }
+    function setExternalBribe(address _externalBribe){
+        require(msg.sender = team || msg.sender = voter); //<----voter needs to be set
+        externalBribe = _externalBribe;
+    }
 
     // Accrue fees on token0
     function _update0(uint256 amount) internal {

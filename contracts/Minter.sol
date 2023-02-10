@@ -26,7 +26,7 @@ contract Minter is IMinter {
 
     address internal initializer;
     address public team;
-    address public bucket;
+    address public tank;
     address public pendingTeam;
     uint256 public teamRate;
     uint256 public constant MAX_TEAM_RATE = 50; // 5% max
