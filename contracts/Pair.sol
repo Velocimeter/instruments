@@ -15,8 +15,7 @@ contract Pair is IPair {
     uint8 public constant decimals = 18;
 
     // Used to denote stable or volatile pair, not immutable since construction happens in the initialize method for CREATE2 deterministic addresses
-    bool public immutable stable;
-    bool public hasGauge;      
+    bool public immutable stable;     
 
     uint256 public totalSupply = 0;
 
@@ -219,7 +218,7 @@ contract Pair is IPair {
 
     // Accrue fees on token0
     function _update0(uint256 amount) internal {
-        if(hasGauge == false){
+        if(externalBribe == address(0)){
             _safeTransfer(token0, tank, amount); // transfer the fees to tank MSig for gaugeless LPs
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
@@ -227,7 +226,7 @@ contract Pair is IPair {
             }
             emit Fees(msg.sender, amount, 0);
         }
-        if(hasGauge == true){
+        if(externalBribe != address(0)){
             iExternalBribe(externalBribe).notifyRewardAmount(token0, amount); //transfer fees to exBribes
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
@@ -240,7 +239,7 @@ contract Pair is IPair {
 
     // Accrue fees on token1
     function _update1(uint256 amount) internal {
-        if(hasGauge == false){
+        if(externalBribe == address(0)){
             _safeTransfer(token1, tank, amount); // transfer the fees to tank MSig for gaugeless LPs
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
@@ -248,7 +247,7 @@ contract Pair is IPair {
             }
             emit Fees(msg.sender, amount, 0);
         }
-        if(hasGauge == true){
+        if(externalBribe != address(0)){
             iExternalBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
@@ -779,10 +778,8 @@ contract Pair is IPair {
         );
         require(success && (data.length == 0 || abi.decode(data, (bool))));
     }
-    function sethasGauge(bool value) external{
-        require(msg.sender = voter);
-        hasGauge = value;
-    }
+    // this gets set when the pair is made by the Voter.sol
+
     function setExternalBribe(address _externalBribe) external { 
         require(msg.sender = voter); //<----voter needs to be knwn
         externalBribe = _externalBribe;

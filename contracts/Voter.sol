@@ -306,7 +306,6 @@ contract Voter is IVoter {
         _updateFor(_gauge);
         pools.push(_pool);
       
-        IPair(_pool).sethasGauge(true);
         IPair(_pool).setExternalBribe(_external_bribe);
         emit GaugeCreated(
             _gauge,
