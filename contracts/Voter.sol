@@ -287,10 +287,8 @@ contract Voter is IVoter {
             );
         }
 
-        // address _internal_bribe = IBribeFactory(bribefactory)
-        //     .createInternalBribe(internalRewards);
-        address _external_bribe = IBribeFactory(bribefactory)
-            .createExternalBribe(allowedRewards);
+        // address _internal_bribe = IBribeFactory(bribefactory).createInternalBribe(internalRewards);
+        address _external_bribe = IBribeFactory(bribefactory).createExternalBribe(allowedRewards);
         IPair(_pool).setExternalBribe(_external_bribe);
         address _gauge = IGaugeFactory(gaugefactory).createGauge(
             _pool,

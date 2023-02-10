@@ -13,7 +13,7 @@ import "contracts/interfaces/IVotingEscrow.sol";
 contract Gauge is IGauge {
     address public immutable stake; // the LP token that needs to be staked for rewards
     address public immutable _ve; // the ve token used for gauges
-    address public immutable internal_bribe;
+    // address public immutable internal_bribe;
     address public immutable external_bribe;
     address public immutable voter;
 
@@ -148,22 +148,22 @@ contract Gauge is IGauge {
             uint256 _fees1 = fees1 + claimed1;
             (address _token0, address _token1) = IPair(stake).tokens();
             if (
-                _fees0 > IBribe(internal_bribe).left(_token0) &&
+                _fees0 > IBribe(external_bribe).left(_token0) &&
                 _fees0 / DURATION > 0
             ) {
                 fees0 = 0;
-                _safeApprove(_token0, internal_bribe, _fees0);
-                IBribe(internal_bribe).notifyRewardAmount(_token0, _fees0);
+                _safeApprove(_token0, external_bribe, _fees0);
+                IBribe(external_bribe).notifyRewardAmount(_token0, _fees0);
             } else {
                 fees0 = _fees0;
             }
             if (
-                _fees1 > IBribe(internal_bribe).left(_token1) &&
+                _fees1 > IBribe(external_bribe).left(_token1) &&
                 _fees1 / DURATION > 0
             ) {
                 fees1 = 0;
-                _safeApprove(_token1, internal_bribe, _fees1);
-                IBribe(internal_bribe).notifyRewardAmount(_token1, _fees1);
+                _safeApprove(_token1, external_bribe, _fees1);
+                IBribe(external_bribe).notifyRewardAmount(_token1, _fees1);
             } else {
                 fees1 = _fees1;
             }

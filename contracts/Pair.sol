@@ -39,12 +39,12 @@ contract Pair is IPair {
 
     address public immutable token0;
     address public immutable token1;
-    address public immutable team;
-    address public immutable tank;
-    address public immutable externalBribe;
+    // address public immutable team;
+    address public tank;
+    address public externalBribe;
     address immutable voter;
     address immutable factory;
-    address immutable minter; // this was causing error " tank == IMinter(minter).tank(); // pulls the fee tank MSig address"
+    address minter; // this was causing error " tank == IMinter(minter).tank(); // pulls the fee tank MSig address"
     address immutable fees; // this is now redundant but adding back just to compile it error "224 |             PairFees(fees).claimFeesFor(msg.sender, claimed0, claimed1);"
     bool public hasGauge;
 
@@ -54,9 +54,7 @@ contract Pair is IPair {
     }
 
     function setExternalBribe(address _externalBribe) external {
-        // debug(voter);
-        require(msg.sender == voter); //<----voter needs to be knwn
-        // require message sender is voter
+        require(msg.sender == voter); //<----voter needs to be knwn, require message sender is voter
 
         externalBribe = _externalBribe;
     }
@@ -136,11 +134,12 @@ contract Pair is IPair {
             address _token0,
             address _token1,
             bool _stable,
-            address _voter,
-
+            address _voter
         ) = PairFactory(msg.sender).getInitializable();
         (token0, token1, stable, voter) = (_token0, _token1, _stable, _voter);
-        // tank == IMinter(minter).tank(); // Does this need to be in the constructor its causing error https://ethereum.stackexchange.com/questions/20750/error-calling-a-function-from-another-contract-member-not-found-or-not-visi
+        minter = IVoter(voter).minter();
+        tank == IMinter(minter).tank(); // Does this need to be in the constructor its causing error https://ethereum.stackexchange.com/questions/20750/error-calling-a-function-from-another-contract-member-not-found-or-not-visi
+        fees = tank; // this is probably redundant as stated on line 48, but needs to be inited
         if (_stable) {
             name = string(
                 abi.encodePacked(
@@ -176,7 +175,7 @@ contract Pair is IPair {
                 )
             );
         }
-        _voter = voter;
+        // _voter = voter;
         decimals0 = 10**IERC20(_token0).decimals();
         decimals1 = 10**IERC20(_token1).decimals();
 
@@ -223,12 +222,12 @@ contract Pair is IPair {
             token1
         );
     }
-
-    // dunks add set voter function
-    function setVoter(address _voter) external {
-        require(msg.sender == voter, "only voter");
-        voter = _voter;
-    }
+ 
+    // dunks add set voter function. Voter is immutable rn
+    // function setVoter(address _voter) external {
+    //     require(msg.sender == voter, "only voter");
+    //     voter = _voter;
+    // }
 
     function tokens() external view returns (address, address) {
         return (token0, token1);

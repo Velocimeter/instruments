@@ -18,6 +18,8 @@ abstract contract PairFactory is
     address public pendingFeeManager;
     address public voter;
 
+    address public immutable minter;
+
     mapping(address => mapping(address => mapping(bool => address)))
         public getPair;
     address[] public allPairs;
@@ -35,7 +37,7 @@ abstract contract PairFactory is
         uint256
     );
 
-    constructor() {
+    constructor(address _minter) {
         pauser = msg.sender;
         isPaused = false;
         feeManager = msg.sender;
@@ -43,6 +45,7 @@ abstract contract PairFactory is
         // volatileFee = 2;
         stableFee = 3; // 0.03%
         volatileFee = 25; // 0.25%
+        minter = _minter;
     }
 
     function allPairsLength() external view returns (uint256) {
@@ -104,11 +107,12 @@ abstract contract PairFactory is
         returns (
             address,
             address,
-            bool
+            bool,
+            address
         )
     // we might need to add more here becuase of adding voter to the constructor
     {
-        return (_temp0, _temp1, _temp);
+        return (_temp0, _temp1, _temp, voter);
     }
 
     function createPair(
