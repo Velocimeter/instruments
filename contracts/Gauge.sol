@@ -93,6 +93,7 @@ contract Gauge is IGauge {
         uint256 amount
     );
 
+    //
     constructor(
         address _stake,
         // address _internal_bribe,

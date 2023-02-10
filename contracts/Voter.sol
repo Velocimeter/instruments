@@ -261,7 +261,7 @@ contract Voter is IVoter {
     function createGauge(address _pool) external returns (address) {
         require(gauges[_pool] == address(0x0), "exists");
         address[] memory allowedRewards = new address[](3);
-        address[] memory internalRewards = new address[](2);
+        address[] memory internalRewards = new address[](2); // looks like this is creating internal bribe?
         bool isPair = IPairFactory(factory).isPair(_pool);
         address tokenA;
         address tokenB;

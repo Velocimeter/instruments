@@ -12,3 +12,4 @@ interface IGaugeFactory {
 
     function last_gauge() external view returns (address);
 }
+//
