@@ -43,7 +43,6 @@ contract Voter is IVoter {
     event GaugeCreated(
         address indexed gauge,
         address creator,
-        address internal_bribe,
         address indexed external_bribe,
         address indexed pool
     );
@@ -292,7 +291,6 @@ contract Voter is IVoter {
         IPair(_pool).setExternalBribe(_external_bribe);
         address _gauge = IGaugeFactory(gaugefactory).createGauge(
             _pool,
-            _internal_bribe,
             _external_bribe,
             _ve,
             isPair,
@@ -300,7 +298,6 @@ contract Voter is IVoter {
         );
 
         IERC20(base).approve(_gauge, type(uint256).max);
-        internal_bribes[_gauge] = _internal_bribe;
         external_bribes[_gauge] = _external_bribe;
         gauges[_pool] = _gauge;
         poolForGauge[_gauge] = _pool;
@@ -313,7 +310,6 @@ contract Voter is IVoter {
         emit GaugeCreated(
             _gauge,
             msg.sender,
-            _internal_bribe,
             _external_bribe,
             _pool
         );
