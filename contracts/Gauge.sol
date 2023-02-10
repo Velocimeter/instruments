@@ -718,7 +718,6 @@ contract Gauge is IGauge {
             rewardPerTokenStored[token],
             lastUpdateTime[token]
         ) = _updateRewardPerToken(token, type(uint256).max, true);
-        _claimFees();
 
         if (block.timestamp >= periodFinish[token]) {
             _safeTransferFrom(token, msg.sender, address(this), amount);
