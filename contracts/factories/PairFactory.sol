@@ -14,6 +14,7 @@ contract PairFactory is IPairFactory {
     uint256 public constant MAX_FEE = 50; // 0.5%
     address public feeManager;
     address public pendingFeeManager;
+    address public voter;
 
     mapping(address => mapping(address => mapping(bool => address)))
         public getPair;
@@ -45,6 +46,7 @@ contract PairFactory is IPairFactory {
     function allPairsLength() external view returns (uint256) {
         return allPairs.length;
     }
+    
 
     function setPauser(address _pauser) external {
         require(msg.sender == pauser);
@@ -81,6 +83,10 @@ contract PairFactory is IPairFactory {
             volatileFee = _fee;
         }
     }
+    function setVoter(address _voter) external {
+        require((msg.sender == pauser));
+        voter = _voter;
+    }
 
     function getFee(bool _stable) public view returns (uint256) {
         return _stable ? stableFee : volatileFee;
@@ -105,7 +111,8 @@ contract PairFactory is IPairFactory {
     function createPair(
         address tokenA,
         address tokenB,
-        bool stable
+        bool stable,
+        address voter
     ) external returns (address pair) {
         require(tokenA != tokenB, "IA"); // Pair: IDENTICAL_ADDRESSES
         (address token0, address token1) = tokenA < tokenB

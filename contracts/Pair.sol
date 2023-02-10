@@ -36,6 +36,7 @@ contract Pair is IPair {
     address public immutable team;
     address public immutable tank;
     address public immutable externalBribe;
+    address public immutable voter;
     address immutable factory;
 
     // Structure to capture time period obervations every 30 minutes, used for local oracles
@@ -106,7 +107,7 @@ contract Pair is IPair {
 
     constructor() {
         factory = msg.sender;
-        (address _token0, address _token1, bool _stable) = PairFactory(
+        (address _token0, address _token1, bool _stable, address _voter) = PairFactory(
             msg.sender
         ).getInitializable();
         (token0, token1, stable) = (_token0, _token1, _stable);
@@ -146,7 +147,7 @@ contract Pair is IPair {
                 )
             );
         }
-
+        _voter = voter;
         decimals0 = 10**IERC20(_token0).decimals();
         decimals1 = 10**IERC20(_token1).decimals();
 
@@ -214,10 +215,7 @@ contract Pair is IPair {
     //         emit Claim(msg.sender, msg.sender, claimed0, claimed1);
     //     }
     // }
-    function setExternalBribe(address _externalBribe) external { 
-        require(msg.sender = team || msg.sender = voter); //<----voter needs to be set
-        externalBribe = _externalBribe;
-    }
+
 
     // Accrue fees on token0
     function _update0(uint256 amount) internal {
@@ -782,8 +780,12 @@ contract Pair is IPair {
         require(success && (data.length == 0 || abi.decode(data, (bool))));
     }
     function sethasGauge(bool value) external{
-        require(msg.sender = Voter);
+        require(msg.sender = voter);
         hasGauge = value;
+    }
+    function setExternalBribe(address _externalBribe) external { 
+        require(msg.sender = voter); //<----voter needs to be knwn
+        externalBribe = _externalBribe;
     }
 
 }
