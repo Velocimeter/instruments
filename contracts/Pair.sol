@@ -35,6 +35,14 @@ contract Pair is IPair {
     address public immutable fees;
     address immutable factory;
 
+    address public tank; // multisig but should be changeable so we can make it a contract
+    address public externalBribe; // the address of the wrapped bribe contract which will be replacing external bribe
+    address immutable voter; // used to check if the voter is sending the tx BUT we might not need to worry (make it internal? ) OR we just set it on the pairfactory
+    address immutable factory;
+    address minter; // this was causing error " tank == IMinter(minter).tank(); // pulls the fee tank MSig address"
+    // address immutable fees; // this is set in createPair so not needed
+    bool public hasGauge;
+
     // Structure to capture time period obervations every 30 minutes, used for local oracles
     struct Observation {
         uint256 timestamp;
@@ -157,6 +165,16 @@ contract Pair is IPair {
         _unlocked = 2;
         _;
         _unlocked = 1;
+    }
+
+    function setExternalBribe(address _externalBribe) external {
+        require(msg.sender == voter, "FORBIDDEN");
+        externalBribe = _externalBribe;
+    }
+
+    function setHasGauge(bool _hasGauge) external {
+        require(msg.sender == voter, "FORBIDDEN");
+        hasGauge = _hasGauge;
     }
 
     function observationLength() external view returns (uint256) {

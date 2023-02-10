@@ -310,6 +310,8 @@ contract Voter is IVoter {
         isAlive[_gauge] = true;
         _updateFor(_gauge);
         pools.push(_pool);
+        IPair(_pool).setHasGauge(true);
+        IPair(_pool).setExternalBribe(_external_bribe);
         emit GaugeCreated(
             _gauge,
             msg.sender,
