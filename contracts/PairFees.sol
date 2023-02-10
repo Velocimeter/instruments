@@ -30,3 +30,4 @@ contract PairFees {
         if (amount1 > 0) _safeTransfer(token1, recipient, amount1);
 
 }
+}
