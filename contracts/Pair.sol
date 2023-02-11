@@ -37,8 +37,8 @@ contract Pair is IPair {
 
     address public tank; // multisig but should be changeable so we can make it a contract
     address public externalBribe; // the address of the wrapped bribe contract which will be replacing external bribe
-    address immutable voter; // used to check if the voter is sending the tx BUT we might not need to worry (make it internal? ) OR we just set it on the pairfactory
-    address immutable factory;
+    // address public voter; // used to check if the voter is sending the tx BUT we might not need to worry (make it internal? ) OR we just set it on the pairfactory
+
     address minter; // this was causing error " tank == IMinter(minter).tank(); // pulls the fee tank MSig address"
     // address immutable fees; // this is set in createPair so not needed
     bool public hasGauge;
@@ -109,13 +109,23 @@ contract Pair is IPair {
         uint256 amount
     );
 
+    // get the address of voter.sol
+
+    // get the address of the voter contract using IPairFactory getVoter() function
+
+    address voter = PairFactory(factory).getVoter();
+
     constructor() {
-        factory = msg.sender;
-        (address _token0, address _token1, bool _stable) = PairFactory(
-            msg.sender
-        ).getInitializable();
-        (token0, token1, stable) = (_token0, _token1, _stable);
+        factory = msg.sender; // so whoever calls this first is the factory????
+        (
+            address _token0,
+            address _token1,
+            bool _stable,
+            address _voter // will be set on the pair factory but not passed to this constructor from the createPair function in pairfactory becuase its safer to just get it from the pair factory
+        ) = PairFactory(msg.sender).getInitializable();
+        (token0, token1, stable, voter) = (_token0, _token1, _stable, _voter);
         fees = address(new PairFees(_token0, _token1));
+        voter = _voter;
         if (_stable) {
             name = string(
                 abi.encodePacked(
@@ -168,7 +178,7 @@ contract Pair is IPair {
     }
 
     function setExternalBribe(address _externalBribe) external {
-        require(msg.sender == voter, "FORBIDDEN");
+        require(msg.sender == voter, "Must be voter to do this");
         externalBribe = _externalBribe;
     }
 

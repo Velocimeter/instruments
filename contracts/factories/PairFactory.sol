@@ -8,12 +8,14 @@ contract PairFactory is IPairFactory {
     bool public isPaused;
     address public pauser;
     address public pendingPauser;
+    address public voter; // this will be set by team once and then used to pass to the pair constructor
 
     uint256 public stableFee;
     uint256 public volatileFee;
     uint256 public constant MAX_FEE = 50; // 0.5%
     address public feeManager;
     address public pendingFeeManager;
+    address public team;
 
     mapping(address => mapping(address => mapping(bool => address)))
         public getPair;
@@ -40,6 +42,17 @@ contract PairFactory is IPairFactory {
         // volatileFee = 2;
         stableFee = 3; // 0.03%
         volatileFee = 25; // 0.25%
+    }
+
+    function setVoter(address _voter) external {
+        require(msg.sender == team, "not team");
+        voter = _voter;
+    }
+
+    // return the address of the voter contract
+
+    function getVoter() external view returns (address) {
+        return voter;
     }
 
     function allPairsLength() external view returns (uint256) {
@@ -115,6 +128,7 @@ contract PairFactory is IPairFactory {
         require(getPair[token0][token1][stable] == address(0), "PE"); // Pair: PAIR_EXISTS - single check is sufficient
         bytes32 salt = keccak256(abi.encodePacked(token0, token1, stable)); // notice salt includes stable as well, 3 parameters
         (_temp0, _temp1, _temp) = (token0, token1, stable);
+
         pair = address(new Pair{salt: salt}());
         getPair[token0][token1][stable] = pair;
         getPair[token1][token0][stable] = pair; // populate mapping in the reverse direction
@@ -122,4 +136,41 @@ contract PairFactory is IPairFactory {
         isPair[pair] = true;
         emit PairCreated(token0, token1, stable, pair, allPairs.length);
     }
+
+    // function getInitializable()
+    //     external
+    //     view
+    //     returns (
+    //         address,
+    //         address,
+    //         bool,
+    //         address
+    //     )
+    // {
+    //     return (_temp0, _temp1, _temp, _voter);
+    // }
+
+    // function createPair(
+    //     address tokenA,
+    //     address tokenB,
+    //     bool stable,
+    //     address voter
+    // ) external returns (address pair) {
+    //     require(tokenA != tokenB, "IA"); // Pair: IDENTICAL_ADDRESSES
+    //     (address token0, address token1) = tokenA < tokenB
+    //         ? (tokenA, tokenB)
+    //         : (tokenB, tokenA);
+    //     require(token0 != address(0), "ZA"); // Pair: ZERO_ADDRESS
+    //     require(getPair[token0][token1][stable] == address(0), "PE"); // Pair: PAIR_EXISTS - single check is sufficient
+    //     bytes32 salt = keccak256(
+    //         abi.encodePacked(token0, token1, stable, voter)
+    //     ); // notice salt includes stable as well, 3 parameters
+    //     (_temp0, _temp1, _temp, _voter) = (token0, token1, stable, voter);
+    //     pair = address(new Pair{salt: salt}());
+    //     getPair[token0][token1][stable] = pair;
+    //     getPair[token1][token0][stable] = pair; // populate mapping in the reverse direction
+    //     allPairs.push(pair);
+    //     isPair[pair] = true;
+    //     emit PairCreated(token0, token1, stable, pair, allPairs.length);
+    // }
 }
