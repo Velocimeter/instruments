@@ -1,6 +1,6 @@
 pragma solidity 0.8.13;
 
-import './BaseTest.sol';
+import "./BaseTest.sol";
 import "contracts/WrappedExternalBribe.sol";
 import "contracts/factories/WrappedExternalBribeFactory.sol";
 
@@ -56,7 +56,7 @@ contract WrappedExternalBribesTest is BaseTest {
         voter.initialize(tokens, address(minter));
 
         address[] memory claimants = new address[](0);
-        uint[] memory amounts1 = new uint[](0);
+        uint256[] memory amounts1 = new uint[](0);
         minter.initialize(claimants, amounts1, 0);
 
         // USDC - FRAX stable
@@ -98,7 +98,7 @@ contract WrappedExternalBribesTest is BaseTest {
 
         uint256 pre = LR.balanceOf(address(owner));
         uint256 earned = xbribe.earned(address(LR), 1);
-        assertEq(earned, TOKEN_1 / 2);
+        assertEq(earned, TOKEN_1 / 2); // why token 1 divided by 2?
 
         // rewards
         address[] memory rewards = new address[](1);
