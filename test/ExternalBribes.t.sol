@@ -32,6 +32,10 @@ contract ExternalBribesTest is BaseTest {
         deployPairFactoryAndRouter();
         deployPairWithOwner(address(owner));
 
+        // pairFactory.setVoter(address(voter));
+
+        // pairFactory.voter();
+
         // deployVoter()
         gaugeFactory = new GaugeFactory();
         bribeFactory = new BribeFactory();
@@ -46,11 +50,11 @@ contract ExternalBribesTest is BaseTest {
 
         // whitelist reward tokens on voter
 
-        voter.whitelist(address(USDC));
-        voter.whitelist(address(FRAX));
-        voter.whitelist(address(DAI));
-        voter.whitelist(address(VELO));
-        voter.whitelist(address(LR));
+        // voter.whitelist(address(USDC));
+        // voter.whitelist(address(FRAX));
+        // voter.whitelist(address(DAI));
+        // voter.whitelist(address(VELO));
+        // voter.whitelist(address(LR));
 
         // label voter using forge label function
 
@@ -90,7 +94,9 @@ contract ExternalBribesTest is BaseTest {
 
         // set external bribe on the deployed pair contract
 
-        pair.setExternalBribe(address(xbribe));
+        // pair.setExternalBribe(address(xbribe));
+
+        emit log("dunks2");
 
         // ve
         VELO.approve(address(escrow), TOKEN_1);
@@ -104,6 +110,7 @@ contract ExternalBribesTest is BaseTest {
         // try to set voter on pairFactory
 
         pairFactory.setVoter(address(voter));
+        emit log("dunks3");
     }
 
     // this is not working - why? - possibly becuase owner (above directly) is not being used to call setVoter?
@@ -114,6 +121,8 @@ contract ExternalBribesTest is BaseTest {
     function testCanClaimExternalBribe() public {
         // fwd half a week
         vm.warp(block.timestamp + 1 weeks / 2);
+
+        emit log("dunks");
 
         // create a bribe
         LR.approve(address(xbribe), TOKEN_1);
@@ -158,6 +167,7 @@ contract ExternalBribesTest is BaseTest {
         xbribe.notifyRewardAmount(address(LR), TOKEN_1);
         assertEq(LR.balanceOf(address(xbribe)), TOKEN_1);
 
+        emit log("dunks5");
         // vote
         address[] memory pools = new address[](1);
         pools[0] = address(pair);
@@ -235,5 +245,7 @@ contract ExternalBribesTest is BaseTest {
         uint256 diff2 = post - pre;
 
         assertEq(diff + diff2, TOKEN_1 - 1); // -1 for rounding
+
+        emit log("dunks");
     }
 }

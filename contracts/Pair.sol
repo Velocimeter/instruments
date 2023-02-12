@@ -139,7 +139,7 @@ contract Pair is IPair {
     }
 
     function setExternalBribe(address _externalBribe) external {
-        // require(msg.sender == voter, "FORBIDDEN"); // voter createGauge sets this
+        require(msg.sender == voter, "FORBIDDEN by Dunks. You Shall not pass!!"); // voter createGauge sets this
         externalBribe = _externalBribe;
     }
 
