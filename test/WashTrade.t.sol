@@ -89,6 +89,7 @@ contract WashTradeTest is BaseTest {
         bribeFactory = new BribeFactory();
         wxbribeFactory = new WrappedExternalBribeFactory();
         voter = new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
+        wxbribeFactory.setVoter(address(voter));
         address[] memory tokens = new address[](4);
         tokens[0] = address(USDC);
         tokens[1] = address(FRAX);

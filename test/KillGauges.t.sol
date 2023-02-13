@@ -43,6 +43,7 @@ contract KillGaugesTest is BaseTest {
     voter = new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
 
     escrow.setVoter(address(voter));
+    wxbribeFactory.setVoter(address(voter));
 
     distributor = new RewardsDistributor(address(escrow));
 
