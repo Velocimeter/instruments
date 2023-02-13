@@ -30,10 +30,10 @@ contract ExternalBribesTest is BaseTest {
         mintLR(owners, amounts);
         VeArtProxy artProxy = new VeArtProxy();
         escrow = new VotingEscrow(address(VELO), address(artProxy));
-        deployPairFactoryAndRouter();
+        pairFactory = deployPairFactoryAndRouter();
         deployPairWithOwner(address(owner));
 
-        // deployVoter()
+
         gaugeFactory = new GaugeFactory();
         bribeFactory = new BribeFactory();
         wxbribeFactory = new WrappedExternalBribeFactory();
@@ -47,6 +47,7 @@ contract ExternalBribesTest is BaseTest {
 
         escrow.setVoter(address(voter));
         wxbribeFactory.setVoter(address(voter));
+        pairFactory.setVoter(address(voter));
 
         // whitelist reward tokens on voter
 
@@ -61,8 +62,6 @@ contract ExternalBribesTest is BaseTest {
         // function label(address addr, string calldata label) external;
 
         // label(address(voter), "Voter");
-
-        emit log("dunks");
 
         // emit log(voter);
 
@@ -104,10 +103,6 @@ contract ExternalBribesTest is BaseTest {
         escrow.create_lock(TOKEN_1, 4 * 365 * 86400);
         vm.warp(block.timestamp + 1);
         vm.stopPrank();
-
-        // try to set voter on pairFactory
-
-        pairFactory.setVoter(address(voter));
     }
 
     // this is not working - why? - possibly becuase owner (above directly) is not being used to call setVoter?

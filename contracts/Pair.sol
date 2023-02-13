@@ -36,7 +36,7 @@ contract Pair is IPair {
     address public immutable fees;
     address immutable factory; // explain this? can this be public? can I call this from inside a contract
     address public externalBribe;
-    address public voter;
+    address public immutable voter;
     address public tank; // we get this from pair factory so not sure if we need it here?
     bool public hasGauge;
 
@@ -125,12 +125,6 @@ contract Pair is IPair {
     }
 
     // make sure that set external bribe knows the address of the voter. We can do this becuase factory is a known varible here. Still need to make this work tho.
-
-    function getAndSetVoter() external returns (address) {
-        address _voter = PairFactory(factory).voter();
-        voter = _voter;
-        return _voter;
-    }
 
     function getAndSetTank() external returns (address) {
         address _tank = PairFactory(factory).tank();
