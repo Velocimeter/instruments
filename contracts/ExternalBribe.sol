@@ -17,7 +17,7 @@ contract ExternalBribe is IBribe {
     uint256 internal constant DURATION = 7 days; // rewards are released over the voting period
     uint256 internal constant MAX_REWARD_TOKENS = 16;
 
-    uint256 internal constant PRECISION = 10**18;
+    uint256 internal constant PRECISION = 10 ** 18;
 
     uint256 public totalSupply;
     mapping(uint256 => uint256) public balanceOf;
@@ -51,17 +51,8 @@ contract ExternalBribe is IBribe {
 
     event Deposit(address indexed from, uint256 tokenId, uint256 amount);
     event Withdraw(address indexed from, uint256 tokenId, uint256 amount);
-    event NotifyReward(
-        address indexed from,
-        address indexed reward,
-        uint256 epoch,
-        uint256 amount
-    );
-    event ClaimRewards(
-        address indexed from,
-        address indexed reward,
-        uint256 amount
-    );
+    event NotifyReward(address indexed from, address indexed reward, uint256 epoch, uint256 amount);
+    event ClaimRewards(address indexed from, address indexed reward, uint256 amount);
 
     constructor(address _voter, address[] memory _allowedRewardTokens) {
         voter = _voter;
@@ -77,6 +68,7 @@ contract ExternalBribe is IBribe {
 
     // simple re-entrancy check
     uint256 internal _unlocked = 1;
+
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;
@@ -101,11 +93,7 @@ contract ExternalBribe is IBribe {
      * @param timestamp The timestamp to get the balance at
      * @return The balance the account had as of the given block
      */
-    function getPriorBalanceIndex(uint256 tokenId, uint256 timestamp)
-        public
-        view
-        returns (uint256)
-    {
+    function getPriorBalanceIndex(uint256 tokenId, uint256 timestamp) public view returns (uint256) {
         uint256 nCheckpoints = numCheckpoints[tokenId];
         if (nCheckpoints == 0) {
             return 0;
@@ -135,11 +123,7 @@ contract ExternalBribe is IBribe {
         return lower;
     }
 
-    function getPriorSupplyIndex(uint256 timestamp)
-        public
-        view
-        returns (uint256)
-    {
+    function getPriorSupplyIndex(uint256 timestamp) public view returns (uint256) {
         uint256 nCheckpoints = supplyNumCheckpoints;
         if (nCheckpoints == 0) {
             return 0;
@@ -174,16 +158,10 @@ contract ExternalBribe is IBribe {
     function _writeCheckpoint(uint256 tokenId, uint256 balance) internal {
         uint256 _timestamp = block.timestamp;
         uint256 _nCheckPoints = numCheckpoints[tokenId];
-        if (
-            _nCheckPoints > 0 &&
-            checkpoints[tokenId][_nCheckPoints - 1].timestamp == _timestamp
-        ) {
+        if (_nCheckPoints > 0 && checkpoints[tokenId][_nCheckPoints - 1].timestamp == _timestamp) {
             checkpoints[tokenId][_nCheckPoints - 1].balanceOf = balance;
         } else {
-            checkpoints[tokenId][_nCheckPoints] = Checkpoint(
-                _timestamp,
-                balance
-            );
+            checkpoints[tokenId][_nCheckPoints] = Checkpoint(_timestamp, balance);
             numCheckpoints[tokenId] = _nCheckPoints + 1;
         }
     }
@@ -192,16 +170,10 @@ contract ExternalBribe is IBribe {
         uint256 _nCheckPoints = supplyNumCheckpoints;
         uint256 _timestamp = block.timestamp;
 
-        if (
-            _nCheckPoints > 0 &&
-            supplyCheckpoints[_nCheckPoints - 1].timestamp == _timestamp
-        ) {
+        if (_nCheckPoints > 0 && supplyCheckpoints[_nCheckPoints - 1].timestamp == _timestamp) {
             supplyCheckpoints[_nCheckPoints - 1].supply = totalSupply;
         } else {
-            supplyCheckpoints[_nCheckPoints] = SupplyCheckpoint(
-                _timestamp,
-                totalSupply
-            );
+            supplyCheckpoints[_nCheckPoints] = SupplyCheckpoint(_timestamp, totalSupply);
             supplyNumCheckpoints = _nCheckPoints + 1;
         }
     }
@@ -211,11 +183,7 @@ contract ExternalBribe is IBribe {
     }
 
     // returns the last time the reward was modified or periodFinish if the reward has ended
-    function lastTimeRewardApplicable(address token)
-        public
-        view
-        returns (uint256)
-    {
+    function lastTimeRewardApplicable(address token) public view returns (uint256) {
         return Math.min(block.timestamp, periodFinish[token]);
     }
 
@@ -232,10 +200,7 @@ contract ExternalBribe is IBribe {
     }
 
     // used by Voter to allow batched reward claims
-    function getRewardForOwner(uint256 tokenId, address[] memory tokens)
-        external
-        lock
-    {
+    function getRewardForOwner(uint256 tokenId, address[] memory tokens) external lock {
         require(msg.sender == voter);
         address _owner = IVotingEscrow(_ve).ownerOf(tokenId);
         for (uint256 i = 0; i < tokens.length; i++) {
@@ -247,11 +212,7 @@ contract ExternalBribe is IBribe {
         }
     }
 
-    function earned(address token, uint256 tokenId)
-        public
-        view
-        returns (uint256)
-    {
+    function earned(address token, uint256 tokenId) public view returns (uint256) {
         uint256 _startTimestamp = lastEarn[token][tokenId];
         if (numCheckpoints[tokenId] == 0) {
             return 0;
@@ -277,13 +238,8 @@ contract ExternalBribe is IBribe {
                 }
 
                 prevRewards.timestamp = _nextEpochStart;
-                _prevSupply = supplyCheckpoints[
-                    getPriorSupplyIndex(_nextEpochStart + DURATION)
-                ].supply;
-                prevRewards.balanceOf =
-                    (cp0.balanceOf *
-                        tokenRewardsPerEpoch[token][_nextEpochStart]) /
-                    _prevSupply;
+                _prevSupply = supplyCheckpoints[getPriorSupplyIndex(_nextEpochStart + DURATION)].supply;
+                prevRewards.balanceOf = (cp0.balanceOf * tokenRewardsPerEpoch[token][_nextEpochStart]) / _prevSupply;
             }
         }
 
@@ -292,9 +248,8 @@ contract ExternalBribe is IBribe {
         uint256 _lastEpochEnd = _lastEpochStart + DURATION;
 
         if (block.timestamp > _lastEpochEnd) {
-            reward +=
-                (cp.balanceOf * tokenRewardsPerEpoch[token][_lastEpochStart]) /
-                supplyCheckpoints[getPriorSupplyIndex(_lastEpochEnd)].supply;
+            reward += (cp.balanceOf * tokenRewardsPerEpoch[token][_lastEpochStart])
+                / supplyCheckpoints[getPriorSupplyIndex(_lastEpochEnd)].supply;
         }
 
         return reward;
@@ -333,14 +288,8 @@ contract ExternalBribe is IBribe {
     function notifyRewardAmount(address token, uint256 amount) external lock {
         require(amount > 0);
         if (!isReward[token]) {
-            require(
-                IVoter(voter).isWhitelisted(token),
-                "bribe tokens must be whitelisted"
-            );
-            require(
-                rewards.length < MAX_REWARD_TOKENS,
-                "too many rewards tokens"
-            );
+            require(IVoter(voter).isWhitelisted(token), "bribe tokens must be whitelisted");
+            require(rewards.length < MAX_REWARD_TOKENS, "too many rewards tokens");
         }
         // bribes kick in at the start of next bribe period
         uint256 adjustedTstamp = getEpochStart(block.timestamp);
@@ -359,11 +308,7 @@ contract ExternalBribe is IBribe {
         emit NotifyReward(msg.sender, token, adjustedTstamp, amount);
     }
 
-    function swapOutRewardToken(
-        uint256 i,
-        address oldToken,
-        address newToken
-    ) external {
+    function swapOutRewardToken(uint256 i, address oldToken, address newToken) external {
         require(msg.sender == IVotingEscrow(_ve).team(), "only team");
         require(rewards[i] == oldToken);
         isReward[oldToken] = false;
@@ -371,33 +316,16 @@ contract ExternalBribe is IBribe {
         rewards[i] = newToken;
     }
 
-    function _safeTransfer(
-        address token,
-        address to,
-        uint256 value
-    ) internal {
+    function _safeTransfer(address token, address to, uint256 value) internal {
         require(token.code.length > 0);
-        (bool success, bytes memory data) = token.call(
-            abi.encodeWithSelector(IERC20.transfer.selector, to, value)
-        );
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(IERC20.transfer.selector, to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))));
     }
 
-    function _safeTransferFrom(
-        address token,
-        address from,
-        address to,
-        uint256 value
-    ) internal {
+    function _safeTransferFrom(address token, address from, address to, uint256 value) internal {
         require(token.code.length > 0);
-        (bool success, bytes memory data) = token.call(
-            abi.encodeWithSelector(
-                IERC20.transferFrom.selector,
-                from,
-                to,
-                value
-            )
-        );
+        (bool success, bytes memory data) =
+            token.call(abi.encodeWithSelector(IERC20.transferFrom.selector, from, to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))));
     }
 }

@@ -3,6 +3,8 @@ pragma solidity 0.8.13;
 
 import "contracts/interfaces/IBribeFactory.sol";
 import "contracts/InternalBribe.sol";
+import "contracts/NexternalBribe.sol";
+
 import "contracts/ExternalBribe.sol";
 
 contract BribeFactory is IBribeFactory {
@@ -19,8 +21,6 @@ contract BribeFactory is IBribeFactory {
         last_external_bribe = address(new ExternalBribe(msg.sender, allowedRewards));
         return last_external_bribe;
     }
-
-    // adding a new function instead of updating old one so tests still work
 
     function createNexternalBribe(address[] memory allowedRewards) external returns (address) {
         last_nexternal_bribe = address(new NexternalBribe(msg.sender, allowedRewards));
