@@ -8,9 +8,10 @@ import "contracts/interfaces/IGauge.sol";
 import "contracts/interfaces/IVoter.sol";
 import "contracts/interfaces/IVotingEscrow.sol";
 import "contracts/interfaces/IBribe.sol";
-
+// hi
 // Bribes pay out rewards for a given pool based on the votes that were received from the user (goes hand in hand with Voter.vote())
 // noticed this is not IBribe like external is?? Gonna make it IBribe pls check
+
 contract NexternalBribe is IBribe {
     address public immutable voter;
     address public immutable _ve;
@@ -33,8 +34,8 @@ contract NexternalBribe is IBribe {
     /// @notice A checkpoint for marking balance
     struct RewardCheckpoint {
         uint256 timestamp;
-        uint256 balance;
-        uint256 balanceOf;
+        uint256 balance; // This was in before and balanceOf was not.
+            // uint256 balanceOf;  just realised that this would have been becuase it was reading from another contract duhhhhhhh
     }
     // adding balanceOf back in as it was throwing this error in contracts/NexternalBribe.sol:184:13:: checkpoints[tokenId][_nCheckPoints - 1].balanceOf = balance;
     // TypeError: Member "balanceOf" not found or not visible after argument-dependent lookup in struct NexternalBribe.RewardCheckpoint storage ref
@@ -183,9 +184,9 @@ contract NexternalBribe is IBribe {
         uint256 _timestamp = block.timestamp;
         uint256 _nCheckPoints = numCheckpoints[tokenId];
         if (_nCheckPoints > 0 && checkpoints[tokenId][_nCheckPoints - 1].timestamp == _timestamp) {
-            checkpoints[tokenId][_nCheckPoints - 1].balanceOf = balance;
+            checkpoints[tokenId][_nCheckPoints - 1] = balance; // removed balanceOf becuase we are checking this contract not external :)
         } else {
-            checkpoints[tokenId][_nCheckPoints] = RewardCheckpoint(_timestamp, balance);
+            checkpoints[tokenId][_nCheckPoints] = RewardCheckpoint(_timestamp, balance); // balanceOf did not exist on RewardCheckpoint struct before idk what to do here?
             numCheckpoints[tokenId] = _nCheckPoints + 1;
         }
     }
@@ -238,12 +239,12 @@ contract NexternalBribe is IBribe {
 
     function earned(address token, uint256 tokenId) public view returns (uint256) {
         uint256 _startTimestamp = lastEarn[token][tokenId];
-        if (numCheckpoints(tokenId) == 0) {
+        if (numCheckpoints[tokenId] == 0) {
             return 0;
         }
 
         uint256 _startIndex = getPriorBalanceIndex(tokenId, _startTimestamp);
-        uint256 _endIndex = numCheckpoints(tokenId) - 1;
+        uint256 _endIndex = numCheckpoints[tokenId] - 1;
 
         uint256 reward = 0;
         // you only earn once per epoch (after it's over)
@@ -255,7 +256,7 @@ contract NexternalBribe is IBribe {
 
         if (_endIndex > 0) {
             for (uint256 i = _startIndex; i <= _endIndex - 1; i++) {
-                (_prevTs, _prevBal) = checkpoints(tokenId, i);
+                (_prevTs, _prevBal) = checkpoints[tokenId][i];
                 uint256 _nextEpochStart = _bribeStart(_prevTs);
                 // check that you've earned it
                 // this won't happen until a week has passed
@@ -264,21 +265,48 @@ contract NexternalBribe is IBribe {
                 }
 
                 prevRewards.timestamp = _nextEpochStart;
-                (, _prevSupply) = supplyCheckpoints(getPriorSupplyIndex(_nextEpochStart + DURATION));
-                prevRewards.balance = (_prevBal * tokenRewardsPerEpoch[token][_nextEpochStart]) / _prevSupply;
+                SupplyCheckpoint storage supplyCheckpoint =
+                    supplyCheckpoints[getPriorSupplyIndex(_nextEpochStart + DURATION)];
+                prevRewards.balance =
+                    (_prevBal * tokenRewardsPerEpoch[token][_nextEpochStart]) / supplyCheckpoint.supply;
             }
         }
 
-        (_prevTs, _prevBal) = checkpoints(tokenId, _endIndex);
+        (_prevTs, _prevBal) = checkpoints[tokenId][_endIndex];
         uint256 _lastEpochStart = _bribeStart(_prevTs);
         uint256 _lastEpochEnd = _lastEpochStart + DURATION;
 
         if (block.timestamp > _lastEpochEnd && _startTimestamp < _lastEpochEnd) {
-            (, _prevSupply) = supplyCheckpoints(getPriorSupplyIndex(_lastEpochEnd));
-            reward += (_prevBal * tokenRewardsPerEpoch[token][_lastEpochStart]) / _prevSupply;
+            SupplyCheckpoint storage supplyCheckpoint = supplyCheckpoints[getPriorSupplyIndex(_lastEpochEnd)];
+            reward += (_prevBal * tokenRewardsPerEpoch[token][_lastEpochStart]) / supplyCheckpoint.supply;
         }
 
         return reward;
+    }
+
+    // This is an external function, but internal notation is used since it can only be called "internally" from Gauges
+    function _deposit(uint256 amount, uint256 tokenId) external {
+        require(msg.sender == voter);
+
+        totalSupply += amount;
+        balanceOf[tokenId] += amount;
+
+        _writeCheckpoint(tokenId, balanceOf[tokenId]);
+        _writeSupplyCheckpoint();
+
+        emit Deposit(msg.sender, tokenId, amount);
+    }
+
+    function _withdraw(uint256 amount, uint256 tokenId) external {
+        require(msg.sender == voter);
+
+        totalSupply -= amount;
+        balanceOf[tokenId] -= amount;
+
+        _writeCheckpoint(tokenId, balanceOf[tokenId]);
+        _writeSupplyCheckpoint();
+
+        emit Withdraw(msg.sender, tokenId, amount);
     }
 
     function left(address token) external view returns (uint256) {

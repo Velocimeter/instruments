@@ -17,7 +17,7 @@ contract WrappedExternalBribe {
     uint256 internal constant DURATION = 7 days; // rewards are released over the voting period
     uint256 internal constant MAX_REWARD_TOKENS = 16;
 
-    uint256 internal constant PRECISION = 10**18;
+    uint256 internal constant PRECISION = 10 ** 18;
 
     mapping(address => mapping(uint256 => uint256)) public tokenRewardsPerEpoch;
     mapping(address => uint256) public periodFinish;
@@ -32,17 +32,8 @@ contract WrappedExternalBribe {
         uint256 balance;
     }
 
-    event NotifyReward(
-        address indexed from,
-        address indexed reward,
-        uint256 epoch,
-        uint256 amount
-    );
-    event ClaimRewards(
-        address indexed from,
-        address indexed reward,
-        uint256 amount
-    );
+    event NotifyReward(address indexed from, address indexed reward, uint256 epoch, uint256 amount);
+    event ClaimRewards(address indexed from, address indexed reward, uint256 amount);
 
     constructor(address _voter, address _old_bribe) {
         voter = _voter;
@@ -58,8 +49,9 @@ contract WrappedExternalBribe {
         }
     }
 
-    // simple re-entrancy check
+    // simple re-entrancy checkz.
     uint256 internal _unlocked = 1;
+
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;
@@ -82,11 +74,7 @@ contract WrappedExternalBribe {
     }
 
     // returns the last time the reward was modified or periodFinish if the reward has ended
-    function lastTimeRewardApplicable(address token)
-        public
-        view
-        returns (uint256)
-    {
+    function lastTimeRewardApplicable(address token) public view returns (uint256) {
         return Math.min(block.timestamp, periodFinish[token]);
     }
 
@@ -103,10 +91,7 @@ contract WrappedExternalBribe {
     }
 
     // used by Voter to allow batched reward claims
-    function getRewardForOwner(uint256 tokenId, address[] memory tokens)
-        external
-        lock
-    {
+    function getRewardForOwner(uint256 tokenId, address[] memory tokens) external lock {
         require(msg.sender == voter);
         address _owner = IVotingEscrow(_ve).ownerOf(tokenId);
         for (uint256 i = 0; i < tokens.length; i++) {
@@ -118,20 +103,13 @@ contract WrappedExternalBribe {
         }
     }
 
-    function earned(address token, uint256 tokenId)
-        public
-        view
-        returns (uint256)
-    {
+    function earned(address token, uint256 tokenId) public view returns (uint256) {
         uint256 _startTimestamp = lastEarn[token][tokenId];
         if (underlying_bribe.numCheckpoints(tokenId) == 0) {
             return 0;
         }
 
-        uint256 _startIndex = underlying_bribe.getPriorBalanceIndex(
-            tokenId,
-            _startTimestamp
-        );
+        uint256 _startIndex = underlying_bribe.getPriorBalanceIndex(tokenId, _startTimestamp);
         uint256 _endIndex = underlying_bribe.numCheckpoints(tokenId) - 1;
 
         uint256 reward = 0;
@@ -153,14 +131,9 @@ contract WrappedExternalBribe {
                 }
 
                 prevRewards.timestamp = _nextEpochStart;
-                (, _prevSupply) = underlying_bribe.supplyCheckpoints(
-                    underlying_bribe.getPriorSupplyIndex(
-                        _nextEpochStart + DURATION
-                    )
-                );
-                prevRewards.balance =
-                    (_prevBal * tokenRewardsPerEpoch[token][_nextEpochStart]) /
-                    _prevSupply;
+                (, _prevSupply) =
+                    underlying_bribe.supplyCheckpoints(underlying_bribe.getPriorSupplyIndex(_nextEpochStart + DURATION));
+                prevRewards.balance = (_prevBal * tokenRewardsPerEpoch[token][_nextEpochStart]) / _prevSupply;
             }
         }
 
@@ -168,15 +141,9 @@ contract WrappedExternalBribe {
         uint256 _lastEpochStart = _bribeStart(_prevTs);
         uint256 _lastEpochEnd = _lastEpochStart + DURATION;
 
-        if (
-            block.timestamp > _lastEpochEnd && _startTimestamp < _lastEpochEnd
-        ) {
-            (, _prevSupply) = underlying_bribe.supplyCheckpoints(
-                underlying_bribe.getPriorSupplyIndex(_lastEpochEnd)
-            );
-            reward +=
-                (_prevBal * tokenRewardsPerEpoch[token][_lastEpochStart]) /
-                _prevSupply;
+        if (block.timestamp > _lastEpochEnd && _startTimestamp < _lastEpochEnd) {
+            (, _prevSupply) = underlying_bribe.supplyCheckpoints(underlying_bribe.getPriorSupplyIndex(_lastEpochEnd));
+            reward += (_prevBal * tokenRewardsPerEpoch[token][_lastEpochStart]) / _prevSupply;
         }
 
         return reward;
@@ -190,14 +157,8 @@ contract WrappedExternalBribe {
     function notifyRewardAmount(address token, uint256 amount) external lock {
         require(amount > 0);
         if (!isReward[token]) {
-            require(
-                IVoter(voter).isWhitelisted(token),
-                "bribe tokens must be whitelisted"
-            );
-            require(
-                rewards.length < MAX_REWARD_TOKENS,
-                "too many rewards tokens"
-            );
+            require(IVoter(voter).isWhitelisted(token), "bribe tokens must be whitelisted");
+            require(rewards.length < MAX_REWARD_TOKENS, "too many rewards tokens");
         }
         // bribes kick in at the start of next bribe period
         uint256 adjustedTstamp = getEpochStart(block.timestamp);
@@ -216,11 +177,7 @@ contract WrappedExternalBribe {
         emit NotifyReward(msg.sender, token, adjustedTstamp, amount);
     }
 
-    function swapOutRewardToken(
-        uint256 i,
-        address oldToken,
-        address newToken
-    ) external {
+    function swapOutRewardToken(uint256 i, address oldToken, address newToken) external {
         require(msg.sender == IVotingEscrow(_ve).team(), "only team");
         require(rewards[i] == oldToken);
         isReward[oldToken] = false;
@@ -228,33 +185,16 @@ contract WrappedExternalBribe {
         rewards[i] = newToken;
     }
 
-    function _safeTransfer(
-        address token,
-        address to,
-        uint256 value
-    ) internal {
+    function _safeTransfer(address token, address to, uint256 value) internal {
         require(token.code.length > 0);
-        (bool success, bytes memory data) = token.call(
-            abi.encodeWithSelector(IERC20.transfer.selector, to, value)
-        );
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(IERC20.transfer.selector, to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))));
     }
 
-    function _safeTransferFrom(
-        address token,
-        address from,
-        address to,
-        uint256 value
-    ) internal {
+    function _safeTransferFrom(address token, address from, address to, uint256 value) internal {
         require(token.code.length > 0);
-        (bool success, bytes memory data) = token.call(
-            abi.encodeWithSelector(
-                IERC20.transferFrom.selector,
-                from,
-                to,
-                value
-            )
-        );
+        (bool success, bytes memory data) =
+            token.call(abi.encodeWithSelector(IERC20.transferFrom.selector, from, to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))));
     }
 }
