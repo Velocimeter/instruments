@@ -6,7 +6,6 @@ import "contracts/Pair.sol";
 
 contract PairFactory is IPairFactory {
     bool public isPaused;
-    bool internal voter_set;
     address public pauser;
     address public pendingPauser;
 
@@ -63,9 +62,8 @@ contract PairFactory is IPairFactory {
 
     function setVoter(address _voter) external {
         // require(msg.sender == deployer); // have to make sure that this can be set to the voter addres during init script
-        require(!voter_set, "Voter has already been set.");
+        // require(voter == address(0), "The voter has already been set.");
         voter = _voter;
-        voter_set = true;
     }
 
     // function set tank on factory require team
@@ -80,6 +78,12 @@ contract PairFactory is IPairFactory {
     function acceptTank() external {
         require(msg.sender == team, "not pending team");
         tank = pendingTank;
+    }
+
+    // pair uses this to check if voter is updating external_bribe
+
+    function getVoter() external view returns (address) {
+        return voter;
     }
 
     function allPairsLength() external view returns (uint256) {

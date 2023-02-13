@@ -120,7 +120,7 @@ abstract contract BaseTest is Test, TestOwner {
 
     // maybe we should add deploy voter here too so we can set the voter now?
 
-    function deployPairFactoryAndRouter() public returns (PairFactory) {
+    function deployPairFactoryAndRouter() public {
         factory = new PairFactory();
         assertEq(factory.allPairsLength(), 0);
         factory.setFee(true, 1); // set fee back to 0.01% for old tests
@@ -128,13 +128,12 @@ abstract contract BaseTest is Test, TestOwner {
         factory.setTeam(address(msg.sender)); // set team
         factory.setTank(address(msg.sender)); // set tank
         // factory.setVoter(address(msg.sender)); // set voter
-        // assertEq(factory.voter(), _voter);
+        // assertEq(address factory.voter(),)
 
         router = new Router(address(factory), address(WETH));
         assertEq(router.factory(), address(factory));
         lib = new VelocimeterLibrary(address(router));
-
-        return factory;
+        // probably cant set voter here becuase sometime it may not exist yet?
     }
 
     function deployPairWithOwner(address _owner) public {

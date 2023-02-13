@@ -73,14 +73,10 @@ contract OracleTest is BaseTest {
         USDC.approve(address(router), USDC_1);
         router.swapExactTokensForTokens(USDC_1, 0, routes, address(owner), block.timestamp);
         address fees = pair.fees();
-        address tank = pair.tank();
-        assertEq(USDC.balanceOf(fees), 0); // fees should be zero now
-        assertEq(USDC.balanceOf(tank), 400); // tank will have 400 USDC
+        assertEq(USDC.balanceOf(fees), 400);
         uint256 b = USDC.balanceOf(address(owner));
-        // FIXME this wont work - no fees to claim
-        // pair.claimFees(); 
-        // FIXME this stays equal because fees are not dist
-        //assertGt(USDC.balanceOf(address(owner)), b);
+        pair.claimFees();
+        assertGt(USDC.balanceOf(address(owner)), b);
     }
 
     function testOracle() public {
