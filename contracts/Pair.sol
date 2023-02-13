@@ -126,13 +126,13 @@ contract Pair is IPair {
 
     // make sure that set external bribe knows the address of the voter. We can do this becuase factory is a known varible here. Still need to make this work tho.
 
-    function getAndSetVoter(address factory) external returns (address) {
+    function getAndSetVoter() external returns (address) {
         address _voter = PairFactory(factory).voter();
         voter = _voter;
         return _voter;
     }
 
-    function getAndSetTank(address factory) external returns (address) {
+    function getAndSetTank() external returns (address) {
         address _tank = PairFactory(factory).tank();
         tank = _tank;
         return _tank;
