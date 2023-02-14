@@ -262,7 +262,7 @@ contract Voter is IVoter {
         _updateFor(_gauge);
         pools.push(_pool);
         Pair(_pool).setHasGauge(true); // may need to switch to IPair?
-        Pair(_pool).setExternalBribe(_external_bribe); // t0rbik maybe also need interface??
+        Pair(_pool).setExternalBribe(_wxbribe); // Changed this to wrapped external bribe  from
         emit GaugeCreated(_gauge, msg.sender, _internal_bribe, _external_bribe, _wxbribe, _pool);
         return _gauge;
     }
