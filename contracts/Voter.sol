@@ -49,6 +49,7 @@ contract Voter is IVoter {
         address creator,
         address internal_bribe,
         address indexed external_bribe,
+        address wxbribe,
         address indexed pool
     );
     event GaugeKilled(address indexed gauge);
@@ -262,7 +263,7 @@ contract Voter is IVoter {
         pools.push(_pool);
         Pair(_pool).setHasGauge(true); // may need to switch to IPair?
         Pair(_pool).setExternalBribe(_external_bribe); // t0rbik maybe also need interface??
-        emit GaugeCreated(_gauge, msg.sender, _internal_bribe, _external_bribe, _pool);
+        emit GaugeCreated(_gauge, msg.sender, _internal_bribe, _external_bribe, _wxbribe, _pool);
         return _gauge;
     }
 

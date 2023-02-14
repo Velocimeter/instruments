@@ -47,26 +47,17 @@ contract ExternalBribesTest is BaseTest {
 
         escrow.setVoter(address(voter));
         wxbribeFactory.setVoter(address(voter));
+        // setVoter on pairFactory. factory defined in BaseTest and we know for sure that it is deployed because of deployPairFactoryAndRouter()
+        factory.setVoter(address(voter));
 
         // whitelist reward tokens on voter
+        // dont need it because we will voter.initialise which will do this (line 75)
+        // voter.whitelist(address(USDC));
+        // voter.whitelist(address(FRAX));
+        // voter.whitelist(address(DAI));
+        // voter.whitelist(address(VELO));
+        // voter.whitelist(address(LR));
 
-        voter.whitelist(address(USDC));
-        voter.whitelist(address(FRAX));
-        voter.whitelist(address(DAI));
-        voter.whitelist(address(VELO));
-        voter.whitelist(address(LR));
-
-        // label voter using forge label function
-
-        // function label(address addr, string calldata label) external;
-
-        // label(address(voter), "Voter");
-
-        emit log("dunks");
-
-        // emit log(voter);
-
-        // deployMinter()
         distributor = new RewardsDistributor(address(escrow));
         minter = new Minter(
             address(voter),
@@ -104,10 +95,6 @@ contract ExternalBribesTest is BaseTest {
         escrow.create_lock(TOKEN_1, 4 * 365 * 86400);
         vm.warp(block.timestamp + 1);
         vm.stopPrank();
-
-        // try to set voter on pairFactory
-
-        pairFactory.setVoter(address(voter));
     }
 
     // this is not working - why? - possibly becuase owner (above directly) is not being used to call setVoter?
