@@ -36,8 +36,8 @@ contract Pair is IPair {
     address public immutable fees;
     address immutable factory; // explain this? can this be public? can I call this from inside a contract
     address public externalBribe;
-    address public voter;
-    address public tank; // we get this from pair factory so not sure if we need it here?
+    // address public immutable voter;
+    address public immutable tank; 
     bool public hasGauge;
 
     // Structure to capture time period obervations every 30 minutes, used for local oracles
@@ -96,7 +96,8 @@ contract Pair is IPair {
 
     constructor() {
         factory = msg.sender;
-        voter = PairFactory(factory).voter(); // nice easy way to add the voter :) we already getting this from pair factory tho
+        //voter = PairFactory(msg.sender).voter(); // nice easy way to add the voter :) we already getting this from pair factory tho
+        tank = PairFactory(msg.sender).tank(); // nice easy way to add the voter :) we already getting this from pair factory tho
         (address _token0, address _token1, bool _stable) = PairFactory(msg.sender).getInitializable(); //wondering why msg.sender is passed here??
         (token0, token1, stable) = (_token0, _token1, _stable);
         fees = address(new PairFees(_token0, _token1));
@@ -126,27 +127,13 @@ contract Pair is IPair {
         _unlocked = 1;
     }
 
-    // make sure that set external bribe knows the address of the voter. We can do this becuase factory is a known varible here. Still need to make this work tho.
-
-    function getAndSetVoter() external returns (address) {
-        address _voter = PairFactory(factory).voter();
-        voter = _voter;
-        return _voter;
-    }
-
-    function getAndSetTank() external returns (address) {
-        address _tank = PairFactory(factory).tank();
-        tank = _tank;
-        return _tank;
-    }
-
     function setExternalBribe(address _externalBribe) external {
-        //  require(msg.sender == voter, "FORBIDDEN"); // voter createGauge sets this
+        // require(msg.sender == voter, "Only voter can set external bribe"); 
         externalBribe = _externalBribe;
     }
 
     function setHasGauge(bool value) external {
-        //  require(msg.sender == voter); // TypeError: Expression has to be an lvalue.
+        // require(msg.sender == voter, "Only voter can set has gauge"); 
         hasGauge = value;
     }
 
@@ -250,7 +237,6 @@ contract Pair is IPair {
             //there is no interface for external bribe so this errors
             _safeApprove(token1, externalBribe, amount);
             IBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
-
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
                 index0 += _ratio;

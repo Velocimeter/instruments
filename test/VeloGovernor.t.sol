@@ -51,12 +51,16 @@ contract FlowGovernorTest is BaseTest {
         voter = new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
 
         escrow.setVoter(address(voter));
+        wxbribeFactory.setVoter(address(voter));
 
         distributor = new RewardsDistributor(address(escrow));
 
         minter = new Minter(address(voter), address(escrow), address(distributor));
         distributor.setDepositor(address(minter));
         VELO.setMinter(address(minter));
+
+        address address1 = factory.getPair(address(FRAX), address(USDC), true);
+        pair = Pair(address1);
 
         VELO.approve(address(gaugeFactory), 15 * TOKEN_100K);
         voter.createGauge(address(pair));

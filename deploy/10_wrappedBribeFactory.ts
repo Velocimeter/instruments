@@ -11,7 +11,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   //   const pairFactory = await deployments.get('PairFactory')
   //   const gaugeFactory = await deployments.get('GaugeFactory')
   //   const bribeFactory = await deployments.get('BribeFactory')
-  const voter = await deployments.get('Voter')
+  //   const voter = await deployments.get('Voter') we dont need it anymore
 
   await deploy('WrappedExternalBribeFactory', {
     from: deployer,
