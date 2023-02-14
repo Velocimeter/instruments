@@ -76,6 +76,8 @@ contract Pair is IPair {
     mapping(address => uint256) public claimable1;
 
     event Fees(address indexed sender, uint256 amount0, uint256 amount1);
+    event TankFees(address indexed sender, uint256 amount0, uint256 amount1);
+    event GaugeFees(address indexed sender, uint256 amount0, uint256 amount1);
     event Mint(address indexed sender, uint256 amount0, uint256 amount1);
     event Burn(address indexed sender, uint256 amount0, uint256 amount1, address indexed to);
     event Swap(
@@ -139,12 +141,12 @@ contract Pair is IPair {
     }
 
     function setExternalBribe(address _externalBribe) external {
-        // require(msg.sender == voter, "FORBIDDEN"); // voter createGauge sets this
+        //  require(msg.sender == voter, "FORBIDDEN"); // voter createGauge sets this
         externalBribe = _externalBribe;
     }
 
     function setHasGauge(bool value) external {
-        // require(msg.sender == voter); // TypeError: Expression has to be an lvalue.
+        //  require(msg.sender == voter); // TypeError: Expression has to be an lvalue.
         hasGauge = value;
     }
 
@@ -206,6 +208,11 @@ contract Pair is IPair {
     //     }
     //     emit Fees(msg.sender, 0, amount);
     // }
+    function _safeApprove(address token, address spender, uint256 value) internal {
+        require(token.code.length > 0);
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(IERC20.approve.selector, spender, value));
+        require(success && (data.length == 0 || abi.decode(data, (bool))));
+    }
 
     // Accrue fees on token0.
     function _update0(uint256 amount) internal {
@@ -215,15 +222,17 @@ contract Pair is IPair {
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit Fees(msg.sender, amount, 0);
+            emit TankFees(msg.sender, amount, 0);
         }
         if (hasGauge == true) {
+            _safeApprove(token0, externalBribe, amount);
             IBribe(externalBribe).notifyRewardAmount(token0, amount); //transfer fees to exBribes
+            //  _safeTransfer(token0, tank, amount);
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit Fees(msg.sender, amount, 0);
+            emit GaugeFees(msg.sender, amount, 0);
         }
     }
 
@@ -235,16 +244,18 @@ contract Pair is IPair {
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit Fees(msg.sender, amount, 0);
+            emit TankFees(msg.sender, amount, 0);
         }
         if (hasGauge == true) {
             //there is no interface for external bribe so this errors
+            _safeApprove(token1, externalBribe, amount);
             IBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
+            _safeTransfer(token1, tank, amount);
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit Fees(msg.sender, amount, 0);
+            emit GaugeFees(msg.sender, amount, 0);
         }
     }
 
