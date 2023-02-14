@@ -69,7 +69,11 @@ const config: HardhatUserConfig = {
           apiKey: process.env.ARB_SCAN_API_KEY!
         }
       }
+    },
+    tenderly: {
+      url: 'https://rpc.tenderly.co/fork/a46e3cad-52b3-415f-8b3e-e07bf5a5cca1'
     }
+
     // ftmTestnet: {
     //   url: 'https://rpc.testnet.fantom.network',
     //   accounts: [process.env.PRIVATE_KEY!]
