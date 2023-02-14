@@ -250,7 +250,7 @@ contract Pair is IPair {
             //there is no interface for external bribe so this errors
             _safeApprove(token1, externalBribe, amount);
             IBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
-            _safeTransfer(token1, tank, amount);
+
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
                 index0 += _ratio;
