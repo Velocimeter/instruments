@@ -64,7 +64,8 @@ contract WrappedExternalBribesTest is BaseTest {
         gauge = Gauge(voter.createGauge(address(pair)));
         bribe = InternalBribe(gauge.internal_bribe());
         xbribe = ExternalBribe(gauge.external_bribe());
-        wxbribe = WrappedExternalBribe(wxbribeFactory.createBribe(address(xbribe)));
+        // wxbribe = WrappedExternalBribe(wxbribeFactory.createBribe(address(xbribe))); this is auto created in voter.createGauge (line 64)
+        wxbribe = WrappedExternalBribe(wxbribeFactory.oldBribeToNew(address(xbribe)));
 
         // ve
         VELO.approve(address(escrow), TOKEN_1);
