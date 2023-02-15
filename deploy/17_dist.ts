@@ -2,10 +2,8 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { DeployFunction } from 'hardhat-deploy/types'
 // import * as tasks1 from 'tasks/deploy/arbHardhat'
 
-import arbTestnetConfig from '../tasks/deploy/constants/arbTestnetConfig'
-import arbConfig from '../tasks/deploy/constants/arbConfig'
-
-const ARB_TEST_CONFIG = arbConfig
+import cantoConfig from '../tasks/deploy/constants/cantoConfig'
+const CANTO_CONFIG = cantoConfig
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { ethers } = hre
@@ -20,9 +18,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   // Initial veVELO distro // this is not inside dist lets see if its being used for deploys??
   await minter.initialize(
-    ARB_TEST_CONFIG.partnerAddrs,
-    ARB_TEST_CONFIG.partnerAmts,
-    ARB_TEST_CONFIG.partnerMax
+    CANTO_CONFIG.partnerAddrs,
+    CANTO_CONFIG.partnerAmts,
+    CANTO_CONFIG.partnerMax
   )
   console.log('veVELO not distributed yet') // we will run this when we want to start the epoch and have the NFTs
   //

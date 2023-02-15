@@ -1,9 +1,8 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { DeployFunction } from 'hardhat-deploy/types'
 
-import arbConfig from '../tasks/deploy/constants/arbConfig'
-
-const ARB_TEST_CONFIG = arbConfig
+import cantoConfig from '../tasks/deploy/constants/cantoConfig'
+const CANTO_CONFIG = cantoConfig
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts, ethers } = hre
@@ -23,7 +22,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   // const claim = await deployments.get('MerkleClaim')
 
   // Initialize
-  await flow.initialMint(ARB_TEST_CONFIG.teamEOA)
+  await flow.initialMint(CANTO_CONFIG.teamEOA)
   console.log('400m Initial minted')
 
   // await flow.setRedemptionReceiver(receiver.address)
@@ -35,10 +34,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   await flow.setMinter(minter.address)
   console.log('Minter set on flow contract')
 
-  await pairFactory.setPauser(ARB_TEST_CONFIG.teamMultisig)
+  await pairFactory.setPauser(CANTO_CONFIG.teamMultisig)
   console.log(
     'Pauser set on pair factory to multisig: ',
-    ARB_TEST_CONFIG.teamMultisig
+    CANTO_CONFIG.teamMultisig
   )
 
   // how to use msg.sender in hardhat scripts is the deployer address
@@ -54,51 +53,51 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     escrow.address
   )
 
-  await escrow.setTeam(ARB_TEST_CONFIG.teamMultisig)
-  console.log('Team multisig set for escrow', ARB_TEST_CONFIG.teamMultisig)
+  await escrow.setTeam(CANTO_CONFIG.teamMultisig)
+  console.log('Team multisig set for escrow', CANTO_CONFIG.teamMultisig)
 
-  await voter.setGovernor(ARB_TEST_CONFIG.teamMultisig)
-  console.log('Governor set on voter to: ', ARB_TEST_CONFIG.teamMultisig)
+  await voter.setGovernor(CANTO_CONFIG.teamMultisig)
+  console.log('Governor set on voter to: ', CANTO_CONFIG.teamMultisig)
 
-  await voter.setEmergencyCouncil(ARB_TEST_CONFIG.teamMultisig)
+  await voter.setEmergencyCouncil(CANTO_CONFIG.teamMultisig)
   console.log(
     'Emergency Council set on voter to: ',
-    ARB_TEST_CONFIG.teamMultisig
+    CANTO_CONFIG.teamMultisig
   )
 
   await distributor.setDepositor(minter.address)
   console.log('Depositor set to minter contract address')
 
-  // await receiver.setTeam(ARB_TEST_CONFIG.teamMultisig)
+  // await receiver.setTeam(CANTO_CONFIG.teamMultisig)
   // console.log('Team set for receiver')
 
-  // await governor.setTeam(ARB_TEST_CONFIG.teamMultisig)
+  // await governor.setTeam(CANTO_CONFIG.teamMultisig)
   // console.log('Team set for governor')
 
-  await minter.setTeam(ARB_TEST_CONFIG.teamMultisig)
-  console.log('Team set for minter to multisig: ', ARB_TEST_CONFIG.teamMultisig)
+  await minter.setTeam(CANTO_CONFIG.teamMultisig)
+  console.log('Team set for minter to multisig: ', CANTO_CONFIG.teamMultisig)
 
   // new init settings for updated pair -> fees -> bribes system
 
-  await pairFactory.setTeam(ARB_TEST_CONFIG.teamMultisig)
+  await pairFactory.setTeam(CANTO_CONFIG.teamMultisig)
   console.log(
     'Team set on Pair factory to multisig: ',
-    ARB_TEST_CONFIG.teamMultisig
+    CANTO_CONFIG.teamMultisig
   )
 
-  await pairFactory.setTank(ARB_TEST_CONFIG.teamMultisig)
+  await pairFactory.setTank(CANTO_CONFIG.teamMultisig)
   console.log(
     'Set tank on Pair factory to multisig for now - later we update to another multisig or contract: ',
-    ARB_TEST_CONFIG.teamMultisig
+    CANTO_CONFIG.teamMultisig
   )
 
   await pairFactory.setVoter(voter.address)
   console.log('Voter set on Pair factory to to voter contract: ', voter.address)
 
   // await minter.initialize(
-  //   ARB_TEST_CONFIG.partnerAddrs,
-  //   ARB_TEST_CONFIG.partnerAmts,
-  //   ARB_TEST_CONFIG.partnerMax
+  //   CANTO_CONFIG.partnerAddrs,
+  //   CANTO_CONFIG.partnerAmts,
+  //   CANTO_CONFIG.partnerMax
   // )
 
   // create pair

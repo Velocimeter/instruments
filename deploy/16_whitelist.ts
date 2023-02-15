@@ -1,9 +1,8 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { DeployFunction } from 'hardhat-deploy/types'
 
-import arbConfig from '../tasks/deploy/constants/arbConfig'
-
-const ARB_TEST_CONFIG = arbConfig
+import cantoConfig from '../tasks/deploy/constants/cantoConfig'
+const CANTO_CONFIG = cantoConfig
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { ethers } = hre
@@ -14,7 +13,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   // Whitelist
   const nativeToken = [flow.address]
-  const tokenWhitelist = nativeToken.concat(ARB_TEST_CONFIG.tokenWhitelist)
+  const tokenWhitelist = nativeToken.concat(CANTO_CONFIG.tokenWhitelist)
   await voter.initialize(tokenWhitelist, minter.address)
   console.log('Whitelist set')
 

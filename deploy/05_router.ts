@@ -1,8 +1,8 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { DeployFunction } from 'hardhat-deploy/types'
 
-import arbConfig from '../tasks/deploy/constants/arbConfig'
-const ARB_TEST_CONFIG = arbConfig
+import cantoConfig from '../tasks/deploy/constants/cantoConfig'
+const CANTO_CONFIG = cantoConfig
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = hre
@@ -14,7 +14,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   await deploy('Router', {
     from: deployer,
-    args: [pairFactory.address, ARB_TEST_CONFIG.WETH],
+    args: [pairFactory.address, CANTO_CONFIG.WETH],
     log: true,
     skipIfAlreadyDeployed: false
   })
