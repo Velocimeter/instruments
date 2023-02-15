@@ -68,7 +68,7 @@ contract PairFactory is IPairFactory {
 
     function setVoter(address _voter) external {
         require(!initial_voter_set, "The voter has already been set.");
-        // require(msg.sender == deployer); // have to make sure that this can be set to the voter addres during init script
+        require(msg.sender == deployer); // have to make sure that this can be set to the voter addres during init script
         voter = _voter;
         initial_voter_set = true;
     }
@@ -77,7 +77,7 @@ contract PairFactory is IPairFactory {
 
     function setTank(address _tank) external {
         require(!initial_tank_set, "The tank has already been set.");
-        // require(msg.sender == deployer); // this should be updateable to team but adding deployer so that init script can run..
+        require(msg.sender == deployer); // this should be updateable to team but adding deployer so that init script can run..
         tank = _tank;
         initial_tank_set = true;
     }
