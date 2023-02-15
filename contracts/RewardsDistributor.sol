@@ -5,6 +5,7 @@ import "openzeppelin-contracts/contracts/utils/math/Math.sol";
 import "contracts/interfaces/IERC20.sol";
 import "contracts/interfaces/IRewardsDistributor.sol";
 import "contracts/interfaces/IVotingEscrow.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 /*
 
@@ -15,6 +16,9 @@ import "contracts/interfaces/IVotingEscrow.sol";
 */
 
 contract RewardsDistributor is IRewardsDistributor {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
+
     event CheckpointToken(uint256 time, uint256 tokens);
 
     event Claimed(
@@ -52,6 +56,8 @@ contract RewardsDistributor is IRewardsDistributor {
         voting_escrow = _voting_escrow;
         depositor = msg.sender;
         require(IERC20(_token).approve(_voting_escrow, type(uint256).max));
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     function timestamp() external view returns (uint256) {

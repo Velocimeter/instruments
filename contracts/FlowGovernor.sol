@@ -9,12 +9,16 @@ import {L2GovernorCountingSimple} from "contracts/governance/L2GovernorCountingS
 import {L2GovernorVotes} from "contracts/governance/L2GovernorVotes.sol";
 import {L2GovernorVotesQuorumFraction} from "contracts/governance/L2GovernorVotesQuorumFraction.sol";
 
+import "contracts/interfaces/ITurnstile.sol";
+
 contract FlowGovernor is
     L2Governor,
     L2GovernorCountingSimple,
     L2GovernorVotes,
     L2GovernorVotesQuorumFraction
 {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
     address public team;
     uint256 public constant MAX_PROPOSAL_NUMERATOR = 50; // max 5%
     uint256 public constant PROPOSAL_DENOMINATOR = 1000;
@@ -26,6 +30,8 @@ contract FlowGovernor is
         L2GovernorVotesQuorumFraction(4) // 4%
     {
         team = msg.sender;
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     function votingDelay() public pure override(IGovernor) returns (uint256) {

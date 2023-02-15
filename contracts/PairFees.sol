@@ -2,9 +2,12 @@
 pragma solidity 0.8.13;
 
 import 'contracts/interfaces/IERC20.sol';
+import "contracts/interfaces/ITurnstile.sol";
 
 // Pair Fees contract is used as a 1:1 pair relationship to split out fees, this ensures that the curve does not need to be modified for LP shares
 contract PairFees {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
 
     address internal immutable pair; // The pair it is bonded to
     address internal immutable token0; // token0 of pair, saved localy and statically for gas optimization
@@ -14,6 +17,8 @@ contract PairFees {
         pair = msg.sender;
         token0 = _token0;
         token1 = _token1;
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     function _safeTransfer(address token,address to,uint256 value) internal {

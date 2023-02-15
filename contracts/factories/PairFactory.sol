@@ -3,8 +3,11 @@ pragma solidity 0.8.13;
 
 import "contracts/interfaces/IPairFactory.sol";
 import "contracts/Pair.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 contract PairFactory is IPairFactory {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
     bool public isPaused;
     address public pauser;
     address public pendingPauser;
@@ -47,6 +50,8 @@ contract PairFactory is IPairFactory {
         stableFee = 3; // 0.03%
         volatileFee = 25; // 0.25%
         deployer = msg.sender;
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     // need to set team so that team can set voter we really only need to set the voter once :) - deployer can do this only once (either in the init script but then we have to do this one last otherwise it will fail)

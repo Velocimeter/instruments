@@ -8,10 +8,13 @@ import "contracts/interfaces/IRewardsDistributor.sol";
 import "contracts/interfaces/IFlow.sol";
 import "contracts/interfaces/IVoter.sol";
 import "contracts/interfaces/IVotingEscrow.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 // codifies the minting rules as per ve(3,3), abstracted from the token to support any token that allows minting
 
 contract Minter is IMinter {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
     uint256 internal constant WEEK = 86400 * 7; // allows minting once per week (reset every Thursday 00:00 UTC)
     uint256 internal constant EMISSION = 990;
     uint256 internal constant TAIL_EMISSION = 2;
@@ -50,6 +53,8 @@ contract Minter is IMinter {
         _ve = IVotingEscrow(__ve);
         _rewards_distributor = IRewardsDistributor(__rewards_distributor);
         active_period = ((block.timestamp + (2 * WEEK)) / WEEK) * WEEK;
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     function initialize(

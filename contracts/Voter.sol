@@ -16,8 +16,11 @@ import "contracts/interfaces/IVotingEscrow.sol";
 import "contracts/Pair.sol";
 
 import "contracts/interfaces/IWrappedExternalBribeFactory.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 contract Voter is IVoter {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
     address public immutable _ve; // the ve token that governs these contracts
     address public immutable factory; // the PairFactory
     address internal immutable base;
@@ -74,6 +77,8 @@ contract Voter is IVoter {
         minter = msg.sender;
         governor = msg.sender;
         emergencyCouncil = msg.sender;
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     // simple re-entrancy check

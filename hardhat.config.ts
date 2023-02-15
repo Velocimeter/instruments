@@ -70,18 +70,21 @@ const config: HardhatUserConfig = {
         }
       }
     },
+    canto: {
+      url: process.env.CANTO_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY!],
+      chainId: 7700,
+      saveDeployments: true,
+      verify: {
+        etherscan: {
+          apiUrl: 'https://evm.explorer.canto.io/',
+          apiKey: process.env.CANTO_API_KEY
+        }
+      }
+    },
     tenderly: {
       url: 'https://rpc.tenderly.co/fork/a46e3cad-52b3-415f-8b3e-e07bf5a5cca1'
     }
-
-    // ftmTestnet: {
-    //   url: 'https://rpc.testnet.fantom.network',
-    //   accounts: [process.env.PRIVATE_KEY!]
-    // },
-    // optimisticEthereum: {
-    //   url: 'https://mainnet.optimism.io',
-    //   accounts: [process.env.PRIVATE_KEY!]
-    // }
   },
   solidity: {
     version: '0.8.13',
@@ -115,15 +118,10 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      // opera: process.env.FTM_SCAN_API_KEY!,
-      // ftmTestnet: process.env.FTM_SCAN_API_KEY!,
-      // optimisticEthereum: process.env.OP_SCAN_API_KEY!,
-
       arbitrumOne: process.env.ARB_SCAN_API_KEY!,
       arbitrumGoerli: process.env.ARB_SCAN_API_KEY!
     }
   },
-
   tenderly: {
     project: 'Velocimeter',
     username: 'dunks411'

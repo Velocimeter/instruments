@@ -8,9 +8,12 @@ import "contracts/interfaces/IGauge.sol";
 import "contracts/interfaces/IPair.sol";
 import "contracts/interfaces/IVoter.sol";
 import "contracts/interfaces/IVotingEscrow.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 // Gauges are used to incentivize pools, they emit reward tokens over 7 days for staked LP tokens
 contract Gauge is IGauge {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
     address public immutable stake; // the LP token that needs to be staked for rewards
     address public immutable _ve; // the ve token used for gauges
     address public immutable internal_bribe;
@@ -115,6 +118,8 @@ contract Gauge is IGauge {
                 rewards.push(_allowedRewardTokens[i]);
             }
         }
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     // simple re-entrancy check

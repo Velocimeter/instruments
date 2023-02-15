@@ -7,6 +7,7 @@ import {IERC721Receiver} from "openzeppelin-contracts/contracts/token/ERC721/IER
 import {IERC20} from "contracts/interfaces/IERC20.sol";
 import {IVeArtProxy} from "contracts/interfaces/IVeArtProxy.sol";
 import {IVotingEscrow} from "contracts/interfaces/IVotingEscrow.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 /// @title Voting Escrow
 /// @notice veNFT implementation that escrows ERC-20 tokens in the form of an ERC-721 NFT
@@ -16,6 +17,9 @@ import {IVotingEscrow} from "contracts/interfaces/IVotingEscrow.sol";
 /// @author Modified from Nouns DAO (https://github.com/withtally/my-nft-dao-project/blob/main/contracts/ERC721Checkpointable.sol)
 /// @dev Vote weight decays linearly over time. Lock time cannot be more than `MAXTIME` (4 years).
 contract VotingEscrow is IERC721, IERC721Metadata, IVotes {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
+
     enum DepositType {
         DEPOSIT_FOR_TYPE,
         CREATE_LOCK_TYPE,
@@ -105,6 +109,8 @@ contract VotingEscrow is IERC721, IERC721Metadata, IVotes {
         emit Transfer(address(0), address(this), tokenId);
         // burn-ish
         emit Transfer(address(this), address(0), tokenId);
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     /*//////////////////////////////////////////////////////////////

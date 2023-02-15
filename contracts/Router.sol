@@ -8,8 +8,12 @@ import "contracts/interfaces/IPair.sol";
 import "contracts/interfaces/IPairFactory.sol";
 import "contracts/interfaces/IRouter.sol";
 import "contracts/interfaces/IWETH.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 contract Router is IRouter {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
+
     struct route {
         address from;
         address to;
@@ -30,6 +34,8 @@ contract Router is IRouter {
         factory = _factory;
         pairCodeHash = IPairFactory(_factory).pairCodeHash();
         weth = IWETH(_weth);
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     receive() external payable {

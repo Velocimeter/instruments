@@ -2,8 +2,11 @@
 pragma solidity 0.8.13;
 
 import "contracts/interfaces/IFlow.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 contract Flow is IFlow {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
     string public constant name = "Velocimeter";
     string public constant symbol = "FLOW";
     uint8 public constant decimals = 18;
@@ -27,6 +30,8 @@ contract Flow is IFlow {
     constructor() {
         minter = msg.sender;
         _mint(msg.sender, 0);
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     // No checks as its meant to be once off to set minting rights to BaseV1 Minter

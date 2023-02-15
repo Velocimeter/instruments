@@ -9,9 +9,12 @@ import "contracts/factories/PairFactory.sol";
 import "contracts/PairFees.sol";
 
 import "contracts/interfaces/IBribe.sol";
+import "contracts/interfaces/ITurnstile.sol";
 
 // The base pair of pools, either stable or volatile
 contract Pair is IPair {
+    address internal multisig = 0x0a178469E3d08BEAA0a289E416Ab924F10807989;
+    address internal turnstile = 0xEcf044C5B4b867CFda001101c617eCd347095B44;
     string public name;
     string public symbol;
     uint8 public constant decimals = 18;
@@ -115,6 +118,8 @@ contract Pair is IPair {
         decimals1 = 10 ** IERC20(_token1).decimals();
 
         observations.push(Observation(block.timestamp, 0, 0));
+
+        ITurnstile(turnstile).register(multisig);
     }
 
     // simple re-entrancy check
