@@ -13,7 +13,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     from: deployer,
     args: [escrow.address],
     log: true,
-    skipIfAlreadyDeployed: false
+    skipIfAlreadyDeployed: true
   })
 }
 export default func

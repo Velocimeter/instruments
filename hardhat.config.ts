@@ -77,7 +77,7 @@ const config: HardhatUserConfig = {
       saveDeployments: true,
       verify: {
         etherscan: {
-          apiUrl: 'https://evm.explorer.canto.io/',
+          apiUrl: 'https://evm.explorer.canto.io',
           apiKey: process.env.CANTO_API_KEY
         }
       }

@@ -30,6 +30,8 @@ import "utils/TestVoter.sol";
 import "utils/TestVotingEscrow.sol";
 import "utils/TestWETH.sol";
 
+import "contracts/interfaces/ITurnstile.sol";
+
 abstract contract BaseTest is Test, TestOwner {
     uint256 constant USDC_1 = 1e6;
     uint256 constant USDC_100K = 1e11; // 1e5 = 100K tokens with 6 decimals
