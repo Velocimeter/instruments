@@ -37,7 +37,7 @@ contract Pair is IPair {
     address immutable factory; // explain this? can this be public? can I call this from inside a contract
     address public externalBribe;
     // address public immutable voter;
-    address public immutable tank; 
+    address public immutable tank;
     bool public hasGauge;
 
     // Structure to capture time period obervations every 30 minutes, used for local oracles
@@ -76,8 +76,8 @@ contract Pair is IPair {
     mapping(address => uint256) public claimable1;
 
     event Fees(address indexed sender, uint256 amount0, uint256 amount1);
-    event TankFees(address indexed sender, uint256 amount0, uint256 amount1);
-    event GaugeFees(address indexed sender, uint256 amount0, uint256 amount1);
+    event TankFees(address indexed token, uint256 amount0, address tank);
+    event GaugeFees(address indexed token, uint256 amount0, address externalBribe);
     event Mint(address indexed sender, uint256 amount0, uint256 amount1);
     event Burn(address indexed sender, uint256 amount0, uint256 amount1, address indexed to);
     event Swap(
@@ -127,13 +127,22 @@ contract Pair is IPair {
         _unlocked = 1;
     }
 
+    function _safeApprove(address token, address spender, uint256 value) internal {
+        require(token.code.length > 0);
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(IERC20.approve.selector, spender, value));
+        require(success && (data.length == 0 || abi.decode(data, (bool))));
+    }
+
     function setExternalBribe(address _externalBribe) external {
-        // require(msg.sender == voter, "Only voter can set external bribe"); 
+        // require(msg.sender == voter, "Only voter can set external bribe");
         externalBribe = _externalBribe;
+        _safeApprove(token0, externalBribe, type(uint256).max);
+        _safeApprove(token1, externalBribe, type(uint256).max);
+        // _safeApprove(token0, externalBribe, amount);
     }
 
     function setHasGauge(bool value) external {
-        // require(msg.sender == voter, "Only voter can set has gauge"); 
+        // require(msg.sender == voter, "Only voter can set has gauge");
         hasGauge = value;
     }
 
@@ -195,11 +204,6 @@ contract Pair is IPair {
     //     }
     //     emit Fees(msg.sender, 0, amount);
     // }
-    function _safeApprove(address token, address spender, uint256 value) internal {
-        require(token.code.length > 0);
-        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(IERC20.approve.selector, spender, value));
-        require(success && (data.length == 0 || abi.decode(data, (bool))));
-    }
 
     // Accrue fees on token0.
     function _update0(uint256 amount) internal {
@@ -209,17 +213,17 @@ contract Pair is IPair {
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit TankFees(msg.sender, amount, 0);
+            emit TankFees(token0, amount, tank);
         }
         if (hasGauge == true) {
-            _safeApprove(token0, externalBribe, amount);
+            // _safeApprove(token0, externalBribe, amount);  // max abprove when setExternalBribe() is called
             IBribe(externalBribe).notifyRewardAmount(token0, amount); //transfer fees to exBribes
             //  _safeTransfer(token0, tank, amount);
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit GaugeFees(msg.sender, amount, 0);
+            emit GaugeFees(token0, amount, externalBribe);
         }
     }
 
@@ -231,17 +235,17 @@ contract Pair is IPair {
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit TankFees(msg.sender, amount, 0);
+            emit TankFees(token1, amount, tank);
         }
         if (hasGauge == true) {
             //there is no interface for external bribe so this errors
-            _safeApprove(token1, externalBribe, amount);
+            // _safeApprove(token1, externalBribe, amount); // we do this once above
             IBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
                 index0 += _ratio;
             }
-            emit GaugeFees(msg.sender, amount, 0);
+            emit GaugeFees(token1, amount, externalBribe);
         }
     }
 
