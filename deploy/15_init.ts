@@ -13,7 +13,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const pairFactory = await ethers.getContract('PairFactory')
   const escrow = await ethers.getContract('VotingEscrow')
   const voter = await ethers.getContract('Voter')
-  const wrappedXBribeFactory = await ethers.getContract('WrappedExternalBribeFactory')
+  const wrappedXBribeFactory = await ethers.getContract(
+    'WrappedExternalBribeFactory'
+  )
   const distributor = await ethers.getContract('RewardsDistributor')
   // const governor = await ethers.getContract('FlowGovernor')
   const minter = await ethers.getContract('Minter')
@@ -56,14 +58,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   await escrow.setTeam(CANTO_CONFIG.teamMultisig)
   console.log('Team multisig set for escrow', CANTO_CONFIG.teamMultisig)
 
-  await voter.setGovernor(CANTO_CONFIG.teamMultisig)
-  console.log('Governor set on voter to: ', CANTO_CONFIG.teamMultisig)
+  // await voter.setGovernor(CANTO_CONFIG.teamMultisig)
+  // console.log('Governor set on voter to: ', CANTO_CONFIG.teamMultisig)
 
   await voter.setEmergencyCouncil(CANTO_CONFIG.teamMultisig)
-  console.log(
-    'Emergency Council set on voter to: ',
-    CANTO_CONFIG.teamMultisig
-  )
+  console.log('Emergency Council set on voter to: ', CANTO_CONFIG.teamMultisig)
 
   await distributor.setDepositor(minter.address)
   console.log('Depositor set to minter contract address')

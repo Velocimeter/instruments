@@ -25,11 +25,11 @@ const TWENTY_MILLION = ethers.BigNumber.from('20')
 const SIXTY_MILLION = ethers.BigNumber.from('60')
   .mul(MILLION)
   .mul(TOKEN_DECIMALS)
-const PARTNER_MAX = ethers.BigNumber.from('400') // It will literally mint this many  tokens so be careful with it..
+const PARTNER_MAX = ethers.BigNumber.from('230') // It will literally mint this many  tokens so be careful with it..
   .mul(MILLION)
   .mul(TOKEN_DECIMALS)
 
-const TEAM_MULTISIG = '0x0a178469E3d08BEAA0a289E416Ab924F10807989'
+const TEAM_MULTISIG = '0x069e85D4F1010DD961897dC8C095FBB5FF297434'
 const TEAM_EOA = '0x069e85D4F1010DD961897dC8C095FBB5FF297434'
 const arbitrumTeam = TEAM_MULTISIG
 const velodromeMultisig = TEAM_MULTISIG
