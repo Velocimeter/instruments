@@ -34,9 +34,9 @@ contract Pair is IPair {
     address public immutable token0;
     address public immutable token1;
     address public immutable fees;
-    address immutable factory; // explain this? can this be public? can I call this from inside a contract
+    address public immutable factory;
     address public externalBribe;
-    // address public immutable voter;
+    address public immutable voter;
     address public immutable tank;
     bool public hasGauge;
 
@@ -96,12 +96,12 @@ contract Pair is IPair {
 
     constructor() {
         factory = msg.sender;
-        //voter = PairFactory(msg.sender).voter(); // nice easy way to add the voter :) we already getting this from pair factory tho
-        tank = PairFactory(msg.sender).tank(); // nice easy way to add the voter :) we already getting this from pair factory tho
-        (address _token0, address _token1, bool _stable) = PairFactory(msg.sender).getInitializable(); //wondering why msg.sender is passed here??
+        voter = PairFactory(msg.sender).voter(); 
+        tank = PairFactory(msg.sender).tank();
+        (address _token0, address _token1, bool _stable) = PairFactory(msg.sender).getInitializable();
         (token0, token1, stable) = (_token0, _token1, _stable);
         fees = address(new PairFees(_token0, _token1));
-        //     externalBribe = address();  this does not need to be set at the time of creation
+
         if (_stable) {
             name = string(abi.encodePacked("StableV1 AMM - ", IERC20(_token0).symbol(), "/", IERC20(_token1).symbol()));
             symbol = string(abi.encodePacked("sAMM-", IERC20(_token0).symbol(), "/", IERC20(_token1).symbol()));
@@ -134,15 +134,14 @@ contract Pair is IPair {
     }
 
     function setExternalBribe(address _externalBribe) external {
-        // require(msg.sender == voter, "Only voter can set external bribe");
+        require(msg.sender == voter, "Only voter can set external bribe");
         externalBribe = _externalBribe;
         _safeApprove(token0, externalBribe, type(uint256).max);
         _safeApprove(token1, externalBribe, type(uint256).max);
-        // _safeApprove(token0, externalBribe, amount);
     }
 
     function setHasGauge(bool value) external {
-        // require(msg.sender == voter, "Only voter can set has gauge");
+        require(msg.sender == voter, "Only voter can set has gauge");
         hasGauge = value;
     }
 
@@ -183,28 +182,6 @@ contract Pair is IPair {
         }
     }
 
-    // dunks update0
-
-    // Accrue fees on token0
-    // function _update0(uint256 amount) internal {
-    //     _safeTransfer(token0, fees, amount); // transfer the fees out to PairFees
-    //     uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
-    //     if (_ratio > 0) {
-    //         index0 += _ratio;
-    //     }
-    //     emit Fees(msg.sender, amount, 0);
-    // }
-
-    // // Accrue fees on token1
-    // function _update1(uint256 amount) internal {
-    //     _safeTransfer(token1, fees, amount);
-    //     uint256 _ratio = (amount * 1e18) / totalSupply;
-    //     if (_ratio > 0) {
-    //         index1 += _ratio;
-    //     }
-    //     emit Fees(msg.sender, 0, amount);
-    // }
-
     // Accrue fees on token0.
     function _update0(uint256 amount) internal {
         if (hasGauge == false) {
@@ -238,8 +215,6 @@ contract Pair is IPair {
             emit TankFees(token1, amount, tank);
         }
         if (hasGauge == true) {
-            //there is no interface for external bribe so this errors
-            // _safeApprove(token1, externalBribe, amount); // we do this once above
             IBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {

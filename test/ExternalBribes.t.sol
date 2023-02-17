@@ -1,7 +1,6 @@
 pragma solidity 0.8.13;
 
 import "./BaseTest.sol";
-// import label
 
 contract ExternalBribesTest is BaseTest {
     VotingEscrow escrow;
@@ -47,16 +46,7 @@ contract ExternalBribesTest is BaseTest {
 
         escrow.setVoter(address(voter));
         wxbribeFactory.setVoter(address(voter));
-        // setVoter on pairFactory. factory defined in BaseTest and we know for sure that it is deployed because of deployPairFactoryAndRouter()
         factory.setVoter(address(voter));
-
-        // whitelist reward tokens on voter
-        // dont need it because we will voter.initialise which will do this (line 75)
-        // voter.whitelist(address(USDC));
-        // voter.whitelist(address(FRAX));
-        // voter.whitelist(address(DAI));
-        // voter.whitelist(address(VELO));
-        // voter.whitelist(address(LR));
 
         distributor = new RewardsDistributor(address(escrow));
         minter = new Minter(
@@ -82,10 +72,6 @@ contract ExternalBribesTest is BaseTest {
         gauge = Gauge(voter.createGauge(address(pair)));
         bribe = InternalBribe(gauge.internal_bribe());
         xbribe = ExternalBribe(gauge.external_bribe());
-
-        // set external bribe on the deployed pair contract
-
-        pair.setExternalBribe(address(xbribe));
 
         // ve
         VELO.approve(address(escrow), TOKEN_1);

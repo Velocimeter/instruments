@@ -197,7 +197,6 @@ contract WashTradeTest is BaseTest {
 
         address[] memory gauges = new address[](1);
         gauges[0] = address(gauge3);
-        // FIXME: this fails because Voter.distributeFees is not applicable to new set up
         // voter.distributeFees(gauges); // goes all the way to Pair.claimFees which wants to claim fees from PairFees which is impossible
     }
 

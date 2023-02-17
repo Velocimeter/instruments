@@ -145,8 +145,6 @@ contract Voter is IVoter {
         delete poolVote[_tokenId];
     }
 
-    // remove poke function
-
     function poke(uint256 _tokenId) external {
         require(IVotingEscrow(_ve).isApprovedOrOwner(msg.sender, _tokenId) || msg.sender == governor);
         address[] memory _poolVote = poolVote[_tokenId];
@@ -233,7 +231,7 @@ contract Voter is IVoter {
             allowedRewards[1] = tokenB;
             internalRewards[0] = tokenA;
             internalRewards[1] = tokenB;
-            // if one of the tokens is not base (FLOW) then add base(FLOW) to allowed rewards
+            // if one of the tokens is not base (FLOW), then add base (FLOW) to allowed rewards
             if (base != tokenA && base != tokenB) {
                 allowedRewards[2] = base;
             }

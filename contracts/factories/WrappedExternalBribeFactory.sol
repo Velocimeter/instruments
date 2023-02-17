@@ -8,8 +8,15 @@ contract WrappedExternalBribeFactory {
     address public voter;
     mapping(address => address) public oldBribeToNew;
     address public last_bribe;
+    address immutable deployer;
+    address team;
+
+    constructor() {
+        deployer = msg.sender;
+    }
 
     function createBribe(address existing_bribe) external returns (address) {
+        require(_initialized, "Not initialized");
         require(
             oldBribeToNew[existing_bribe] == address(0),
             "Wrapped bribe already created"
@@ -20,8 +27,19 @@ contract WrappedExternalBribeFactory {
     }
 
     function setVoter(address _voter) external {
+        require(msg.sender == deployer, "Not authorized");
         require(!_initialized, "Already initialized");
         voter = _voter;
         _initialized = true;
+    }
+
+    function setTeam(address _team) external {
+        require(msg.sender == deployer, "Not authorized");
+        team = _team;
+    }
+
+    function acceptVoter(address _voter) external {
+        require(msg.sender == team, "Not authorized");
+        voter = _voter;
     }
 }

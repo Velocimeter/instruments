@@ -41,10 +41,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     ARB_TEST_CONFIG.teamMultisig
   )
 
-  // how to use msg.sender in hardhat scripts is the deployer address
-
   await escrow.setVoter(voter.address)
   await wrappedXBribeFactory.setVoter(voter.address)
+  await wrappedXBribeFactory.setTeam(ARB_TEST_CONFIG.teamMultisig)
   console.log(
     'idk how Voter set when it requires msg.sender to be the voter contract print msg.sender:',
     deployer,
@@ -78,8 +77,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   await minter.setTeam(ARB_TEST_CONFIG.teamMultisig)
   console.log('Team set for minter to multisig: ', ARB_TEST_CONFIG.teamMultisig)
 
-  // new init settings for updated pair -> fees -> bribes system
-
   await pairFactory.setTeam(ARB_TEST_CONFIG.teamMultisig)
   console.log(
     'Team set on Pair factory to multisig: ',
@@ -94,17 +91,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   await pairFactory.setVoter(voter.address)
   console.log('Voter set on Pair factory to to voter contract: ', voter.address)
-
-  // await minter.initialize(
-  //   ARB_TEST_CONFIG.partnerAddrs,
-  //   ARB_TEST_CONFIG.partnerAmts,
-  //   ARB_TEST_CONFIG.partnerMax
-  // )
-
-  // create pair
-  // provide liq
-  // etc etc
-  // see forge tests for more details
 
   return true
 }

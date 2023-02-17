@@ -78,7 +78,6 @@ contract OracleTest is BaseTest {
         assertEq(USDC.balanceOf(fees), 0); // should be 0 because of our changes
         assertEq(USDC.balanceOf(tank), 400); // tank should have 400 USDC
         uint256 b = USDC.balanceOf(address(owner));
-        // FIXME uncomment this line and it will fail
         // pair.claimFees(); it will internally call claimFees on PairFees, but nothing to claim
         // assertGt(USDC.balanceOf(address(owner)), b); // claim didnt happen
     }
