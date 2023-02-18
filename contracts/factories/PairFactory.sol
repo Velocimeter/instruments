@@ -14,7 +14,10 @@ contract PairFactory is IPairFactory {
     uint256 public constant MAX_FEE = 50; // 0.5%
     address public feeManager;
     address public pendingFeeManager;
-    address public voter;
+    
+    //voter needs to be set after PairFactory is deploy BEFORE any pairs are made. 
+    //If not those pairs will not be have to have externalbribes from fees
+    address public voter; 
 
     mapping(address => mapping(address => mapping(bool => address)))
         public getPair;
