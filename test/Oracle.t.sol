@@ -1,7 +1,7 @@
 // 1:1 with Hardhat test
 pragma solidity 0.8.13;
 
-import './BaseTest.sol';
+import "./BaseTest.sol";
 
 contract OracleTest is BaseTest {
     VotingEscrow escrow;
@@ -40,13 +40,35 @@ contract OracleTest is BaseTest {
 
         USDC.approve(address(router), USDC_100K);
         FRAX.approve(address(router), TOKEN_100K);
-        router.addLiquidity(address(FRAX), address(USDC), true, TOKEN_100K, USDC_100K, TOKEN_100K, USDC_100K, address(owner), block.timestamp);
+        router.addLiquidity(
+            address(FRAX),
+            address(USDC),
+            true,
+            TOKEN_100K,
+            USDC_100K,
+            TOKEN_100K,
+            USDC_100K,
+            address(owner),
+            block.timestamp
+        );
         USDC.approve(address(router), USDC_100K);
         FRAX.approve(address(router), TOKEN_100K);
-        router.addLiquidity(address(FRAX), address(USDC), false, TOKEN_100K, USDC_100K, TOKEN_100K, USDC_100K, address(owner), block.timestamp);
+        router.addLiquidity(
+            address(FRAX),
+            address(USDC),
+            false,
+            TOKEN_100K,
+            USDC_100K,
+            TOKEN_100K,
+            USDC_100K,
+            address(owner),
+            block.timestamp
+        );
         DAI.approve(address(router), TOKEN_100M);
         FRAX.approve(address(router), TOKEN_100M);
-        router.addLiquidity(address(FRAX), address(DAI), true, TOKEN_100M, TOKEN_100M, 0, 0, address(owner), block.timestamp);
+        router.addLiquidity(
+            address(FRAX), address(DAI), true, TOKEN_100M, TOKEN_100M, 0, 0, address(owner), block.timestamp
+        );
     }
 
     function routerPair1GetAmountsOutAndSwapExactTokensForTokens() public {
@@ -72,10 +94,10 @@ contract OracleTest is BaseTest {
         vm.roll(block.number + 1);
         USDC.approve(address(router), USDC_1);
         router.swapExactTokensForTokens(USDC_1, 0, routes, address(owner), block.timestamp);
-        address fees = pair.fees();
+
         address tank = pair.tank();
         assertFalse(tank == address(0));
-        assertEq(USDC.balanceOf(fees), 0); // should be 0 because of our changes
+
         assertEq(USDC.balanceOf(tank), 400); // tank should have 400 USDC
         uint256 b = USDC.balanceOf(address(owner));
         // FIXME uncomment this line and it will fail

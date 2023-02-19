@@ -1,6 +1,6 @@
 pragma solidity 0.8.13;
 
-import './BaseTest.sol';
+import "./BaseTest.sol";
 import "contracts/WrappedExternalBribe.sol";
 import "contracts/factories/WrappedExternalBribeFactory.sol";
 
@@ -13,7 +13,7 @@ contract WrappedExternalBribesTest is BaseTest {
     RewardsDistributor distributor;
     Minter minter;
     Gauge gauge;
-    InternalBribe bribe;
+
     ExternalBribe xbribe;
     WrappedExternalBribe wxbribe;
 
@@ -38,7 +38,8 @@ contract WrappedExternalBribesTest is BaseTest {
         gaugeFactory = new GaugeFactory();
         bribeFactory = new BribeFactory();
         wxbribeFactory = new WrappedExternalBribeFactory();
-        voter = new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
+        voter =
+        new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
 
         escrow.setVoter(address(voter));
         wxbribeFactory.setVoter(address(voter));
@@ -57,12 +58,12 @@ contract WrappedExternalBribesTest is BaseTest {
         voter.initialize(tokens, address(minter));
 
         address[] memory claimants = new address[](0);
-        uint[] memory amounts1 = new uint[](0);
+        uint256[] memory amounts1 = new uint[](0);
         minter.initialize(claimants, amounts1, 0);
 
         // USDC - FRAX stable
         gauge = Gauge(voter.createGauge(address(pair)));
-        bribe = InternalBribe(gauge.internal_bribe());
+
         xbribe = ExternalBribe(gauge.external_bribe());
         // wxbribe = WrappedExternalBribe(wxbribeFactory.createBribe(address(xbribe))); this is auto created in voter.createGauge (line 64)
         wxbribe = WrappedExternalBribe(wxbribeFactory.oldBribeToNew(address(xbribe)));

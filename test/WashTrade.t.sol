@@ -1,7 +1,7 @@
 // 1:1 with Hardhat test
 pragma solidity 0.8.13;
 
-import './BaseTest.sol';
+import "./BaseTest.sol";
 
 contract WashTradeTest is BaseTest {
     VotingEscrow escrow;
@@ -10,7 +10,6 @@ contract WashTradeTest is BaseTest {
     WrappedExternalBribeFactory wxbribeFactory;
     Voter voter;
     Gauge gauge3;
-    InternalBribe bribe3;
 
     function deployBaseCoins() public {
         vm.warp(block.timestamp + 1 weeks); // put some initial time in
@@ -73,13 +72,35 @@ contract WashTradeTest is BaseTest {
 
         USDC.approve(address(router), USDC_100K);
         FRAX.approve(address(router), TOKEN_100K);
-        router.addLiquidity(address(FRAX), address(USDC), true, TOKEN_100K, USDC_100K, TOKEN_100K, USDC_100K, address(owner), block.timestamp);
+        router.addLiquidity(
+            address(FRAX),
+            address(USDC),
+            true,
+            TOKEN_100K,
+            USDC_100K,
+            TOKEN_100K,
+            USDC_100K,
+            address(owner),
+            block.timestamp
+        );
         USDC.approve(address(router), USDC_100K);
         FRAX.approve(address(router), TOKEN_100K);
-        router.addLiquidity(address(FRAX), address(USDC), false, TOKEN_100K, USDC_100K, TOKEN_100K, USDC_100K, address(owner), block.timestamp);
+        router.addLiquidity(
+            address(FRAX),
+            address(USDC),
+            false,
+            TOKEN_100K,
+            USDC_100K,
+            TOKEN_100K,
+            USDC_100K,
+            address(owner),
+            block.timestamp
+        );
         DAI.approve(address(router), TOKEN_100M);
         FRAX.approve(address(router), TOKEN_100M);
-        router.addLiquidity(address(FRAX), address(DAI), true, TOKEN_100M, TOKEN_100M, 0, 0, address(owner), block.timestamp);
+        router.addLiquidity(
+            address(FRAX), address(DAI), true, TOKEN_100M, TOKEN_100M, 0, 0, address(owner), block.timestamp
+        );
     }
 
     function deployVoter() public {
@@ -88,7 +109,8 @@ contract WashTradeTest is BaseTest {
         gaugeFactory = new GaugeFactory();
         bribeFactory = new BribeFactory();
         wxbribeFactory = new WrappedExternalBribeFactory();
-        voter = new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
+        voter =
+        new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
         wxbribeFactory.setVoter(address(voter));
         address[] memory tokens = new address[](4);
         tokens[0] = address(USDC);
@@ -108,11 +130,9 @@ contract WashTradeTest is BaseTest {
         assertFalse(voter.gauges(address(pair3)) == address(0));
 
         address gaugeAddr3 = voter.gauges(address(pair3));
-        address bribeAddr3 = voter.internal_bribes(gaugeAddr3);
 
         gauge3 = Gauge(gaugeAddr3);
 
-        bribe3 = InternalBribe(bribeAddr3);
         uint256 total = pair3.balanceOf(address(owner));
         pair3.approve(address(gauge3), total);
         gauge3.deposit(total, 0);
@@ -170,7 +190,6 @@ contract WashTradeTest is BaseTest {
         weights[1] = 5000;
         voter.vote(1, pairs, weights);
         assertFalse(voter.totalWeight() == 0);
-        assertFalse(bribe3.balanceOf(1) == 0);
     }
 
     function bribeClaimRewards() public {
@@ -179,10 +198,9 @@ contract WashTradeTest is BaseTest {
         address[] memory tokens = new address[](2);
         tokens[0] = address(FRAX);
         tokens[1] = address(DAI);
-        bribe3.getReward(1, tokens);
+
         vm.warp(block.timestamp + 691200);
         vm.roll(block.number + 1);
-        bribe3.getReward(1, tokens);
     }
 
     function distributeAndClaimFees() public {
@@ -193,7 +211,6 @@ contract WashTradeTest is BaseTest {
         address[] memory tokens = new address[](2);
         tokens[0] = address(FRAX);
         tokens[1] = address(DAI);
-        bribe3.getReward(1, tokens);
 
         address[] memory gauges = new address[](1);
         gauges[0] = address(gauge3);
@@ -204,23 +221,17 @@ contract WashTradeTest is BaseTest {
     function testBribeClaimRewards() public {
         distributeAndClaimFees();
 
-        console2.log(bribe3.earned(address(FRAX), 1));
         console2.log(FRAX.balanceOf(address(owner)));
-        console2.log(FRAX.balanceOf(address(bribe3)));
-        bribe3.batchRewardPerToken(address(FRAX), 200);
-        bribe3.batchRewardPerToken(address(DAI), 200);
+
         address[] memory tokens = new address[](2);
         tokens[0] = address(FRAX);
         tokens[1] = address(DAI);
-        bribe3.getReward(1, tokens);
+
         vm.warp(block.timestamp + 691200);
         vm.roll(block.number + 1);
-        console2.log(bribe3.earned(address(FRAX), 1));
+
         console2.log(FRAX.balanceOf(address(owner)));
-        console2.log(FRAX.balanceOf(address(bribe3)));
-        bribe3.getReward(1, tokens);
-        console2.log(bribe3.earned(address(FRAX), 1));
+
         console2.log(FRAX.balanceOf(address(owner)));
-        console2.log(FRAX.balanceOf(address(bribe3)));
     }
 }

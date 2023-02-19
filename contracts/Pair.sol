@@ -6,7 +6,6 @@ import "contracts/interfaces/IERC20.sol";
 import "contracts/interfaces/IPair.sol";
 import "contracts/interfaces/IPairCallee.sol";
 import "contracts/factories/PairFactory.sol";
-import "contracts/PairFees.sol";
 
 import "contracts/interfaces/IBribe.sol";
 
@@ -33,7 +32,7 @@ contract Pair is IPair {
 
     address public immutable token0;
     address public immutable token1;
-    address public immutable fees;
+
     address immutable factory; // explain this? can this be public? can I call this from inside a contract
     address public externalBribe;
     // address public immutable voter;
@@ -72,10 +71,9 @@ contract Pair is IPair {
     mapping(address => uint256) public supplyIndex1;
 
     // tracks the amount of unclaimed, but claimable tokens off of fees for token0 and token1
-    mapping(address => uint256) public claimable0;
-    mapping(address => uint256) public claimable1;
+    mapping(address => uint256) public claimable0; //maybe cut
+    mapping(address => uint256) public claimable1; //maybe cut
 
-    event Fees(address indexed sender, uint256 amount0, uint256 amount1);
     event TankFees(address indexed token, uint256 amount0, address tank);
     event GaugeFees(address indexed token, uint256 amount0, address externalBribe);
     event Mint(address indexed sender, uint256 amount0, uint256 amount1);
@@ -89,8 +87,6 @@ contract Pair is IPair {
         address indexed to
     );
     event Sync(uint256 reserve0, uint256 reserve1);
-    event Claim(address indexed sender, address indexed recipient, uint256 amount0, uint256 amount1);
-
     event Transfer(address indexed from, address indexed to, uint256 amount);
     event Approval(address indexed owner, address indexed spender, uint256 amount);
 
@@ -100,7 +96,7 @@ contract Pair is IPair {
         tank = PairFactory(msg.sender).tank(); // nice easy way to add the voter :) we already getting this from pair factory tho
         (address _token0, address _token1, bool _stable) = PairFactory(msg.sender).getInitializable(); //wondering why msg.sender is passed here??
         (token0, token1, stable) = (_token0, _token1, _stable);
-        fees = address(new PairFees(_token0, _token1));
+
         //     externalBribe = address();  this does not need to be set at the time of creation
         if (_stable) {
             name = string(abi.encodePacked("StableV1 AMM - ", IERC20(_token0).symbol(), "/", IERC20(_token1).symbol()));
@@ -166,45 +162,6 @@ contract Pair is IPair {
         return (token0, token1);
     }
 
-    // claim accumulated but unclaimed fees (viewable via claimable0 and claimable1)
-    function claimFees() external returns (uint256 claimed0, uint256 claimed1) {
-        _updateFor(msg.sender);
-
-        claimed0 = claimable0[msg.sender];
-        claimed1 = claimable1[msg.sender];
-
-        if (claimed0 > 0 || claimed1 > 0) {
-            claimable0[msg.sender] = 0;
-            claimable1[msg.sender] = 0;
-
-            PairFees(fees).claimFeesFor(msg.sender, claimed0, claimed1);
-
-            emit Claim(msg.sender, msg.sender, claimed0, claimed1);
-        }
-    }
-
-    // dunks update0
-
-    // Accrue fees on token0
-    // function _update0(uint256 amount) internal {
-    //     _safeTransfer(token0, fees, amount); // transfer the fees out to PairFees
-    //     uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
-    //     if (_ratio > 0) {
-    //         index0 += _ratio;
-    //     }
-    //     emit Fees(msg.sender, amount, 0);
-    // }
-
-    // // Accrue fees on token1
-    // function _update1(uint256 amount) internal {
-    //     _safeTransfer(token1, fees, amount);
-    //     uint256 _ratio = (amount * 1e18) / totalSupply;
-    //     if (_ratio > 0) {
-    //         index1 += _ratio;
-    //     }
-    //     emit Fees(msg.sender, 0, amount);
-    // }
-
     // Accrue fees on token0.
     function _update0(uint256 amount) internal {
         if (hasGauge == false) {
@@ -264,11 +221,11 @@ contract Pair is IPair {
             uint256 _delta1 = _index1 - _supplyIndex1;
             if (_delta0 > 0) {
                 uint256 _share = (_supplied * _delta0) / 1e18; // add accrued difference for each supplied token
-                claimable0[recipient] += _share;
+                claimable0[recipient] += _share; // maybe cut
             }
             if (_delta1 > 0) {
                 uint256 _share = (_supplied * _delta1) / 1e18;
-                claimable1[recipient] += _share;
+                claimable1[recipient] += _share; // maybe cut
             }
         } else {
             supplyIndex0[recipient] = index0; // new users are set to the default global state

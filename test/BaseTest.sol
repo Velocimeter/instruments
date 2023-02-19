@@ -7,15 +7,12 @@ import "contracts/factories/BribeFactory.sol";
 import "contracts/factories/GaugeFactory.sol";
 import "contracts/factories/PairFactory.sol";
 import "contracts/factories/WrappedExternalBribeFactory.sol";
-import "contracts/redeem/MerkleClaim.sol";
-import "contracts/redeem/RedemptionReceiver.sol";
-import "contracts/redeem/RedemptionSender.sol";
-import "contracts/InternalBribe.sol";
+
 import "contracts/ExternalBribe.sol";
 import "contracts/Gauge.sol";
 import "contracts/Minter.sol";
 import "contracts/Pair.sol";
-import "contracts/PairFees.sol";
+
 import "contracts/RewardsDistributor.sol";
 import "contracts/Router.sol";
 import "contracts/Flow.sol";

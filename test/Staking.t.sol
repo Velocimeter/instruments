@@ -1,7 +1,7 @@
 // 1:1 with Hardhat test
 pragma solidity 0.8.13;
 
-import './BaseTest.sol';
+import "./BaseTest.sol";
 
 contract StakingTest is BaseTest {
     GaugeFactory gaugeFactory;
@@ -52,7 +52,7 @@ contract StakingTest is BaseTest {
         gaugeFactory = new GaugeFactory();
         address[] memory allowedRewards = new address[](1);
         vm.prank(address(voter));
-        gaugeFactory.createGauge(address(stake), address(owner), address(owner), address(escrow), false, allowedRewards);
+        gaugeFactory.createGauge(address(stake), address(owner), address(escrow), false, allowedRewards);
         address gaugeAddr = gaugeFactory.last_gauge();
         gauge = Gauge(gaugeAddr);
 
@@ -189,7 +189,7 @@ contract StakingTest is BaseTest {
 
     function notifyRewardsAndCompareOwner2() public {
         notifyRewardsAndCompareOwner1();
-        
+
         owner2.withdrawStake(address(staking), 1e21);
         owner2.withdrawGauge(address(gauge), 1e21);
         owner2.approve(address(stake), address(staking), 1e21);

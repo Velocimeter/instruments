@@ -1,7 +1,7 @@
 // 1:1 with Hardhat test
 pragma solidity 0.8.13;
 
-import './BaseTest.sol';
+import "./BaseTest.sol";
 
 contract MinterTest is BaseTest {
     VotingEscrow escrow;
@@ -29,7 +29,8 @@ contract MinterTest is BaseTest {
         gaugeFactory = new GaugeFactory();
         bribeFactory = new BribeFactory();
         wxbribeFactory = new WrappedExternalBribeFactory();
-        voter = new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
+        voter =
+        new Voter(address(escrow), address(factory), address(gaugeFactory), address(bribeFactory), address(wxbribeFactory));
 
         wxbribeFactory.setVoter(address(voter));
 
@@ -48,7 +49,9 @@ contract MinterTest is BaseTest {
 
         VELO.approve(address(router), TOKEN_1);
         FRAX.approve(address(router), TOKEN_1);
-        router.addLiquidity(address(FRAX), address(VELO), false, TOKEN_1, TOKEN_1, 0, 0, address(owner), block.timestamp);
+        router.addLiquidity(
+            address(FRAX), address(VELO), false, TOKEN_1, TOKEN_1, 0, 0, address(owner), block.timestamp
+        );
 
         address pair = router.pairFor(address(FRAX), address(VELO), false);
 
