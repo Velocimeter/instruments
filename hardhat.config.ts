@@ -8,6 +8,11 @@ import 'hardhat-deploy'
 import { config as dotenvConfig } from 'dotenv'
 import { HardhatUserConfig, task } from 'hardhat/config'
 
+// tenderly not sure if we need this since we are using hardhat-deploy-tenderly
+// import '@tenderly/hardhat-tenderly'
+
+import 'hardhat-deploy-tenderly'
+
 import fs from 'fs'
 import { resolve } from 'path'
 
@@ -15,6 +20,8 @@ import './tasks/accounts'
 import './tasks/deploy'
 import './tasks/batchCreateLockFor'
 import './tasks/createLockFor'
+
+// import '@tenderly/hardhat-tenderly'
 
 dotenvConfig({ path: resolve(__dirname, './.env') })
 import './checkEnv'
@@ -62,7 +69,11 @@ const config: HardhatUserConfig = {
           apiKey: process.env.ARB_SCAN_API_KEY!
         }
       }
+    },
+    tenderly: {
+      url: 'https://rpc.tenderly.co/fork/a46e3cad-52b3-415f-8b3e-e07bf5a5cca1'
     }
+
     // ftmTestnet: {
     //   url: 'https://rpc.testnet.fantom.network',
     //   accounts: [process.env.PRIVATE_KEY!]
@@ -111,6 +122,11 @@ const config: HardhatUserConfig = {
       arbitrumOne: process.env.ARB_SCAN_API_KEY!,
       arbitrumGoerli: process.env.ARB_SCAN_API_KEY!
     }
+  },
+
+  tenderly: {
+    project: 'Velocimeter',
+    username: 'dunks411'
   }
 }
 

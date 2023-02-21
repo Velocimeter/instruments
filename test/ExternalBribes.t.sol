@@ -1,18 +1,20 @@
 pragma solidity 0.8.13;
 
 import "./BaseTest.sol";
+// import label
 
 contract ExternalBribesTest is BaseTest {
     VotingEscrow escrow;
     GaugeFactory gaugeFactory;
     BribeFactory bribeFactory;
+    WrappedExternalBribeFactory wxbribeFactory;
     Voter voter;
     RewardsDistributor distributor;
     Minter minter;
     Gauge gauge;
     InternalBribe bribe;
     ExternalBribe xbribe;
-    PairFactory pairfactory;
+    PairFactory pairFactory;
 
     function setUp() public {
         vm.warp(block.timestamp + 1 weeks); // put some initial time in
@@ -34,18 +36,28 @@ contract ExternalBribesTest is BaseTest {
         // deployVoter()
         gaugeFactory = new GaugeFactory();
         bribeFactory = new BribeFactory();
+        wxbribeFactory = new WrappedExternalBribeFactory();
         voter = new Voter(
             address(escrow),
             address(factory),
             address(gaugeFactory),
-            address(bribeFactory)
+            address(bribeFactory),
+            address(wxbribeFactory)
         );
 
         escrow.setVoter(address(voter));
+        wxbribeFactory.setVoter(address(voter));
+        // setVoter on pairFactory. factory defined in BaseTest and we know for sure that it is deployed because of deployPairFactoryAndRouter()
+        factory.setVoter(address(voter));
 
-        pairfactory.setVoter(address(voter));
+        // whitelist reward tokens on voter
+        // dont need it because we will voter.initialise which will do this (line 75)
+        // voter.whitelist(address(USDC));
+        // voter.whitelist(address(FRAX));
+        // voter.whitelist(address(DAI));
+        // voter.whitelist(address(VELO));
+        // voter.whitelist(address(LR));
 
-        // deployMinter()
         distributor = new RewardsDistributor(address(escrow));
         minter = new Minter(
             address(voter),
@@ -71,6 +83,10 @@ contract ExternalBribesTest is BaseTest {
         bribe = InternalBribe(gauge.internal_bribe());
         xbribe = ExternalBribe(gauge.external_bribe());
 
+        // set external bribe on the deployed pair contract
+
+        pair.setExternalBribe(address(xbribe));
+
         // ve
         VELO.approve(address(escrow), TOKEN_1);
         escrow.create_lock(TOKEN_1, 4 * 365 * 86400);
@@ -80,6 +96,11 @@ contract ExternalBribesTest is BaseTest {
         vm.warp(block.timestamp + 1);
         vm.stopPrank();
     }
+
+    // this is not working - why? - possibly becuase owner (above directly) is not being used to call setVoter?
+    // call setVoter on pairFactory as owner
+
+    // TestOwner(address(pairFactory)).setVoter(address(voter));
 
     function testCanClaimExternalBribe() public {
         // fwd half a week

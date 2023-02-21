@@ -16,12 +16,12 @@ contract PairFactory is IPairFactory {
     address public pendingFeeManager;
     address public voter;
     address public team;
-    address public pendingTank;
+    bool internal initial_voter_set;
+    bool internal initial_tank_set;
     address public tank;
     address public deployer;
 
-    mapping(address => mapping(address => mapping(bool => address)))
-        public getPair;
+    mapping(address => mapping(address => mapping(bool => address))) public getPair;
     address[] public allPairs;
     mapping(address => bool) public isPair; // simplified check if its a pair, given that `stable` flag might not be available in peripherals
 
@@ -29,13 +29,7 @@ contract PairFactory is IPairFactory {
     address internal _temp1;
     bool internal _temp;
 
-    event PairCreated(
-        address indexed token0,
-        address indexed token1,
-        bool stable,
-        address pair,
-        uint256
-    );
+    event PairCreated(address indexed token0, address indexed token1, bool stable, address pair, uint256);
 
     constructor() {
         pauser = msg.sender;
@@ -61,23 +55,26 @@ contract PairFactory is IPairFactory {
     // we only get once shot at this.
 
     function setVoter(address _voter) external {
-        require(msg.sender == deployer); // have to make sure that this can be set to the voter addres during init script
-        require(voter == address(0), "The voter has already been set.");
+        require(!initial_voter_set, "The voter has already been set.");
+        // require(msg.sender == deployer); // have to make sure that this can be set to the voter addres during init script
         voter = _voter;
+        initial_voter_set = true;
     }
 
     // function set tank on factory require team
 
     function setTank(address _tank) external {
-        require(msg.sender == deployer); // this should be updateable to team but adding deployer so that init script can run..
-        pendingTank = _tank;
+        require(!initial_tank_set, "The tank has already been set.");
+        // require(msg.sender == deployer); // this should be updateable to team but adding deployer so that init script can run..
+        tank = _tank;
+        initial_tank_set = true;
     }
 
     // This makes tank updateable forever by the team address (multisig)
 
-    function acceptTank() external {
+    function acceptTank(address _tank) external {
         require(msg.sender == team, "not pending team");
-        tank = pendingTank;
+        tank = _tank;
     }
 
     // pair uses this to check if voter is updating external_bribe
@@ -134,27 +131,13 @@ contract PairFactory is IPairFactory {
         return keccak256(type(Pair).creationCode);
     }
 
-    function getInitializable()
-        external
-        view
-        returns (
-            address,
-            address,
-            bool
-        )
-    {
+    function getInitializable() external view returns (address, address, bool) {
         return (_temp0, _temp1, _temp);
     }
 
-    function createPair(
-        address tokenA,
-        address tokenB,
-        bool stable
-    ) external returns (address pair) {
+    function createPair(address tokenA, address tokenB, bool stable) external returns (address pair) {
         require(tokenA != tokenB, "IA"); // Pair: IDENTICAL_ADDRESSES
-        (address token0, address token1) = tokenA < tokenB
-            ? (tokenA, tokenB)
-            : (tokenB, tokenA);
+        (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         require(token0 != address(0), "ZA"); // Pair: ZERO_ADDRESS
         require(getPair[token0][token1][stable] == address(0), "PE"); // Pair: PAIR_EXISTS - single check is sufficient
         bytes32 salt = keccak256(abi.encodePacked(token0, token1, stable)); // notice salt includes stable as well, 3 parameters
