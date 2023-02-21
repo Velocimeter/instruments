@@ -34,7 +34,7 @@ contract Pair is IPair {
     address public immutable token0;
     address public immutable token1;
     address public immutable fees;
-    address immutable factory; // explain this? can this be public? can I call this from inside a contract
+    address immutable factory;
     address public externalBribe;
     // address public immutable voter;
     address public immutable tank;
@@ -103,22 +103,8 @@ contract Pair is IPair {
         fees = address(new PairFees(_token0, _token1));
         //     externalBribe = address();  this does not need to be set at the time of creation
         if (_stable) {
-            name = string(
-                abi.encodePacked(
-                    "StableV1 AMM - ",
-                    IERC20(_token0).symbol(),
-                    "/",
-                    IERC20(_token1).symbol()
-                )
-            );
-            symbol = string(
-                abi.encodePacked(
-                    "sAMM-",
-                    IERC20(_token0).symbol(),
-                    "/",
-                    IERC20(_token1).symbol()
-                )
-            );
+            name = string(abi.encodePacked("StableV1 AMM - ", IERC20(_token0).symbol(), "/", IERC20(_token1).symbol()));
+            symbol = string(abi.encodePacked("sAMM-", IERC20(_token0).symbol(), "/", IERC20(_token1).symbol()));
         } else {
             name =
                 string(abi.encodePacked("VolatileV1 AMM - ", IERC20(_token0).symbol(), "/", IERC20(_token1).symbol()));
@@ -197,7 +183,7 @@ contract Pair is IPair {
         }
     }
 
-    // dunks update0
+    //  original code
 
     // Accrue fees on token0
     // function _update0(uint256 amount) internal {
@@ -252,8 +238,6 @@ contract Pair is IPair {
             emit TankFees(token1, amount, tank);
         }
         if (hasGauge == true) {
-            //there is no interface for external bribe so this errors
-            // _safeApprove(token1, externalBribe, amount); // we do this once above
             IBribe(externalBribe).notifyRewardAmount(token1, amount); //transfer fees to exBribes
             uint256 _ratio = (amount * 1e18) / totalSupply; // 1e18 adjustment is removed during claim
             if (_ratio > 0) {
@@ -308,13 +292,7 @@ contract Pair is IPair {
         Observation memory _point = lastObservation();
         timeElapsed = blockTimestamp - _point.timestamp; // compare the last observation with current timestamp, if greater than 30 minutes, record a new event
         if (timeElapsed > periodSize) {
-            observations.push(
-                Observation(
-                    blockTimestamp,
-                    reserve0CumulativeLast,
-                    reserve1CumulativeLast
-                )
-            );
+            observations.push(Observation(blockTimestamp, reserve0CumulativeLast, reserve1CumulativeLast));
         }
         reserve0 = balance0;
         reserve1 = balance1;
@@ -491,26 +469,13 @@ contract Pair is IPair {
     // force balances to match reserves
     function skim(address to) external lock {
         (address _token0, address _token1) = (token0, token1);
-        _safeTransfer(
-            _token0,
-            to,
-            IERC20(_token0).balanceOf(address(this)) - (reserve0)
-        );
-        _safeTransfer(
-            _token1,
-            to,
-            IERC20(_token1).balanceOf(address(this)) - (reserve1)
-        );
+        _safeTransfer(_token0, to, IERC20(_token0).balanceOf(address(this)) - (reserve0));
+        _safeTransfer(_token1, to, IERC20(_token1).balanceOf(address(this)) - (reserve1));
     }
 
     // force reserves to match balances
     function sync() external lock {
-        _update(
-            IERC20(token0).balanceOf(address(this)),
-            IERC20(token1).balanceOf(address(this)),
-            reserve0,
-            reserve1
-        );
+        _update(IERC20(token0).balanceOf(address(this)), IERC20(token1).balanceOf(address(this)), reserve0, reserve1);
     }
 
     function _f(uint256 x0, uint256 y) internal pure returns (uint256) {
@@ -620,16 +585,7 @@ contract Pair is IPair {
             abi.encodePacked(
                 "\x19\x01",
                 DOMAIN_SEPARATOR,
-                keccak256(
-                    abi.encode(
-                        PERMIT_TYPEHASH,
-                        owner,
-                        spender,
-                        value,
-                        nonces[owner]++,
-                        deadline
-                    )
-                )
+                keccak256(abi.encode(PERMIT_TYPEHASH, owner, spender, value, nonces[owner]++, deadline))
             )
         );
         address recoveredAddress = ecrecover(digest, v, r, s);
