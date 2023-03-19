@@ -89,25 +89,18 @@ async function getGaugeEvents() {
     const pair = await factory.allPairs(i);
     const pairContract = new ethers.Contract(pair, abi1, provider);
     const gauge = await voterContract.gauges(pair);
-    // const gauge = pair.gauge_address;
 
     const contract = new ethers.Contract(gauge, abi, provider);
     const pairName = await pairContract.name();
-    // const pairName = pair.symbol;
     const tokenA = await pairContract.token0();
-    // const tokenA = pair.token0_address;
     const tokenB = await pairContract.token1();
-    // const tokenB = pair.token1_address;
     const stable = await pairContract.stable();
-    // const stable = pair.stable;
 
     const tokenAContract = new ethers.Contract(tokenA, erc20ABI, provider);
     const tokenBContract = new ethers.Contract(tokenB, erc20ABI, provider);
 
     const decimalsA = await tokenAContract.decimals();
     const decimalsB = await tokenBContract.decimals();
-    // const decimalsA = pair.token0.decimals;
-    // const decimalsB = pair.token1.decimals;
 
     const depositFilter = contract.filters.Deposit(null, null, null);
     const withdrawalFilter = contract.filters.Withdraw(null, null, null);
