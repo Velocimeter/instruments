@@ -349,17 +349,23 @@ function sumFlowAndNonFlow() {
   const flowMap = new Map(flow);
   const nonFlowMap = new Map(nonFlow);
 
-  const final = new Map(
-    [...flowMap.entries()].map(([address, veFLOW]) => {
-      if (nonFlowMap.has(address)) {
-        return [
-          address,
-          parseFloat(veFLOW) + parseFloat(nonFlowMap.get(address) ?? "0"),
-        ];
-      }
-      return [address, parseFloat(veFLOW)];
-    })
-  );
+  const final = new Map();
+
+  // Add all addresses from flow map to _final map
+  for (const [address, veFLOW] of flowMap) {
+    final.set(address, parseFloat(veFLOW));
+  }
+
+  // Add all addresses from non-flow map to _final map
+  for (const [address, veFLOW] of nonFlowMap) {
+    if (final.has(address)) {
+      // If address is already present in _final map, add the non-flow value to the existing flow value
+      final.set(address, final.get(address) + parseFloat(veFLOW));
+    } else {
+      // If address is not present in _final map, add it with the non-flow value
+      final.set(address, parseFloat(veFLOW));
+    }
+  }
 
   fs.writeFileSync(
     "./scripts/calcData/sumFlowNonFlow.json",
