@@ -1,0 +1,3062 @@
+{
+  "data": [
+    {
+      "tvl": 870.7942788690283,
+      "apr": 153.4427764364749,
+      "address": "0x505fbc979451097c201c04d7e68e402564d9e11c",
+      "symbol": "sAMM-cINU/WCANTO",
+      "decimals": 18,
+      "stable": true,
+      "total_supply": 17854399.947519038,
+      "reserve0": 253077534869.40164,
+      "reserve1": 626.931727957229,
+      "token0_address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0xa56ff60766b8dc6b6a005512ea83866bf67b964b",
+      "isStable": true,
+      "totalSupply": 17854399.947519038,
+      "token0": {
+        "price": 2.59e-9,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+        "name": "CANTO INU",
+        "symbol": "cINU",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 0.045607139255308696,
+        "votes": 3454.7566331342473,
+        "apr": 46.34513628986213,
+        "address": "0xa56ff60766b8dc6b6a005512ea83866bf67b964b",
+        "total_supply": 5.6643246276542604e23,
+        "bribe_address": "0xc6d047dd7bc160d7307c7e2228c57c4b53338ba5",
+        "wrapped_bribe_address": "0x95a61aa9e11c7cc150ac3bbf74f82f5fd4717901",
+        "reward": 90.46017205183037,
+        "bribeAddress": "0xc6d047dd7bc160d7307c7e2228c57c4b53338ba5",
+        "totalSupply": 5.6643246276542604e23,
+        "bribes": [
+          {
+            "token": {
+              "price": 2.59e-9,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+              "name": "CANTO INU",
+              "symbol": "cINU",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 5882516.839520158,
+            "rewardAmmount": 5882516.839520158
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.08842885447030038,
+            "rewardAmmount": 0.08842885447030038
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 276960.2425777702,
+      "apr": 294.9943470597427,
+      "address": "0x9d047638826096ec3abca3cda9973db19c89a786",
+      "symbol": "vAMM-USDC/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.23614137020466672,
+      "reserve0": 133530.814987,
+      "reserve1": 417606.4112747199,
+      "token0_address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0x31096b98216cf1c730b41112ef2d9f9e19e38adf",
+      "isStable": false,
+      "totalSupply": 0.23614137020466672,
+      "token0": {
+        "price": 1.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+        "name": "USDC via channel 0",
+        "symbol": "USDC",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 549.7900092135451,
+        "votes": 914724.5921745622,
+        "apr": 128.69383914118237,
+        "address": "0x31096b98216cf1c730b41112ef2d9f9e19e38adf",
+        "total_supply": 1.3118965011370318e16,
+        "bribe_address": "0xc0db98f57756e66bee778bb11e1780d5518c2dbe",
+        "wrapped_bribe_address": "0x82face307075c40b3351e2ffe9b270121e113ae8",
+        "reward": 55312.911484086384,
+        "bribeAddress": "0xc0db98f57756e66bee778bb11e1780d5518c2dbe",
+        "totalSupply": 1.3118965011370318e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.0,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+              "name": "USDC via channel 0",
+              "symbol": "USDC",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 267.053453,
+            "rewardAmmount": 267.053453
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 823.2104147650505,
+            "rewardAmmount": 823.2104147650505
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 75.1895491235098,
+      "apr": 0.0,
+      "address": "0x4ae856378217164b455d12b3420f2c1400480006",
+      "symbol": "vAMM-NOTE/SOMM",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 6.962750201741e-5,
+      "reserve0": 32.095586166387086,
+      "reserve1": 151.061799,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+      "gauge_address": "0x1ce194ad11d83bf67d9a18546fc162bbad9dc991",
+      "isStable": false,
+      "totalSupply": 6.962750201741e-5,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.2772,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+        "name": "Somm",
+        "symbol": "SOMM",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 1.3522659038356994,
+        "votes": 0.0,
+        "apr": 0.0,
+        "address": "0x1ce194ad11d83bf67d9a18546fc162bbad9dc991",
+        "total_supply": 3868194556467.222,
+        "bribe_address": "0x35cbfe03efaf16f8b22124216263db48fa886dfa",
+        "wrapped_bribe_address": "0x8a461c564c4b6c4350321ee3e16c6e0ac2033945",
+        "reward": 0.0,
+        "bribeAddress": "0x35cbfe03efaf16f8b22124216263db48fa886dfa",
+        "totalSupply": 3868194556467.222,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.533105305429383,
+            "rewardAmmount": 0.533105305429383
+          },
+          {
+            "token": {
+              "price": 0.2772,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+              "name": "Somm",
+              "symbol": "SOMM",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 2.882044,
+            "rewardAmmount": 2.882044
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 101743.2576263813,
+      "apr": 588.8921280485696,
+      "address": "0xe5cb0a1e0be0c17cde827e0372490d767495d6af",
+      "symbol": "vAMM-WCANTO/GRAV",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.8094397269090785,
+      "reserve0": 143673.23133832694,
+      "reserve1": 4560298.022963,
+      "token0_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "token1_address": "0xc03345448969dd8c00e9e4a85d2d9722d093af8e",
+      "gauge_address": "0xd30ff21ee3911a86e023fabfc1fd24c101e21db4",
+      "isStable": false,
+      "totalSupply": 0.8094397269090785,
+      "token0": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.01149,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xc03345448969dd8c00e9e4a85d2d9722d093af8e",
+        "name": "Graviton",
+        "symbol": "GRAV",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 55.494571840635444,
+        "votes": 1548124.346972841,
+        "apr": 49.51739790708083,
+        "address": "0xd30ff21ee3911a86e023fabfc1fd24c101e21db4",
+        "total_supply": 4.49566663810347e16,
+        "bribe_address": "0xedba33ed364b2f2f5c6cd2d6408ffa3821527e82",
+        "wrapped_bribe_address": "0xa485611808bb3a83d545ab8f2d0e27dc8be41a69",
+        "reward": 40563.62713660687,
+        "bribeAddress": "0xedba33ed364b2f2f5c6cd2d6408ffa3821527e82",
+        "totalSupply": 4.49566663810347e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 74.18455859281957,
+            "rewardAmmount": 74.18455859281957
+          },
+          {
+            "token": {
+              "price": 0.01149,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xc03345448969dd8c00e9e4a85d2d9722d093af8e",
+              "name": "Graviton",
+              "symbol": "GRAV",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 2612.309842,
+            "rewardAmmount": 2612.309842
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 0.0,
+      "apr": 0.0,
+      "address": "0xbf80fb03ce981a476b460885b04dbef781a7366d",
+      "symbol": "vAMM-ZEN/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.0,
+      "reserve0": 0.0,
+      "reserve1": 0.0,
+      "token0_address": "0x03500484a2e8849f7e2f40be16fa6f36c86707af",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "",
+      "isStable": false,
+      "totalSupply": 0.0,
+      "token0": {
+        "price": 0.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x03500484a2e8849f7e2f40be16fa6f36c86707af",
+        "name": "Zen",
+        "symbol": "ZEN",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 565216.2954446294,
+      "apr": 245.2190237448099,
+      "address": "0x96d976892c6f01ab5c13e843b38bee90c2238f03",
+      "symbol": "vAMM-ETH/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 11377.167950716936,
+      "reserve0": 152.27188094691093,
+      "reserve1": 850060.3111029066,
+      "token0_address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0x462742397f17274f8735ea60855ff0a8d713ae16",
+      "isStable": false,
+      "totalSupply": 11377.167950716936,
+      "token0": {
+        "price": 1794.54,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+        "name": "ETH via channel 0",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 580.1422988899047,
+        "votes": 3583825.5617507477,
+        "apr": 67.17268848326964,
+        "address": "0x462742397f17274f8735ea60855ff0a8d713ae16",
+        "total_supply": 6.320647750398298e20,
+        "bribe_address": "0x26d6f406dae8df81af9845329095637e587c49da",
+        "wrapped_bribe_address": "0xce7aeeb56b99a4a2fac6ac41d1fc692d49244389",
+        "reward": 93834.86372022005,
+        "bribeAddress": "0x26d6f406dae8df81af9845329095637e587c49da",
+        "totalSupply": 6.320647750398298e20,
+        "bribes": [
+          {
+            "token": {
+              "price": 1794.54,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+              "name": "ETH via channel 0",
+              "symbol": "ETH",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.15708029228050466,
+            "rewardAmmount": 0.15708029228050466
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 868.3948778907571,
+            "rewardAmmount": 868.3948778907571
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 484.93336407623116,
+      "apr": 0.0,
+      "address": "0xf73628177406af55dc6921c38f819c2ace55f910",
+      "symbol": "vAMM-NOTE/cINU",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 4671873.885947059,
+      "reserve0": 223.45815048048257,
+      "reserve1": 97677144354.24333,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+      "gauge_address": "0xb8a9bc86ca40aea7d00bc2df380ccfc81f3b837b",
+      "isStable": false,
+      "totalSupply": 4671873.885947059,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 2.59e-9,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+        "name": "CANTO INU",
+        "symbol": "cINU",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 0.034650090745091164,
+        "votes": 43481.0220970137,
+        "apr": 44.60745680796466,
+        "address": "0xb8a9bc86ca40aea7d00bc2df380ccfc81f3b837b",
+        "total_supply": 2.5954854921928104e23,
+        "bribe_address": "0xdd24fb449556b98e46f11b3632ba1563bc616ca4",
+        "wrapped_bribe_address": "0x04cc504674a74c7a1413f35d796f5f20eae08a10",
+        "reward": 0.0,
+        "bribeAddress": "0xdd24fb449556b98e46f11b3632ba1563bc616ca4",
+        "totalSupply": 2.5954854921928104e23,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.013929172777020968,
+            "rewardAmmount": 0.013929172777020968
+          },
+          {
+            "token": {
+              "price": 2.59e-9,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+              "name": "CANTO INU",
+              "symbol": "cINU",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 7795988.186310192,
+            "rewardAmmount": 7795988.186310192
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 3510930.16556917,
+      "apr": 37.65660224777901,
+      "address": "0x1086b26cf340801b26ca2df58d20ce688fd3e779",
+      "symbol": "sAMM-USDC/USDT",
+      "decimals": 18,
+      "stable": true,
+      "total_supply": 1.752168397183e-6,
+      "reserve0": 1968058.430995,
+      "reserve1": 1541330.40417,
+      "token0_address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+      "token1_address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+      "gauge_address": "0x191c0150417b897a0c570c68aa7185c203cd73ea",
+      "isStable": true,
+      "totalSupply": 1.752168397183e-6,
+      "token0": {
+        "price": 1.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+        "name": "USDC via channel 0",
+        "symbol": "USDC",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.001,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+        "name": "USDT via channel 0",
+        "symbol": "USDT",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 819.718618032,
+        "votes": 3417156.607060847,
+        "apr": 78.10015589354776,
+        "address": "0x191c0150417b897a0c570c68aa7185c203cd73ea",
+        "total_supply": 97342688676.83333,
+        "bribe_address": "0x35a3d435051a23632ef7e1ed5ad7c60d8acdb6d3",
+        "wrapped_bribe_address": "0x36e46a04a82e89f6e6af54c8df242a4f3e18b8b4",
+        "reward": 89507.35352848872,
+        "bribeAddress": "0x35a3d435051a23632ef7e1ed5ad7c60d8acdb6d3",
+        "totalSupply": 97342688676.83333,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.0,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+              "name": "USDC via channel 0",
+              "symbol": "USDC",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 412.667942,
+            "rewardAmmount": 412.667942
+          },
+          {
+            "token": {
+              "price": 1.001,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+              "name": "USDT via channel 0",
+              "symbol": "USDT",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 406.644032,
+            "rewardAmmount": 406.644032
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 8954.652801162145,
+      "apr": 0.0,
+      "address": "0x42e3294d7095e830359ef9babecd478e9aa79f3f",
+      "symbol": "vAMM-fBOMB/FLOW",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 275002.6218322475,
+      "reserve0": 585446.60494205,
+      "reserve1": 130218.05358230213,
+      "token0_address": "0x74ccbe53f77b08632ce0cb91d3a545bf6b8e0979",
+      "token1_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "gauge_address": "0x4afd2c1b1a01d09617a40cad98a6969cd2e634cd",
+      "isStable": false,
+      "totalSupply": 275002.6218322475,
+      "token0": {
+        "price": 0.007039,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x74ccbe53f77b08632ce0cb91d3a545bf6b8e0979",
+        "name": "Fantom Bomb",
+        "symbol": "fBOMB",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 1.5186027968738078,
+        "votes": 0.0,
+        "apr": 0.0,
+        "address": "0x4afd2c1b1a01d09617a40cad98a6969cd2e634cd",
+        "total_supply": 1.527792343512486e22,
+        "bribe_address": "0xbb8f0ec9ea702f9d5e0b1d8eebe04a392d161552",
+        "wrapped_bribe_address": "0x404b110b13391e569a494cb1474afd608698a05c",
+        "reward": 0.0,
+        "bribeAddress": "0xbb8f0ec9ea702f9d5e0b1d8eebe04a392d161552",
+        "totalSupply": 1.527792343512486e22,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.007039,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x74ccbe53f77b08632ce0cb91d3a545bf6b8e0979",
+              "name": "Fantom Bomb",
+              "symbol": "fBOMB",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 139.8693704711418,
+            "rewardAmmount": 139.8693704711418
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 14.38745415214011,
+            "rewardAmmount": 14.38745415214011
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 1.3861675e-16,
+      "apr": 0.0,
+      "address": "0x3a9692d8ed1c07e376fcb3cd86783f5be0629313",
+      "symbol": "sAMM-YIN/WCANTO",
+      "decimals": 18,
+      "stable": true,
+      "total_supply": 1e-15,
+      "reserve0": 1.179e-14,
+      "reserve1": 8.5e-17,
+      "token0_address": "0x4ac0bbd71f5a1e1bfeb9342b6fe1724458235308",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "",
+      "isStable": true,
+      "totalSupply": 1e-15,
+      "token0": {
+        "price": 0.009281,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4ac0bbd71f5a1e1bfeb9342b6fe1724458235308",
+        "name": "Yin",
+        "symbol": "YIN",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 1202.4973294430292,
+      "apr": 0.0,
+      "address": "0x8ba9e75fb4214c03b8e8690e4b46a15992250189",
+      "symbol": "vAMM-WCANTO/YANG",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 7714.298302817965,
+      "reserve0": 1151.3910179065094,
+      "reserve1": 83406.90119852533,
+      "token0_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "token1_address": "0x9723a198425a7ba1046e33aa2adba4f0d537947b",
+      "gauge_address": "",
+      "isStable": false,
+      "totalSupply": 7714.298302817965,
+      "token0": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.009676,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x9723a198425a7ba1046e33aa2adba4f0d537947b",
+        "name": "Yang",
+        "symbol": "YANG",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 13523.784518325641,
+      "apr": 289.6927981107285,
+      "address": "0xe52d071568036db68934566a18886e0ee6bfda53",
+      "symbol": "vAMM-NOTE/AKT",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.011334977725964162,
+      "reserve0": 6588.963125145704,
+      "reserve1": 19499.535573,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0x5ad523d94efb56c400941eb6f34393b84c75ba39",
+      "gauge_address": "0x9089b7aba6fea0797f1046ac80af04d65d93da48",
+      "isStable": false,
+      "totalSupply": 0.011334977725964162,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.3428,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x5ad523d94efb56c400941eb6f34393b84c75ba39",
+        "name": "Akash Network",
+        "symbol": "AKT",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 11.902139043401238,
+        "votes": 101662.69928412308,
+        "apr": 60.89638498325704,
+        "address": "0x9089b7aba6fea0797f1046ac80af04d65d93da48",
+        "total_supply": 629720984775731.1,
+        "bribe_address": "0x26b48c12405fbd23102b06011cd4c932706959a9",
+        "wrapped_bribe_address": "0xb287c6159379e0c23b18d82b64fe1de99a4c50e2",
+        "reward": 2652.353070554178,
+        "bribeAddress": "0x26b48c12405fbd23102b06011cd4c932706959a9",
+        "totalSupply": 629720984775731.1,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 5.7893814117545634,
+            "rewardAmmount": 5.7893814117545634
+          },
+          {
+            "token": {
+              "price": 0.3428,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x5ad523d94efb56c400941eb6f34393b84c75ba39",
+              "name": "Akash Network",
+              "symbol": "AKT",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 17.190085,
+            "rewardAmmount": 17.190085
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 800.0853173882623,
+      "apr": 0.0,
+      "address": "0x8ffb8094c54854bd1c3e8231d35c5b919ef12689",
+      "symbol": "vAMM-YIN/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 4564.790879652577,
+      "reserve0": 68303.67658742238,
+      "reserve1": 483.78509905314024,
+      "token0_address": "0x4ac0bbd71f5a1e1bfeb9342b6fe1724458235308",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "",
+      "isStable": false,
+      "totalSupply": 4564.790879652577,
+      "token0": {
+        "price": 0.009281,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4ac0bbd71f5a1e1bfeb9342b6fe1724458235308",
+        "name": "Yin",
+        "symbol": "YIN",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 12220.946382146065,
+      "apr": 0.0,
+      "address": "0xac2c49a475c8d3b79fba2ebafcb11ec45b271680",
+      "symbol": "vAMM-FLOW/SOMM",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.001208262944557594,
+      "reserve0": 129497.29114877329,
+      "reserve1": 26746.056763,
+      "token0_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "token1_address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+      "gauge_address": "0x6eb598225bc24b5304f0094fe1a6e93f7c42ffcc",
+      "isStable": false,
+      "totalSupply": 0.001208262944557594,
+      "token0": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.2772,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+        "name": "Somm",
+        "symbol": "SOMM",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 13872.865944447336,
+        "votes": 5535333.270857001,
+        "apr": 395.5852818949227,
+        "address": "0x6eb598225bc24b5304f0094fe1a6e93f7c42ffcc",
+        "total_supply": 67125719142033.0,
+        "bribe_address": "0x3bfeab65b36dd3825eb1ea719c21aaecacf6f380",
+        "wrapped_bribe_address": "0x7d82cf9ea31cf0b96b9a38671d3ae90076a9f5e0",
+        "reward": 0.0,
+        "bribeAddress": "0x3bfeab65b36dd3825eb1ea719c21aaecacf6f380",
+        "totalSupply": 67125719142033.0,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 142.766445995038,
+            "rewardAmmount": 142.766445995038
+          },
+          {
+            "token": {
+              "price": 0.2772,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+              "name": "Somm",
+              "symbol": "SOMM",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 50027.29601,
+            "rewardAmmount": 50027.29601
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 394799.3967863014,
+      "apr": 471.35080351231574,
+      "address": "0x7e79e7b91526414f49ea4d3654110250b7d9444f",
+      "symbol": "vAMM-NOTE/FLOW",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 1004440.0174841225,
+      "reserve0": 199469.37407256264,
+      "reserve1": 5057925.282838937,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "gauge_address": "0x4badbfa80c704264566ac254c270e750be1bd1e3",
+      "isStable": false,
+      "totalSupply": 1004440.0174841225,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 712.5529918542939,
+        "votes": 4772966.9747198755,
+        "apr": 65.40919640759726,
+        "address": "0x4badbfa80c704264566ac254c270e750be1bd1e3",
+        "total_supply": 5.580121148103222e22,
+        "bribe_address": "0x15662c56e19888430fab8412d9804202fac973d5",
+        "wrapped_bribe_address": "0xd6fe42f53a197eb1d34bcb74aec08734dc52dd1b",
+        "reward": 125984.21272576657,
+        "bribeAddress": "0x15662c56e19888430fab8412d9804202fac973d5",
+        "totalSupply": 5.580121148103222e22,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 351.4608738809878,
+            "rewardAmmount": 351.4608738809878
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 9367.904223217363,
+            "rewardAmmount": 9367.904223217363
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 1.203789421696e-12,
+      "apr": 0.0,
+      "address": "0x06cafce82b2ab4e9d52685b228a4bb2216c36efc",
+      "symbol": "sAMM-CBONK/WCANTO",
+      "decimals": 18,
+      "stable": true,
+      "total_supply": 1e-15,
+      "reserve0": 3e-9,
+      "reserve1": 9.36916e-13,
+      "token0_address": "0x38d11b40d2173009adb245b869e90525950ae345",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "",
+      "isStable": true,
+      "totalSupply": 1e-15,
+      "token0": {
+        "price": 0.000294,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x38d11b40d2173009adb245b869e90525950ae345",
+        "name": "CANTOBONK",
+        "symbol": "CBONK",
+        "decimals": 9,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 0.009664969455452498,
+      "apr": 0.0,
+      "address": "0xea66945a563e96fba3c0a463a747b466a30bf58f",
+      "symbol": "vAMM-tYIN/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 45.06355251330926,
+      "reserve0": 901860.8548741118,
+      "reserve1": 0.014070171223464574,
+      "token0_address": "0x34ddb6ab6879c5209979a769f50c67a840e43f3a",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "",
+      "isStable": false,
+      "totalSupply": 45.06355251330926,
+      "token0": {
+        "price": 0.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x34ddb6ab6879c5209979a769f50c67a840e43f3a",
+        "name": "Test Yin",
+        "symbol": "tYIN",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 508703.6732022917,
+      "apr": 427.19433001797603,
+      "address": "0x57e8efa2639a4ca7069cd90f7e27092758271e6b",
+      "symbol": "vAMM-ETH/FLOW",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 31128.00205700434,
+      "reserve0": 148.55102530073913,
+      "reserve1": 6522707.873359466,
+      "token0_address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+      "token1_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "gauge_address": "0xae1e35547ca778127f7c596df5ca50363706737e",
+      "isStable": false,
+      "totalSupply": 31128.00205700434,
+      "token0": {
+        "price": 1794.54,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+        "name": "ETH via channel 0",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 649.3211698794579,
+        "votes": 5385193.106524886,
+        "apr": 61.386755606826654,
+        "address": "0xae1e35547ca778127f7c596df5ca50363706737e",
+        "total_supply": 1.728855313878929e21,
+        "bribe_address": "0x7e1da203ca116ef4e8620226d9bba907a9ddefe1",
+        "wrapped_bribe_address": "0x5187e3a424ac157ef481210db0efe70dd13d7dfb",
+        "reward": 147124.75329828434,
+        "bribeAddress": "0x7e1da203ca116ef4e8620226d9bba907a9ddefe1",
+        "totalSupply": 1.728855313878929e21,
+        "bribes": [
+          {
+            "token": {
+              "price": 1794.54,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+              "name": "ETH via channel 0",
+              "symbol": "ETH",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.19340897967837942,
+            "rewardAmmount": 0.19340897967837942
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 8142.176318087795,
+            "rewardAmmount": 8142.176318087795
+          },
+          {
+            "token": {
+              "price": 0.000294,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x38d11b40d2173009adb245b869e90525950ae345",
+              "name": "CANTOBONK",
+              "symbol": "CBONK",
+              "decimals": 9,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.01,
+            "rewardAmmount": 0.01
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 1.0012144054218596e-6,
+      "apr": 0.0,
+      "address": "0xf94fc929f23a3853b4e1c7274ce4e6f2e485feb9",
+      "symbol": "sAMM-FLOW/USDT",
+      "decimals": 18,
+      "stable": true,
+      "total_supply": 1e-15,
+      "reserve0": 5.776008132e-9,
+      "reserve1": 1e-6,
+      "token0_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "token1_address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+      "gauge_address": "0xaa4d0616d4f15da210d64e52a92e1e16b05c5e13",
+      "isStable": true,
+      "totalSupply": 1e-15,
+      "token0": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.001,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+        "name": "USDT via channel 0",
+        "symbol": "USDT",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 0.0,
+        "votes": 0.0,
+        "apr": 0.0,
+        "address": "0xaa4d0616d4f15da210d64e52a92e1e16b05c5e13",
+        "total_supply": 0.0,
+        "bribe_address": "0xde4a7a6c0187fe0e843bd96c97c8be4e19622261",
+        "wrapped_bribe_address": "0x1b90863bbb0992a9d9004e0a7e663ade59fe1413",
+        "reward": 0.0,
+        "bribeAddress": "0xde4a7a6c0187fe0e843bd96c97c8be4e19622261",
+        "totalSupply": 0.0,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 1.001,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+              "name": "USDT via channel 0",
+              "symbol": "USDT",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 1811.1204872385615,
+      "apr": 0.0,
+      "address": "0x9980365e6fd47aa91ea4039524d2156c6fb65327",
+      "symbol": "vAMM-WCANTO/ZEN",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 23416.486657954338,
+      "reserve0": 3056.2829990691753,
+      "reserve1": 179411.34625595168,
+      "token0_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "token1_address": "0xba6b00b37a5f61e08d2d54a89621a0d65369c56b",
+      "gauge_address": "",
+      "isStable": false,
+      "totalSupply": 23416.486657954338,
+      "token0": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.004244,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xba6b00b37a5f61e08d2d54a89621a0d65369c56b",
+        "name": "Zen",
+        "symbol": "ZEN",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 0.006869119999999999,
+      "apr": 0.0,
+      "address": "0x08ead624be770a58c19499b21fb53a055af8e224",
+      "symbol": "vAMM-YANG/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.030659419433511782,
+      "reserve0": 0.094,
+      "reserve1": 0.01,
+      "token0_address": "0x0dd0f99724106d113c5f745eed1fa74931947522",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "",
+      "isStable": false,
+      "totalSupply": 0.030659419433511782,
+      "token0": {
+        "price": 0.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x0dd0f99724106d113c5f745eed1fa74931947522",
+        "name": "Yang",
+        "symbol": "YANG",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 252139.67155731353,
+      "apr": 243.00724919758514,
+      "address": "0x2501c056218f3c8f3c8b249bf4ddd941ae5642b4",
+      "symbol": "vAMM-cINU/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 4225694491.0683985,
+      "reserve0": 49855636714417.96,
+      "reserve1": 358163.9932537822,
+      "token0_address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0xea7f8190a3941293b1108e029b5ed13a0be4f5f4",
+      "isStable": false,
+      "totalSupply": 4225694491.0683985,
+      "token0": {
+        "price": 2.59e-9,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+        "name": "CANTO INU",
+        "symbol": "cINU",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 99.09001938477164,
+        "votes": 1650955.1169481245,
+        "apr": 52.90377001375209,
+        "address": "0xea7f8190a3941293b1108e029b5ed13a0be4f5f4",
+        "total_supply": 2.3476069394824436e26,
+        "bribe_address": "0x1adb00a59147d694e1e7ad765bbac99ce5ab501e",
+        "wrapped_bribe_address": "0x6bf52ee42b893c77f8d0fb9d8881f7b16bf7da13",
+        "reward": 41481.62931964871,
+        "bribeAddress": "0x1adb00a59147d694e1e7ad765bbac99ce5ab501e",
+        "totalSupply": 2.3476069394824436e26,
+        "bribes": [
+          {
+            "token": {
+              "price": 2.59e-9,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x7264610a66eca758a8ce95cf11ff5741e1fd0455",
+              "name": "CANTO INU",
+              "symbol": "cINU",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 20859534029.57927,
+            "rewardAmmount": 20859534029.57927
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 131.20698502329654,
+            "rewardAmmount": 131.20698502329654
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 2.046729653904e-9,
+      "apr": 0.0,
+      "address": "0xaa5da094074d25cf09d823a08530c04ce2f00892",
+      "symbol": "vAMM-OSMO/NOTE",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 1e-15,
+      "reserve0": 1e-6,
+      "reserve1": 9.85900604e-10,
+      "token0_address": "0x0ce35b0d42608ca54eb7bcc8044f7087c18e7717",
+      "token1_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "gauge_address": "0xef285214be3a426a86c21286667a4a54c7e56267",
+      "isStable": false,
+      "totalSupply": 1e-15,
+      "token0": {
+        "price": 0.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x0ce35b0d42608ca54eb7bcc8044f7087c18e7717",
+        "name": "Osmosis",
+        "symbol": "OSMO",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 0.0,
+        "votes": 0.0,
+        "apr": 0.0,
+        "address": "0xef285214be3a426a86c21286667a4a54c7e56267",
+        "total_supply": 0.0,
+        "bribe_address": "0x49d2d56e8042e70d8aeb8769cc5238c04f63ebc1",
+        "wrapped_bribe_address": "0xf27360d267c3e2b6be657ede751e296bccddcd2d",
+        "reward": 0.0,
+        "bribeAddress": "0x49d2d56e8042e70d8aeb8769cc5238c04f63ebc1",
+        "totalSupply": 0.0,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.0,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x0ce35b0d42608ca54eb7bcc8044f7087c18e7717",
+              "name": "Osmosis",
+              "symbol": "OSMO",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 53038.66570834215,
+      "apr": 578.9936772179796,
+      "address": "0x2ac9325e28dbf44b1f78df9028bfe71750113b3f",
+      "symbol": "vAMM-ETH/fBOMB",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 7393.8009701219935,
+      "reserve0": 16.651311583163704,
+      "reserve1": 3289845.2933501294,
+      "token0_address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+      "token1_address": "0x74ccbe53f77b08632ce0cb91d3a545bf6b8e0979",
+      "gauge_address": "0x0f402c27761a8691f5f7131ef082009a5c65b85f",
+      "isStable": false,
+      "totalSupply": 7393.8009701219935,
+      "token0": {
+        "price": 1794.54,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+        "name": "ETH via channel 0",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.007039,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x74ccbe53f77b08632ce0cb91d3a545bf6b8e0979",
+        "name": "Fantom Bomb",
+        "symbol": "fBOMB",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 5.296723901136589,
+        "votes": 794002.4733637747,
+        "apr": 45.43032523890831,
+        "address": "0x0f402c27761a8691f5f7131ef082009a5c65b85f",
+        "total_supply": 4.1076672056233296e20,
+        "bribe_address": "0x12b323e38e7671a69a8f50c87ced4ab7cc3acd8b",
+        "wrapped_bribe_address": "0xb22395139d35f6e5210169e4a2c3af57699727ad",
+        "reward": 20790.350226465544,
+        "bribeAddress": "0x12b323e38e7671a69a8f50c87ced4ab7cc3acd8b",
+        "totalSupply": 4.1076672056233296e20,
+        "bribes": [
+          {
+            "token": {
+              "price": 1794.54,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x5fd55a1b9fc24967c4db09c513c3ba0dfa7ff687",
+              "name": "ETH via channel 0",
+              "symbol": "ETH",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.001576689392014025,
+            "rewardAmmount": 0.001576689392014025
+          },
+          {
+            "token": {
+              "price": 0.007039,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x74ccbe53f77b08632ce0cb91d3a545bf6b8e0979",
+              "name": "Fantom Bomb",
+              "symbol": "fBOMB",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 350.51736320382736,
+            "rewardAmmount": 350.51736320382736
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 2087917.6113488083,
+      "apr": 70.7092649753826,
+      "address": "0x0c3b568b8d76273e4b8c7ae43ea2ced197b53bc8",
+      "symbol": "vAMM-NOTE/USDC",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 1.024662634938468,
+      "reserve0": 1009939.2440296805,
+      "reserve1": 1039600.676046,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+      "gauge_address": "0x771665ec0b9c4f0f4660c5d222800853cd3dd856",
+      "isStable": false,
+      "totalSupply": 1.024662634938468,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+        "name": "USDC via channel 0",
+        "symbol": "USDC",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 102.62700614376317,
+        "votes": 3022747.42550347,
+        "apr": 49.2519678825578,
+        "address": "0x771665ec0b9c4f0f4660c5d222800853cd3dd856",
+        "total_supply": 5.6795130023602696e16,
+        "bribe_address": "0xffba0bffbefb7bd49fa13d1eb2af72b353321e4f",
+        "wrapped_bribe_address": "0xfcdd2353cd064b25f57fe54cdffe6e7f460f4721",
+        "reward": 99950.52382171796,
+        "bribeAddress": "0xffba0bffbefb7bd49fa13d1eb2af72b353321e4f",
+        "totalSupply": 5.6795130023602696e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 47.73844811537878,
+            "rewardAmmount": 47.73844811537878
+          },
+          {
+            "token": {
+              "price": 1.0,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+              "name": "USDC via channel 0",
+              "symbol": "USDC",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 53.074497,
+            "rewardAmmount": 53.074497
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 61781.38395825551,
+      "apr": 649.7073432823263,
+      "address": "0x7a184021b591f948247d6ca4213f6586ea00c650",
+      "symbol": "vAMM-CBONK/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 97.19861707679442,
+      "reserve0": 103350308.4906245,
+      "reserve1": 91413.14538692555,
+      "token0_address": "0x38d11b40d2173009adb245b869e90525950ae345",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0xd6c8d2cd071a5d49a578a363bd834aaa3f267dd2",
+      "isStable": false,
+      "totalSupply": 97.19861707679442,
+      "token0": {
+        "price": 0.000294,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x38d11b40d2173009adb245b869e90525950ae345",
+        "name": "CANTOBONK",
+        "symbol": "CBONK",
+        "decimals": 9,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 627.4077227560155,
+        "votes": 441855.31795765826,
+        "apr": 243.4097298867864,
+        "address": "0xd6c8d2cd071a5d49a578a363bd834aaa3f267dd2",
+        "total_supply": 5.395530919913137e18,
+        "bribe_address": "0x6c6bd02f35e6f69461e1d9d3ca04a0860f516190",
+        "wrapped_bribe_address": "0x02bbb7a476f186a0f46cf12eb43e0a5d40294c5e",
+        "reward": 27175.078185113303,
+        "bribeAddress": "0x6c6bd02f35e6f69461e1d9d3ca04a0860f516190",
+        "totalSupply": 5.395530919913137e18,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.000294,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x38d11b40d2173009adb245b869e90525950ae345",
+              "name": "CANTOBONK",
+              "symbol": "CBONK",
+              "decimals": 9,
+              "logoURI": null
+            },
+            "reward_ammount": 2018844.909949476,
+            "rewardAmmount": 2018844.909949476
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 98.60744674971339,
+            "rewardAmmount": 98.60744674971339
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 2386169.342861408,
+      "apr": 28.447785581458856,
+      "address": "0x5cbb5ed3c767d7bcc7f8796acf37a9d181233a2f",
+      "symbol": "sAMM-NOTE/USDC",
+      "decimals": 18,
+      "stable": true,
+      "total_supply": 1.141778934106621,
+      "reserve0": 891162.3216660962,
+      "reserve1": 1461142.852972,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+      "gauge_address": "0xfcb044da3705746f20cb6d93dc47c38acd8b08cb",
+      "isStable": true,
+      "totalSupply": 1.141778934106621,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+        "name": "USDC via channel 0",
+        "symbol": "USDC",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 217.54196032480604,
+        "votes": 2072007.0456423068,
+        "apr": 59.20360396690975,
+        "address": "0xfcb044da3705746f20cb6d93dc47c38acd8b08cb",
+        "total_supply": 6.34321553457987e16,
+        "bribe_address": "0xd32872f48e0dc020d79881e4bcc37d792ec14a7c",
+        "wrapped_bribe_address": "0x7c41d90ecc615d58cc30f03269ef8afb299ac346",
+        "reward": 45956.30698009449,
+        "bribeAddress": "0xd32872f48e0dc020d79881e4bcc37d792ec14a7c",
+        "totalSupply": 6.34321553457987e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 104.37472767322355,
+            "rewardAmmount": 104.37472767322355
+          },
+          {
+            "token": {
+              "price": 1.0,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+              "name": "USDC via channel 0",
+              "symbol": "USDC",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 109.200993,
+            "rewardAmmount": 109.200993
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 790271.8865483518,
+      "apr": 214.15190810506857,
+      "address": "0x04a68fd82344377d7c2dc3cdfa8235c907805577",
+      "symbol": "vAMM-WCANTO/ATOM",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.18557667092410896,
+      "reserve0": 1151742.7079997202,
+      "reserve1": 29901.435078,
+      "token0_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "token1_address": "0xeceeefcee421d8062ef8d6b4d814efe4dc898265",
+      "gauge_address": "0x610a58cd9ffb9bfedbdb39506d5a19d57ffa57c4",
+      "isStable": false,
+      "totalSupply": 0.18557667092410896,
+      "token0": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 13.2,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xeceeefcee421d8062ef8d6b4d814efe4dc898265",
+        "name": "Atom via channel 2",
+        "symbol": "ATOM",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 934.1118753275634,
+        "votes": 4377742.039648177,
+        "apr": 74.38707365912633,
+        "address": "0x610a58cd9ffb9bfedbdb39506d5a19d57ffa57c4",
+        "total_supply": 1.030971554610641e16,
+        "bribe_address": "0xfb3cd0cb42086266191683001bebb6f207967d75",
+        "wrapped_bribe_address": "0x845f5b4a86ef186e9f080d886ed7bffe4900d5a0",
+        "reward": 114576.05767731366,
+        "bribeAddress": "0xfb3cd0cb42086266191683001bebb6f207967d75",
+        "totalSupply": 1.030971554610641e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 1346.4362868244066,
+            "rewardAmmount": 1346.4362868244066
+          },
+          {
+            "token": {
+              "price": 13.2,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xeceeefcee421d8062ef8d6b4d814efe4dc898265",
+              "name": "Atom via channel 2",
+              "symbol": "ATOM",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 35.732595,
+            "rewardAmmount": 35.732595
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 1728.2649052207628,
+      "apr": 1.386611319684237,
+      "address": "0x8575d59c17c0af03c49e91037cc1a6e6cb67d57c",
+      "symbol": "vAMM-NOTE/CRE",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.003265793057443152,
+      "reserve0": 835.023836979733,
+      "reserve1": 12772.574684,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0x5db67696c3c088dfbf588d3dd849f44266ff0ffa",
+      "gauge_address": "0xdbc809a85d6979a37f8b07143663028626d1750c",
+      "isStable": false,
+      "totalSupply": 0.003265793057443152,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.06745,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x5db67696c3c088dfbf588d3dd849f44266ff0ffa",
+        "name": "Crescent",
+        "symbol": "CRE",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 0.25123270124999997,
+        "votes": 331.53916612249134,
+        "apr": 150.64990492737536,
+        "address": "0xdbc809a85d6979a37f8b07143663028626d1750c",
+        "total_supply": 181432947635675.12,
+        "bribe_address": "0x438ab7654f5d5af3b1d2e5db8e0f39d730cd241f",
+        "wrapped_bribe_address": "0xe440293d2f4e6b8abcf7d3de790de0d28fec35b9",
+        "reward": 1.6224093726632065,
+        "bribeAddress": "0x438ab7654f5d5af3b1d2e5db8e0f39d730cd241f",
+        "totalSupply": 181432947635675.12,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 0.06745,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x5db67696c3c088dfbf588d3dd849f44266ff0ffa",
+              "name": "Crescent",
+              "symbol": "CRE",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 3.724725,
+            "rewardAmmount": 3.724725
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 3156.1043119417373,
+      "apr": 1.8254975046844462,
+      "address": "0x85748e1441bb8c2c79c45109579221ff18f1596d",
+      "symbol": "vAMM-INJ/NOTE",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 795.0123596142802,
+      "reserve0": 370.85730061867446,
+      "reserve1": 1704.3333406819795,
+      "token0_address": "0x1d54ecb8583ca25895c512a8308389ffd581f9c9",
+      "token1_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "gauge_address": "0x0592a751283e01ac134079618195432a30c2f5ad",
+      "isStable": false,
+      "totalSupply": 795.0123596142802,
+      "token0": {
+        "price": 3.74,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x1d54ecb8583ca25895c512a8308389ffd581f9c9",
+        "name": "Injective",
+        "symbol": "INJ",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 5.4539514374306055,
+        "votes": 198560.7338056567,
+        "apr": 48.34362884232553,
+        "address": "0x0592a751283e01ac134079618195432a30c2f5ad",
+        "total_supply": 4.416735331190446e19,
+        "bribe_address": "0x1f82a1d64658a0e8bdf7c22d3a7ad70fd525ee96",
+        "wrapped_bribe_address": "0xdffd850be94947055fd830a60ca0f67d288fada2",
+        "reward": 3.9005691938385696,
+        "bribeAddress": "0x1f82a1d64658a0e8bdf7c22d3a7ad70fd525ee96",
+        "totalSupply": 4.416735331190446e19,
+        "bribes": [
+          {
+            "token": {
+              "price": 3.74,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x1d54ecb8583ca25895c512a8308389ffd581f9c9",
+              "name": "Injective",
+              "symbol": "INJ",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.6747113244489396,
+            "rewardAmmount": 0.6747113244489396
+          },
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 2.8232476724388933,
+            "rewardAmmount": 2.8232476724388933
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 850546.2005851145,
+      "apr": 265.98374657597793,
+      "address": "0xb06ed5fe7c94467450a163d63f352f4a8f7eaa71",
+      "symbol": "vAMM-NOTE/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 711907.2342369654,
+      "reserve0": 396964.7729576779,
+      "reserve1": 1276718.8992332201,
+      "token0_address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0xc2fccee6d3b736258a39ea8d08d5203a57fa6aa4",
+      "isStable": false,
+      "totalSupply": 711907.2342369654,
+      "token0": {
+        "price": 1.038,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+        "name": "Note",
+        "symbol": "NOTE",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 925.3451142345516,
+        "votes": 6048147.861285051,
+        "apr": 65.92851338059032,
+        "address": "0xc2fccee6d3b736258a39ea8d08d5203a57fa6aa4",
+        "total_supply": 3.9550396346498084e22,
+        "bribe_address": "0xaea29a71fe0f2e004793422d08a62c1883dc08fe",
+        "wrapped_bribe_address": "0x1c3b3e7e7e05b4da3be1c0bee5b773b1bb35abf1",
+        "reward": 153161.07370314718,
+        "bribeAddress": "0xaea29a71fe0f2e004793422d08a62c1883dc08fe",
+        "totalSupply": 3.9550396346498084e22,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 439.9074642019463,
+            "rewardAmmount": 439.9074642019463
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 1364.7196915847485,
+            "rewardAmmount": 1364.7196915847485
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 0.002203099,
+      "apr": 0.0,
+      "address": "0x1bc3232ff3ca851d4aafcf1db40c63794ee06dec",
+      "symbol": "vAMM-USDC/USDT",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 1.099e-15,
+      "reserve0": 0.001103,
+      "reserve1": 0.001099,
+      "token0_address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+      "token1_address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+      "gauge_address": "0xd1528570ca004b7a9bdbb07804d10d91e2e30ec7",
+      "isStable": false,
+      "totalSupply": 1.099e-15,
+      "token0": {
+        "price": 1.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+        "name": "USDC via channel 0",
+        "symbol": "USDC",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.001,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+        "name": "USDT via channel 0",
+        "symbol": "USDT",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 0.0343456,
+        "votes": 0.0,
+        "apr": 0.0,
+        "address": "0xd1528570ca004b7a9bdbb07804d10d91e2e30ec7",
+        "total_supply": 0.0,
+        "bribe_address": "0xa778dc632223bfbf768f5baf4099571f978f55e7",
+        "wrapped_bribe_address": "0x3f004464d264ec3c6eb8bfef1546db6fc7b16818",
+        "reward": 0.0,
+        "bribeAddress": "0xa778dc632223bfbf768f5baf4099571f978f55e7",
+        "totalSupply": 0.0,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.0,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+              "name": "USDC via channel 0",
+              "symbol": "USDC",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 1.001,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+              "name": "USDT via channel 0",
+              "symbol": "USDT",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.1,
+            "rewardAmmount": 0.1
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 191420.84234128453,
+      "apr": 401.58563445619995,
+      "address": "0x2267daa9b7458f5cfe03d3485cc871800977c2c6",
+      "symbol": "vAMM-USDC/FLOW",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.4962756644751894,
+      "reserve0": 99960.264293,
+      "reserve1": 2463916.4344904236,
+      "token0_address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+      "token1_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "gauge_address": "0x9bfd7c6de91d71a38904ee5c55b0510e77884e64",
+      "isStable": false,
+      "totalSupply": 0.4962756644751894,
+      "token0": {
+        "price": 1.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+        "name": "USDC via channel 0",
+        "symbol": "USDC",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 247.5533397093563,
+        "votes": 1987571.8442923694,
+        "apr": 61.943648236179214,
+        "address": "0x9bfd7c6de91d71a38904ee5c55b0510e77884e64",
+        "total_supply": 2.757087024862158e16,
+        "bribe_address": "0x1ca5c66209229f2368d035def4ae1457d798be03",
+        "wrapped_bribe_address": "0x0fed76e57dcb1e74316bf9eec14c944df573d72b",
+        "reward": 52043.05544293747,
+        "bribeAddress": "0x1ca5c66209229f2368d035def4ae1457d798be03",
+        "totalSupply": 2.757087024862158e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 1.0,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x80b5a32e4f032b2a058b4f29ec95eefeeb87adcd",
+              "name": "USDC via channel 0",
+              "symbol": "USDC",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 133.617933,
+            "rewardAmmount": 133.617933
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 3069.3805686787796,
+            "rewardAmmount": 3069.3805686787796
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 166742.57347655785,
+      "apr": 462.31816750053076,
+      "address": "0x6f00840f81c41dc2f7c6f81eb2e3eaea973dbf5f",
+      "symbol": "vAMM-FLOW/USDT",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.43210557172318736,
+      "reserve0": 2148968.383525293,
+      "reserve1": 86885.981099,
+      "token0_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "token1_address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+      "gauge_address": "0x0e20e21f8993d2b930c6881758526de080a0d234",
+      "isStable": false,
+      "totalSupply": 0.43210557172318736,
+      "token0": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 1.001,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+        "name": "USDT via channel 0",
+        "symbol": "USDT",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 222.37871708208084,
+        "votes": 1989355.6462820515,
+        "apr": 60.155259685401234,
+        "address": "0x0e20e21f8993d2b930c6881758526de080a0d234",
+        "total_supply": 2.4005865095732576e16,
+        "bribe_address": "0x72bcd4d49fa49128c5f6cdc7db9dae0ccbc0fc4f",
+        "wrapped_bribe_address": "0x8c4d58c3084cc0701ea5c5b5d9c480942db58eb3",
+        "reward": 52189.46613255381,
+        "bribeAddress": "0x72bcd4d49fa49128c5f6cdc7db9dae0ccbc0fc4f",
+        "totalSupply": 2.4005865095732576e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 2376.324564361015,
+            "rewardAmmount": 2376.324564361015
+          },
+          {
+            "token": {
+              "price": 1.001,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xd567b3d7b8fe3c79a1ad8da978812cfc4fa05e75",
+              "name": "USDT via channel 0",
+              "symbol": "USDT",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 113.296253,
+            "rewardAmmount": 113.296253
+          },
+          {
+            "token": {
+              "price": 1.038,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x4e71a2e537b7f9d9413d3991d37958c0b5e1e503",
+              "name": "Note",
+              "symbol": "NOTE",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 20.0,
+            "rewardAmmount": 20.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 185514.83143943798,
+      "apr": 868.3417750077236,
+      "address": "0x9a2310444766fde6316d183e2bb1c39379e3a042",
+      "symbol": "vAMM-WCANTO/SOMM",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.2981294333549907,
+      "reserve0": 235396.1132995085,
+      "reserve1": 377585.223485,
+      "token0_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "token1_address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+      "gauge_address": "0x567b5f3d4ff9ea093949de4fb5426e4228f0689a",
+      "isStable": false,
+      "totalSupply": 0.2981294333549907,
+      "token0": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.2772,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+        "name": "Somm",
+        "symbol": "SOMM",
+        "decimals": 6,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 14255.269129911383,
+        "votes": 9924641.936525002,
+        "apr": 245.70878187356135,
+        "address": "0x567b5f3d4ff9ea093949de4fb5426e4228f0689a",
+        "total_supply": 1.6562746297499428e16,
+        "bribe_address": "0x8a98ebf37a8111f3777871d859bc47f8eb768fda",
+        "wrapped_bribe_address": "0x90cd1d0f111c688c5fe89e7f3f8216f13f7bbb3e",
+        "reward": 109059.8071213245,
+        "bribeAddress": "0x8a98ebf37a8111f3777871d859bc47f8eb768fda",
+        "totalSupply": 1.6562746297499428e16,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 538.9280519198456,
+            "rewardAmmount": 538.9280519198456
+          },
+          {
+            "token": {
+              "price": 0.2772,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xfa3c22c069b9556a4b2f7ece1ee3b467909f4864",
+              "name": "Somm",
+              "symbol": "SOMM",
+              "decimals": 6,
+              "logoURI": null
+            },
+            "reward_ammount": 50758.192846,
+            "rewardAmmount": 50758.192846
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 1449817.6721458249,
+      "apr": 445.3945578240727,
+      "address": "0x2cc24302fa019c5a8f252afc9a69fcfbb8dd8d2f",
+      "symbol": "vAMM-WCANTO/FLOW",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 6399593.139064589,
+      "reserve0": 2279265.728041977,
+      "reserve1": 17968485.513346974,
+      "token0_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "token1_address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+      "gauge_address": "0x09b303fe939bec703a7c81087de0eca0042b0339",
+      "isStable": false,
+      "totalSupply": 6399593.139064589,
+      "token0": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.03712,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+        "name": "Velocimeter",
+        "symbol": "FLOW",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 2231.261432578119,
+        "votes": 20523813.76078724,
+        "apr": 59.72539640226699,
+        "address": "0x09b303fe939bec703a7c81087de0eca0042b0339",
+        "total_supply": 3.500411003693692e23,
+        "bribe_address": "0x2fd9c8eabdfef0b6f5063989e3d63be6415113ef",
+        "wrapped_bribe_address": "0x1af8bad14e87798f6b7d1f2a928dcf650b1e2827",
+        "reward": 437173.360051044,
+        "bribeAddress": "0x2fd9c8eabdfef0b6f5063989e3d63be6415113ef",
+        "totalSupply": 3.500411003693692e23,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 3510.067639361562,
+            "rewardAmmount": 3510.067639361562
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 27632.210167929807,
+            "rewardAmmount": 27632.210167929807
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 81.63039077616509,
+      "apr": 0.0,
+      "address": "0x72a4ee8e502b5aa3ef6b848a05ca3c323ed6196d",
+      "symbol": "vAMM-INJ/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 35.72701267561265,
+      "reserve0": 9.548061961248301,
+      "reserve1": 133.70166496173144,
+      "token0_address": "0x1d54ecb8583ca25895c512a8308389ffd581f9c9",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0x3182af58a1ec4dfb832d52647ec7e40a08e9395a",
+      "isStable": false,
+      "totalSupply": 35.72701267561265,
+      "token0": {
+        "price": 3.74,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x1d54ecb8583ca25895c512a8308389ffd581f9c9",
+        "name": "Injective",
+        "symbol": "INJ",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 2.8922574409982227,
+        "votes": 0.0,
+        "apr": 0.0,
+        "address": "0x3182af58a1ec4dfb832d52647ec7e40a08e9395a",
+        "total_supply": 1.984834037534036e18,
+        "bribe_address": "0xb0e1ace2f705c2bffa7e769b85fec04d39644615",
+        "wrapped_bribe_address": "0x9e0d3a4c40ec978a6f2fd61b1b856088237b8afd",
+        "reward": 0.0,
+        "bribeAddress": "0xb0e1ace2f705c2bffa7e769b85fec04d39644615",
+        "totalSupply": 1.984834037534036e18,
+        "bribes": [
+          {
+            "token": {
+              "price": 3.74,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x1d54ecb8583ca25895c512a8308389ffd581f9c9",
+              "name": "Injective",
+              "symbol": "INJ",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.3860100353573723,
+            "rewardAmmount": 0.3860100353573723
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 4.217657891437769,
+            "rewardAmmount": 4.217657891437769
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tvl": 0.006869119999999999,
+      "apr": 0.0,
+      "address": "0x88d577e3559e611faa4e9e808e65e5f521b581e6",
+      "symbol": "vAMM-YIN/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 0.030659419433511782,
+      "reserve0": 0.094,
+      "reserve1": 0.01,
+      "token0_address": "0x3fbf94bed1223ac9846c15f54c77b26e8374c7e3",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "",
+      "isStable": false,
+      "totalSupply": 0.030659419433511782,
+      "token0": {
+        "price": 0.0,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x3fbf94bed1223ac9846c15f54c77b26e8374c7e3",
+        "name": "Yin",
+        "symbol": "YIN",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      }
+    },
+    {
+      "tvl": 342985.37269213726,
+      "apr": 559.603699317033,
+      "address": "0x2dbfeb48deaccbff9b0a54ded1bc172e135a809c",
+      "symbol": "vAMM-BIFI/WCANTO",
+      "decimals": 18,
+      "stable": false,
+      "total_supply": 25559.975314102543,
+      "reserve0": 655.4606439741234,
+      "reserve1": 996722.4486529556,
+      "token0_address": "0x765277eebeca2e31912c9946eae1021199b39c61",
+      "token1_address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+      "gauge_address": "0xea15a347f05a1bf2ecb0eeb584049ad41ca13461",
+      "isStable": false,
+      "totalSupply": 25559.975314102543,
+      "token0": {
+        "price": 0.9994,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x765277eebeca2e31912c9946eae1021199b39c61",
+        "name": "beefy.finance",
+        "symbol": "BIFI",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "token1": {
+        "price": 0.343456,
+        "nativeChainAddress": "",
+        "nativeChainId": 0,
+        "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+        "name": "wCanto",
+        "symbol": "WCANTO",
+        "decimals": 18,
+        "logoURI": null
+      },
+      "gauge": {
+        "decimals": 18,
+        "tbv": 299.3192701883288,
+        "votes": 4962983.983157661,
+        "apr": 52.944469199204356,
+        "address": "0xea15a347f05a1bf2ecb0eeb584049ad41ca13461",
+        "total_supply": 1.4199986285612525e21,
+        "bribe_address": "0x3039216c9a5f3cde101fb921016ce545c8b2ce95",
+        "wrapped_bribe_address": "0x580d8104038da73e1fa9746133a6bd0469163cd0",
+        "reward": 129942.60533277864,
+        "bribeAddress": "0x3039216c9a5f3cde101fb921016ce545c8b2ce95",
+        "totalSupply": 1.4199986285612525e21,
+        "bribes": [
+          {
+            "token": {
+              "price": 0.9994,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x765277eebeca2e31912c9946eae1021199b39c61",
+              "name": "beefy.finance",
+              "symbol": "BIFI",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.5855573517448398,
+            "rewardAmmount": 0.5855573517448398
+          },
+          {
+            "token": {
+              "price": 0.343456,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0x826551890dc65655a0aceca109ab11abdbd7a07b",
+              "name": "wCanto",
+              "symbol": "WCANTO",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 869.7884566611007,
+            "rewardAmmount": 869.7884566611007
+          },
+          {
+            "token": {
+              "price": 0.03712,
+              "nativeChainAddress": "",
+              "nativeChainId": 0,
+              "address": "0xb5b060055f0d1ef5174329913ef861bc3addf029",
+              "name": "Velocimeter",
+              "symbol": "FLOW",
+              "decimals": 18,
+              "logoURI": null
+            },
+            "reward_ammount": 0.0,
+            "rewardAmmount": 0.0
+          }
+        ]
+      }
+    }
+  ]
+}
